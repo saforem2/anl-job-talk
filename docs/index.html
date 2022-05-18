@@ -87,9 +87,9 @@
     <div class="reveal">
       <div class="slides"><section  data-markdown><script type="text/template">
 
-<div class="reset-margin" style="font-family: 'Inter', sans-serif!important; background-color: #303030; border-radius: 8px!important; padding: auto; align: center; position: absolute; left: 48px; top: 140px; height: 175px; min-height: 175px; width: 864px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+<div class="reset-margin" style="font-family: 'Inter',sans-serif; background-color: #303030; border-radius: 8px!important; padding: auto; align: center; position: absolute; left: 48px; top: 140px; height: 175px; min-height: 175px; width: 864px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
-# Scientific Data Science <!-- .element: style="color: #F8F8F8; font-family: 'Inter" -->
+# Scientific Data Science <!-- .element: style="font-family: 'Inter'; color: #F8F8F8" -->
 
 #### An Emerging Symbiosis <!-- .element: style="color: #9e9e9e; font-family: 'Inter'; font-weight: 600" -->
 </div>
@@ -102,6 +102,7 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
 </div>
 
 <div class="reset-margin flex-even" style="font-size: 1.5em; position: absolute; left: 0px; top: 630px; height: 70px; min-height: 70px; width: 960px; display: flex; flex-direction: row; align-items: center; justify-content: space-evenly" align="left">
+
 
 <div class="block">
 
@@ -129,30 +130,28 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
 - APS Upgrade
 - **Idea**:
     - Currently, much of science research is manually guided
-        - try new architecture, play with hyperparameters, repeat
+        - Try new architecture, play with hyperparameters, repeat
     - Ideally, we would like to automate this
     - Hyperparameter optimization, [DeepHyper](https://deephyper.org), etc.
     
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/frontend-workflow.svg" alt="" ></img></p>
+
+    
 <aside class="notes"><ul>
-<li>Physics + ML<ul>
+<li><p>Physics + ML</p>
+<ul>
 <li>Geometric Deep Learning</li>
 <li>Heavily influenced by symmetry considerations</li>
 <li>should be amenable to goemetric analysis</li>
 </ul>
 </li>
-</ul>
-</aside></script></section><section  data-markdown><script type="text/template">
-# Typical life cycle
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/frontend-workflow.svg" alt="" ></img></p>
-
-
-<aside class="notes"><ul>
-<li>Relatively easy to prototype / try new models <ul>
+<li><p>Relatively easy to prototype / try new models </p>
+<ul>
 <li>esp on toy problems</li>
 </ul>
 </li>
-<li>Typically the refinement stage is most involved</li>
+<li><p>Typically the refinement stage is most involved</p>
+</li>
 </ul>
 </aside></script></section><section  data-markdown><script type="text/template">
 <div class="block">
@@ -244,10 +243,11 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
 
 <div class="reset-margin" style="position: absolute; left: 0px; top: 0px; height: 700px; min-height: 700px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
-<iframe width="100%" height="100%" data-src="https://wandb.ai/l2hmc-qcd/l2hmc-qcd/reports/L2HMC-Report-04-04-2022---VmlldzoxNzgzODcx" style="border:none;width:100%" data-preload data-background-interactive> </iframe>
+<iframe width="100%" height="100%" data-src="https://wandb.ai/l2hmc-qcd/l2hmc-qcd/reports/L2HMC-Report-04-04-2022---VmlldzoxNzgzODcx" style="border:none;width:100%" data-preload data-background-interactive></iframe>
 </div>
 </script></section><section  data-markdown><script type="text/template">
 <!-- .slide: class="has-light-background drop" data-background-color="white" -->
+
 <div class="reset-margin" style="position: absolute; left: 0px; top: 0px; height: 700px; min-height: 700px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
 <iframe width="100%" height="100%" data-src="https://wandb.ai/l2hmc-qcd/l2hmc-qcd/reports/W-B-Sweep-1024x16x16-4-nlf-8-TensorFlow---VmlldzoxNzA1MzU4" style="border:none;width:100%" data-background-interactive></iframe>
@@ -261,7 +261,7 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
 
 <iframe id="mlops" width="100%" height="100%" data-src="https://www.mlops.toys" data-preload data-background-interactive></iframe>
 </div>
-
+</script></section><section  data-markdown><script type="text/template">
 # Standard Model
 
 <div class="reset-margin" style="font-size: 0.8em; position: absolute; left: 48px; top: 105px; height: 280px; min-height: 280px; width: 480px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start" align="left">
@@ -285,22 +285,26 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
 <p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/feynman.svg" alt="" ></img></p>
 
 </div>
-</script></section><section  data-markdown><script type="text/template">
 
-<!-- .slide: style="text-align: left" -->
-
-# Overview
-
-1. Background / Interesting Work
-    - Why its interesting?
-    - What I've learned
-    - What aspects are relevant outside of domain expertise
-2. Ongoing Work
-     - Lattice QCD
-     - Common history with HPC
-     - Mutually beneficial
-3. Plans for future research
-</script></section><section  data-markdown><script type="text/template">
+<aside class="notes"><ol>
+<li><p>Background / Interesting Work</p>
+<ul>
+<li>Why its interesting?</li>
+<li>What I&#39;ve learned</li>
+<li>What aspects are relevant outside of domain expertise</li>
+</ul>
+</li>
+<li><p>Ongoing Work</p>
+<ul>
+<li>Lattice QCD</li>
+<li>Common history with HPC</li>
+<li>Mutually beneficial</li>
+</ul>
+</li>
+<li><p>Plans for future research</p>
+</li>
+</ol>
+<!-- .slide: class="drop" --></aside></script></section><section  data-markdown><script type="text/template">
 <!-- .slide: style="text-align: left; font-size: 100%" class="drop" -->
 
 #### Center for Complex Systems Research @ UIUC
@@ -333,6 +337,7 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
 
 <div class="footer reset-margin" style="position: absolute; left: 28.799999999999997px; top: 420px; height: 70px; min-height: 70px; width: 912px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
 
+
 <div class="block">
 
 1. [Understanding Complex Systems Workshop 2004](https://nosh.northwestern.edu/conferences/schedule.pdf)
@@ -343,13 +348,14 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
 </div>
 
 
+
 </div>
 
 <aside class="notes"><ul>
 <li>Heavily influenced my trajectory</li>
 </ul>
 </aside></script></section><section  data-markdown><script type="text/template">
-### Distributed Computing
+### Distributed Training
 
 <p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/avgGrads.svg" alt="" ></img></p>
 
@@ -371,7 +377,7 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
  </div>
 
 <!-- .slide: class="drop" -->
-</script></section><section  data-markdown><script type="text/template"></script></section><section  data-markdown><script type="text/template">
+</script></section><section  data-markdown><script type="text/template">
 #### Identifying Phase Transitions [`[1]`](https://doi.org/10.1038/nphys4035)
 
 <div class="reset-margin" style="margin-top: 5%; position: absolute; left: 48px; top: 35px; height: 630px; min-height: 630px; width: 864px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start" >
@@ -423,28 +429,45 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
 </ol>
 </div>
 </script></section><section  data-markdown><script type="text/template">
-## Renormalizing Images
+### Renormalizing Images [`[1]`](https://arxiv.org/abs/1807.10250), [`[2]`](https://arxiv.org/abs/1410.3831)
 
-<div class="reset-margin flex-even" style="position: absolute; left: 0px; top: 105px; height: 280px; min-height: 280px; width: 960px; display: flex; flex-direction: row; align-items: flex-end; justify-content: space-evenly" >
+<div class="reset-margin" style="position: absolute; left: 0px; top: 84px; height: 420px; min-height: 420px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog.svg" alt="" style="width: 60%"></img></p>
+    
+<div class="reset-margin flex-even" style="position: absolute; left: 0px; top: 0px; height: 280px; min-height: 280px; width: 960px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-evenly" >
 
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-gray.svg" alt="" style="width: 60%"></img></p>
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog.svg" alt="" style="width: 45%; margin-left: 15%"></img></p>
 
-</div>
-
-<div class="reset-margin flex-even" style="position: absolute; left: 0px; top: 406px; height: 280px; min-height: 280px; width: 960px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-evenly" >
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-025.svg" alt="" style="width: 90%"></img></p>
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-005.svg" alt="" style="width: 90%"></img></p>
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-075.svg" alt="" style="width: 90%"></img></p>
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-gray.svg" alt="" style="width: 45%; margin-right: 15%"></img></p>
 
 </div>
 
-<!-- .slide: class="drop" -->
-</script></section><section  data-markdown><script type="text/template">
+<div class="reset-margin flex-even" style="position: absolute; left: 0px; top: 196px; height: 280px; min-height: 280px; width: 960px; display: flex; flex-direction: row; align-items: flex-end; justify-content: space-evenly" >
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-025.svg" alt="" style="width: 70%"></img></p>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-005.svg" alt="" style="width: 70%"></img></p>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-075.svg" alt="" style="width: 70%"></img></p>
+
+</div>
+    
+</div>
+
+<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 28.799999999999997px; top: 581px; height: 0px; min-height: 0px; width: 912px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+</div>
+
+<div class="footer reset-margin" style="position: absolute; left: 0px; top: 665px; height: 0px; min-height: 0px; width: 912px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+
+1. <span style="background-color:#35353540;color:#F8F8F8;">Foreman, S.</span>, Giedt, J., Meurice, Y., & Unmuth-Yockey, J. (2018). Examples of renormalization group transformations for image sets. _Physical Review E_, _98_(5), 052129.Foreman, S., Giedt, J., Meurice, Y., & Unmuth-Yockey, J. (2018). Examples of renormalization group transformations for image sets. Physical Review E, 98(5), 052129. [`arXiv:1807.10250`](https://arxiv.org/abs/1807.10250)
+2. Mehta, P., & Schwab, D.J. (2014). An exact mapping between the Variational Renormalization Group and Deep Learning. [`arXiv:1410.3831`](https://arxiv.org/abs/1410.3831)
+
+</div>
+
+<aside class="notes"><p>Hinton&#39;s &quot;deep belief networks&quot; works, in a particular case, exactly like the renormalization group and seems to be closely related to the &quot;information bottleneck&quot;</p>
+<!-- .slide: class="drop" --></aside></script></section><section  data-markdown><script type="text/template">
 <div class="reset-margin" style="position: absolute; left: 0px; top: 0px; height: 700px; min-height: 700px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
 # Tensor Nets
@@ -455,54 +478,6 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
 </div>
 
 <!-- .slide: class="drop" -->
-</script></section><section  data-markdown><script type="text/template">
-<!-- .slide: style="text-align: left" class="drop" -->
-
-# Research
-
-- Identifying possible connections with existing statistical physics
-
-<div class="block">
-
-<!-- .element: style="margin: 5%" -->
- 
-
-<div class="callout callout-color-default">
-<div class="callout-title">
-<div class="callout-icon">
-
-<i class="fas fa-pencil-alt" ></i>
-
-</div>
-<div class="callout-title-inner">
-
-Mehta & Schwab [`[1]`](https://arxiv.org/abs/1410.3831)
-
-</div>
-</div>
-<div class="callout-content">
-
-Hinton's "deep belief networks" works, in a particular case, exactly like the renormalization group and seems to be closely related to the "information bottleneck" <!-- .element: style="background-color: #353535!important" -->
-
-</div>
-</div>
-
-</div>
-
-
-
-<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 28.799999999999997px; top: 630px; height: 0px; min-height: 0px; width: 912px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
-
-</div>
-
-<div class="reset-margin" style="position: absolute; left: 0px; top: 665px; height: 0px; min-height: 0px; width: 912px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
-
-
-1. Mehta, P., & Schwab, D.J. (2014). An exact mapping between the Variational Renormalization Group and Deep Learning. [`arXiv:1410.3831`](https://arxiv.org/abs/1410.3831).
-
-<!-- .element: class="footer" -->
-
-</div>
 </script></section><section  data-markdown><script type="text/template">
 <section data-background-video-loop data-background-video-muted data-background-video="https://d2r55xnwy6nx47.cloudfront.net/uploads/2021/04/Muon_2560_Lede.mp4">
 
@@ -522,40 +497,6 @@ Hinton's "deep belief networks" works, in a particular case, exactly like the re
 </section>
 
 <!-- .slide: class="drop" -->
-</script></section><section  data-markdown><script type="text/template">
-<!-- .slide: style="text-align: left" -->
-
-# HPC + HEP
-
-- Lattice QCD historically has been in lock-step with developments in HPC 
-
-<div class="block">
-
-<!-- .element: style="max-width: 90%!important; margin-left: 5%; background-color: #35353550!important; text-align: left" --> 
-
-<div class="callout callout-color5">
-<div class="callout-title">
-<div class="callout-icon">
-
-<i class="fas fa-exclamation-triangle" ></i>
-
-</div>
-<div class="callout-title-inner">
-
-Testing callouts
-
-</div>
-</div>
-<div class="callout-content">
-
-This warning is aligned left
-
-</div>
-</div>
-
-</div>
-
-
 </script></section><section  data-markdown><script type="text/template">
 <!-- .slide: style="text-align: left; font-size: 1.1em" class="drop" -->
 
@@ -589,7 +530,11 @@ This warning is aligned left
 
 
 </div>
-</script></section><section  data-markdown><script type="text/template">
+
+<aside class="notes"><ul>
+<li>Lattice QCD historically has been in lock-step with developments in HPC</li>
+</ul>
+</aside></script></section><section  data-markdown><script type="text/template">
 # Contributions
 
 <p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/feynman.svg" alt="" ></img></p>
@@ -621,39 +566,7 @@ Virtual photon splits into (anti)-hadron pair (quarks, hard to calculate)
 
 
 </split>
-</script></section><section  data-markdown><script type="text/template">
-
-## [<i class="fab fa-github"></i>](https://www.github.com/quda/quda) QUDA 
-
-[![DOI](https://zenodo.org/badge/1300564.svg)](https://zenodo.org/badge/latestdoi/1300564)
-
-Multi-GPU Support[`[1]`](https//arxiv.org/1109.2935/abs), with:
-  - adaptive multigrid[`[2]`](https//arxiv.org/abs/2104.05615)
-  - block CG[`[3]`](https://arxiv.org/abs/1710.09745)
-  - the Möbius MSPCG solver[`[4]`](https://arxiv.org/1612.07873)
-
-
-<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 48px; top: 371px; height: 0px; min-height: 0px; width: 864px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end" >
-
-</div>
-
-<div class="footer reset-margin" style="font-size: 0.5em; position: absolute; left: 48px; top: 385px; height: 420px; min-height: 420px; width: 864px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start" align="left">
-
-
-1. R. Babich, M. A. Clark, B. Joo, G. Shi, R. C. Brower, and S. Gottlieb, "Scaling lattice QCD beyond 100 GPUs," International Conference for High Performance Computing, Networking, Storage and Analysis (SC), 2011 [arXiv:1109.2935[hep-lat]](https://arxiv.org/1109.2935/abs).
-
-2. Jiqun Tu, M. A. Clark, Chulwoo Jung, Robert Mawhinney, "Solving DWF Dirac Equation Using Multi-splitting Preconditioned Conjugate Gradient with Tensor Cores on NVIDIA GPUs," published in the Platform of Advanced Scientific Computing (PASC21) [arXiv:2104.05615[hep-lat]](https://arxiv.org/abs/2104.05615).
-
-3. M. A. Clark, A. Strelchenko, A. Vaquero, M. Wagner, and E. Weinberg, "Pushing Memory Bandwidth Limitations Through Efficient Implementations of Block-Krylov Space Solvers on GPUs," Comput. Phys. Commun. 233 (2018), 29-40 [arXiv:1710.09745 [hep-lat]](https://arxiv.org/abs/1710.09745).
-
-4. M. A. Clark, B. Joo, A. Strelchenko, M. Cheng, A. Gambhir, and R. Brower, "Accelerating Lattice QCD Multigrid on GPUs Using Fine-Grained Parallelization," International Conference for High Performance Computing, Networking, Storage and Analysis (SC), 2016 [arXiv:1612.07873 [hep-lat]](https://arxiv.org/1612.07873).
-
-5. M. A. Clark, R. Babich, K. Barros, R. Brower, and C. Rebbi, "Solving Lattice QCD systems of equations using mixed precision solvers on GPUs," Comput. Phys. Commun. 181, 1517 (2010) [arXiv:0911.3191 [hep-lat]](https://arxiv.org/abs/0911.3191).
-    
-</div>
-
-<!-- .slide: class="drop" -->
-</script></section><section  data-markdown><script type="text/template">
+</script></section><section  data-markdown><script type="text/template"></script></section><section  data-markdown><script type="text/template">
 ##### Hadronic Vacuum Polarization (HVP) Contribution
 
 <p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/feynman.svg" alt="" ></img></p>
@@ -1416,6 +1329,37 @@ Feel free to reach out!
 <div class="note reset-margin" style="position: absolute; left: 72px; top: 210px; height: 280px; min-height: 280px; width: 816px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
 # BACKUPS
+</div>
+
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template">
+## [<i class="fab fa-github"></i>](https://www.github.com/quda/quda) QUDA 
+
+[![DOI](https://zenodo.org/badge/1300564.svg)](https://zenodo.org/badge/latestdoi/1300564)
+
+Multi-GPU Support[`[1]`](https//arxiv.org/1109.2935/abs), with:
+  - adaptive multigrid[`[2]`](https//arxiv.org/abs/2104.05615)
+  - block CG[`[3]`](https://arxiv.org/abs/1710.09745)
+  - the Möbius MSPCG solver[`[4]`](https://arxiv.org/1612.07873)
+
+
+<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 48px; top: 371px; height: 0px; min-height: 0px; width: 864px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end" >
+
+</div>
+
+<div class="footer reset-margin" style="font-size: 0.5em; position: absolute; left: 48px; top: 385px; height: 420px; min-height: 420px; width: 864px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start" align="left">
+
+
+1. R. Babich, M. A. Clark, B. Joo, G. Shi, R. C. Brower, and S. Gottlieb, "Scaling lattice QCD beyond 100 GPUs," International Conference for High Performance Computing, Networking, Storage and Analysis (SC), 2011 [arXiv:1109.2935[hep-lat]](https://arxiv.org/1109.2935/abs).
+
+2. Jiqun Tu, M. A. Clark, Chulwoo Jung, Robert Mawhinney, "Solving DWF Dirac Equation Using Multi-splitting Preconditioned Conjugate Gradient with Tensor Cores on NVIDIA GPUs," published in the Platform of Advanced Scientific Computing (PASC21) [arXiv:2104.05615[hep-lat]](https://arxiv.org/abs/2104.05615).
+
+3. M. A. Clark, A. Strelchenko, A. Vaquero, M. Wagner, and E. Weinberg, "Pushing Memory Bandwidth Limitations Through Efficient Implementations of Block-Krylov Space Solvers on GPUs," Comput. Phys. Commun. 233 (2018), 29-40 [arXiv:1710.09745 [hep-lat]](https://arxiv.org/abs/1710.09745).
+
+4. M. A. Clark, B. Joo, A. Strelchenko, M. Cheng, A. Gambhir, and R. Brower, "Accelerating Lattice QCD Multigrid on GPUs Using Fine-Grained Parallelization," International Conference for High Performance Computing, Networking, Storage and Analysis (SC), 2016 [arXiv:1612.07873 [hep-lat]](https://arxiv.org/1612.07873).
+
+5. M. A. Clark, R. Babich, K. Barros, R. Brower, and C. Rebbi, "Solving Lattice QCD systems of equations using mixed precision solvers on GPUs," Comput. Phys. Commun. 181, 1517 (2010) [arXiv:0911.3191 [hep-lat]](https://arxiv.org/abs/0911.3191).
+    
 </div>
 
 <!-- .slide: class="drop" -->
