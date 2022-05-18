@@ -40,25 +40,163 @@ May, 2022 <!-- .element style="font-family:'Nanum Pen Script'; font-size:1.8em;c
 
 ---
 
-# Advanced Workflows
-- Real-time data analysis
-- APS Upgrade
-- **Idea**:
-    - Currently, much of science research is manually guided
-        - Try new architecture, play with hyperparameters, repeat
-    - Ideally, we would like to automate this
-    - Hyperparameter optimization, [DeepHyper](https://deephyper.org), etc.
+# Outline
+1. [Issues with current scientific workflows](#Science%20Workflows)
+    - [How ML can help](#Possibilities)
+2. [Current Workflows](#Current%20Workflows)
+3. [Advanced Workflows](#Advanced%20Workflows)
+    - [MLOps](#MLOps), [Distributed Training](#Distributed%20Training), etc.
+4. [Illustrative Example](#Identifying%20Phase%20Transitions%201%20https%20doi%20org%2010%201038%20nphys4035)
+- [Current Research / Future Plans](#Anomalous%20Magnetic%20Moment%20of%20the%20Muon)
+
+---
+
+# Science Workflows
+
+::: block <!-- .element style="font-size:0.8em;" -->
+
+- Increasingly dependent on computing and data analysis / statistics
+- **Issues**:
+    - Science research is manually guided
+        - This is slow! 
+        - Depends on good ideas and large effort
+    - Publications are static
+    - Not all research code is public
+    - Reproducibility?
+    - Not always clear how to proceed
+    - Error prone and labor-intensive
+    
+:::
+
+![](assets/science-workflow.svg)
+
+---
+
+# 🤔 Current Issues 
+
+- Research publications are static
+    - Mistakes are inevitable
+    - Reproducibility issues are common
+    - Versioning
+    - Which code version made which reports?
+    
+- Jupyter Notebooks
+    - Better
+    - Still must be manually ran, cell by cell
+    - Useful as a "playground" for:
+        - testing ideas,
+        - debugging code
+        - making / fine-tuning plots
+
+- Can we do better?
+
+note:
+- FAIR
+- v1, v2.4, ..., v3-final-1, ...
+- Prone to human error
+- Dependencies evolve and become incompatible
+- Depends on users making
+- May not reflect most up-to-date changes
+
+
+---
+
+# Possibilities
+
+- Better data $\longrightarrow$ better science
+
+- Dynamic resource management
+    - Specialized hardware
+    - AI Accelerators
+
+- **Use ML to guide experiments**
+    - Real-time data analysis
+    - Predictive modeling
+    - Advanced simulations
+    - Heterogeneous architectures
+    - Specialized hardware
+    - AI Testbeds
+    
+note:
+- Good idea
+- Seems promising
+- ML Still difficult
+- Barrier for entry
+- Difficulty getting started
+- Hard to ensure results
+- No working theory
+- Error prone
+- Unpredictable
+
+---
+
+# ML Workflow
 
 ![](assets/frontend-workflow.svg)
 
+::: block <!-- .element class="note" style="margin-left:10%;margin-top:5%; margin-right:10%;"-->
+
+**Idea**: Automate this as much as possible and remove aspects prone to human error
+
+:::
+
 note:
-- Physics + ML
-    - Geometric Deep Learning
+
+---
+
+# Current Workflows
+
+- Try new architecture, play with hyperparameters, repeat
+    - Largely still manually guided
+    - ML Engineering
+    
+- Large "research institutes"
+    -  DeepMind, FAIR / Meta, Nvidia, etc
+    -  Hard to compete
+    -  Access to large scale systems
+    -  Iterative refinement of huge models
+    -  Operate in parallel over grad students / postdocs
+
+![](assets/deepmind-workflow.svg)
+
+---
+
+<!-- .slide style="font-size:0.9em;" -->
+
+# Advanced Workflows
+
+- Real-time data analysis
+    - Used to guide / plan future experiments
+    - Dynamic allocation of resources
+        - Improved efficiency, less time spent idle
+        - **More science per watts** [`[1]`](https://publications.anl.gov/anlpubs/2009/12/65724.pdf)
+
+- Possible solutions?
+    - Scaling up
+    - New parallelism techniques?
+    - Hyperparameter optimization, [DeepHyper](https://deephyper.org)
+    - ML Ops tools / libraries
+        - 🤗 [huggingface](https://huggingface.co)
+        - [Weights & Biases]((https://wandb.ai)
+        - [openai](https://openai.com)
+
+<grid drag="97 0" drop="2 93" class="horizontal_dotted_line" align="bottom">
+</grid>
+
+<grid drag="100 5" drop="bottom" align="center" style="font-size:80%;">
+
+1. [Argonne Leadership Computing Facility • 2008 annual report](https://publications.anl.gov/anlpubs/2009/12/65724.pdf)
+
+</grid>
+
+note: APS Upgrade
+Physics + ML
+- Geometric Deep Learning
     - Heavily influenced by symmetry considerations
-    - should be amenable to goemetric analysis
+- should be amenable to goemetric analysis
 
 - Relatively easy to prototype / try new models 
-    - esp on toy problems
+  - esp on toy problems
 - Typically the refinement stage is most involved
 
 ---
@@ -80,33 +218,6 @@ note:
 
 :::
 </grid>
-
----
-
-# 🤔 Current Issues 
-
-- Research publications are static
-    - Mistakes are inevitable
-    - Reproducibility issues are common
-    - Versioning
-    - Which code version made which reports?
-    
-- Jupyter Notebooks
-    - Better
-    - Still must be manually ran, cell by cell
-    - Useful as a "playground" for:
-        - testing ideas,
-        - debugging code
-        - making / fine-tuning plots
-
-note:
-- FAIR
-- v1, v2.4, ..., v3-final-1, ...
-- Prone to human error
-- Dependencies evolve and become incompatible
-- Depends on users making
-- May not reflect most up-to-date changes
-
 
 ---
 
@@ -144,7 +255,6 @@ note:
 
 <grid drag="60 25" drop="center" align="center" class="note" bg="#66bb6a" style="text-align:left;">
 
-    
 **Goal**: Allow researchers to focus on their science / model development without all the boilerplate.
 
 </grid>
@@ -170,21 +280,13 @@ note:
 
 ---
 
-<!-- .slide bg="white" -->
-
-<grid drop="0 0" drag="100 100">
-<iframe width="100%" height="100%" data-src="https://wandb.ai/l2hmc-qcd/l2hmc-qcd/reports/W-B-Sweep-1024x16x16-4-nlf-8-TensorFlow---VmlldzoxNzA1MzU4" style="border:none;width:100%" data-background-interactive></iframe>
-</grid>
-
----
-
 ### Distributed Training
 
 ![](assets/avgGrads.svg)
 
 ---
 
- # Distributed Computing
+ # Distributed Training
 
  <grid drop="0 15" drag="48 100" align="topleft">
 
@@ -198,74 +300,8 @@ note:
 
 ---
 
-#### Identifying Phase Transitions [`[1]`](https://doi.org/10.1038/nphys4035)
-
-<grid drag="90 90" drop="center" align="top" flow="col" style="margin-top:5%;">
-![](assets/ising/configs.svg)
-![](assets/ising/network-dropout.svg)
-</grid>
-
-<grid drag="95 0" drop="3 92" align="left" class="horizontal_dotted_line">
-</grid>
-
-<grid drag="100 7" drop="3 93" align="left" class="footer">
-1. Carrasquilla, J., Melko, R. [Machine learning phases of matter](https://doi.org/10.1038/nphys4035). _Nature Phys_ **13,** 431–434 (2017). 
-</grid>
-
----
-
-### Identifying Phase Transitions[^melko]
-
-![](assets/ising/summary.svg) <!-- .element width="53%" -->
-
----
-
-<!-- .slide bg="white" -->
-### Identifying Phase Transitions[^melko]
-![](assets/classification-net.jpg)
-
-
----
-
-### Identifying Phase Transitions[^melko]
-![](assets/ising/pca.svg) <!-- .element width="65%" -->
-
----
-
-### Renormalizing Images [`[1]`](https://arxiv.org/abs/1807.10250), [`[2]`](https://arxiv.org/abs/1410.3831)
-
-<grid drag="100 60" drop="0 12" flow="col" align="center">
-
-<grid drag="100 40" drop="0 0" flow="row" align="top">
-![](assets/cifar10/frog.svg) <!-- .element style="width:45%;margin-left:15%;" -->
-![](assets/cifar10/frog-gray.svg) <!-- .element style="width:45%;margin-right:15%;" -->
-</grid>
-
-<grid drag="100 40" drop="0 28" flow="row" align="bottom">
-![](assets/cifar10/frog-025.svg) <!-- .element style="width:70%;" -->
-![](assets/cifar10/frog-005.svg) <!-- .element style="width:70%;" -->
-![](assets/cifar10/frog-075.svg) <!-- .element style="width:70%;" -->
-</grid>
-</grid>
-
-<grid drag="95 0" drop="3 -17" align="left" class="horizontal_dotted_line">
-</grid>
-
-<grid drag="95 0" drop="0 -5" class="footer">
-1. <span style="background-color:#35353540;color:#F8F8F8;">Foreman, S.</span>, Giedt, J., Meurice, Y., & Unmuth-Yockey, J. (2018). Examples of renormalization group transformations for image sets. _Physical Review E_, _98_(5), 052129.Foreman, S., Giedt, J., Meurice, Y., & Unmuth-Yockey, J. (2018). Examples of renormalization group transformations for image sets. Physical Review E, 98(5), 052129. [`arXiv:1807.10250`](https://arxiv.org/abs/1807.10250)
-2. Mehta, P., & Schwab, D.J. (2014). An exact mapping between the Variational Renormalization Group and Deep Learning. [`arXiv:1410.3831`](https://arxiv.org/abs/1410.3831)
-</grid>
-
-note:
-Hinton's "deep belief networks" works, in a particular case, exactly like the renormalization group and seems to be closely related to the "information bottleneck"
-
----
-
-# Tensor Nets
-
-<grid drag="100 100" drop="center" flow="col" align="stretch" style="margin-top:10%;">
-![](assets/renormalization/tm1.svg) 
-![](assets/renormalization/nb-insert.svg)
+<grid drag="85 40" drop="center" class="note">
+# Ongoing work
 </grid>
 
 ---
@@ -275,7 +311,8 @@ Hinton's "deep belief networks" works, in a particular case, exactly like the re
 <grid drag="50 40" drop="5 15" align="topleft" style="font-size:0.8em;">
 - Electricity & Magnetism, Strong and Weak Interactions, elementary particles
 
-- QCD:
+
+- (Lattice) QCD:
     - Theory of the **strong** interactions between quarks and gluons
     - ❌ Analytically intractable 
     - ✅ Discretize space-time onto lattice
@@ -304,7 +341,11 @@ note:
 
 <section data-background-video-loop data-background-video-muted data-background-video="https://d2r55xnwy6nx47.cloudfront.net/uploads/2021/04/Muon_2560_Lede.mp4">
 
-#### Anomalous Magnetic Moment of the Muon <!-- .element style="color:#EEEEEE;vertical-align:center;margin-top:10%;text-shadow:0px 0px 10px black;" -->
+::: block <!-- .element style="color:#EEEEEE;vertical-align:center;margin-top:10%;text-shadow:0px 0px 10px black;" -->
+
+#### Anomalous Magnetic Moment of the Muon 
+
+:::
 
 <grid drag="40 20" drop="center" align="center" class="note">
 $$a_{\mu} = \frac{(g_{\mu} - 2)}{2}$$ <!-- .element style="color:#EEEEEE;font-size:1.5em;text-shadow:0px 0px 10px black;" -->
@@ -336,9 +377,9 @@ $$a_{\mu}^{\mathrm{exp}} = 11659209.1(5.4)(3.3)\times 10^{-10}$$
 - Hunt for Beyond Standard Model (BSM) physics
     - Upcoming experiments at Fermilab and JPARC aim to reduce uncertainty by factor of four
 
-<grid drag="90 0" drop="5 73" class="horizontal_dotted_line">
+<grid drag="90 0" drop="5 82" class="horizontal_dotted_line">
 </grid>
-<grid drag="90 5" drop="3 75" align="left" class="footer">
+<grid drag="90 10" drop="3 85" align="left" class="footer">
 ::: block
 
 1. Leading hadronic contribution to the muon magnetic moment from lattice QCD [arXiv:2002.12347](https://arxiv.org/abs/2002.12347)
@@ -389,9 +430,6 @@ $$a_{\mu}(\mathrm{HVP}) = \left(\frac{\alpha}{\pi}\right)^{2}\int_{0}^{\infty} d
 
 ## Lattice QCD
 
-- Non-perturbative approach to solving the QCD theory of the strong interaction between quarks and gluons.
-- Calculations in LatticeQCD proceed in 3 steps:
-
 ::: block <!-- .element class="note" bg="#66BB6A" style="border:1px solid #66BB6A" -->
 
   1. **Gauge Field Generation**: Use Markov Chain Monte Carlo (MCMC) methods for sampling _independent_ gauge field (gluon) configurations. 
@@ -403,6 +441,9 @@ $$a_{\mu}(\mathrm{HVP}) = \left(\frac{\alpha}{\pi}\right)^{2}\int_{0}^{\infty} d
   3. **Contractions**: Method for combining quark propagators into correlation
      functions and observables.
 
+note:
+- Calculations in LatticeQCD proceed in 3 steps:
+- Non-perturbative approach to solving the QCD theory of the strong interaction between quarks and gluons.
 
 ---
 
@@ -424,24 +465,6 @@ $$a_{\mu}(\mathrm{HVP}) = \left(\frac{\alpha}{\pi}\right)^{2}\int_{0}^{\infty} d
 note:
 - LQCD may help resolve the existing tension between the standard model predictions and experiments
 - For many key applications the necessary LQCD calculations are limited by available computing resources
-
----
-
-## ALCF (2008)
-
-<grid drag="80 75" drop="center" style="font-size:0.6em;text-align:left!important;">
-> The **Blue Gene/P** at the ALCF has tremendously accelerated the generation of the gauge configurations—in many cases, by a factor of 5 to 10 over what has been possible with other machines.
-> Significant progress has been made in simulations with two different implementations of the quarks—domain wall and staggered. [`[1]`](https://publications.anl.gov/anlpubs/2009/12/65724.pdf)
-</grid>
-
-<grid drag="97 0" drop="2 89" class="horizontal_dotted_line" align="bottom">
-</grid>
-
-<grid drag="97 10" drop="2 90" align="topleft" style="font-size:80%;">
-
-1. [Argonne Leadership Computing Facility • 2008 annual report](https://publications.anl.gov/anlpubs/2009/12/65724.pdf)
-
-</grid>
 
 ---
 <!-- .slide style="vertical-align:center;" -->
@@ -466,9 +489,27 @@ note:
 
 ---
 
+## LQCD @ ALCF (2008)
+
+<grid drag="80 75" drop="center" style="font-size:0.8em;text-align:left!important;">
+> The **Blue Gene/P** at the ALCF has tremendously accelerated the generation of the gauge configurations—in many cases, by a factor of 5 to 10 over what has been possible with other machines.
+> Significant progress has been made in simulations with two different implementations of the quarks—domain wall and staggered. [`[1]`](https://publications.anl.gov/anlpubs/2009/12/65724.pdf)
+</grid>
+
+<grid drag="97 0" drop="2 89" class="horizontal_dotted_line" align="bottom">
+</grid>
+
+<grid drag="97 10" drop="2 90" align="topleft" style="font-size:80%;">
+
+1. [Argonne Leadership Computing Facility • 2008 annual report](https://publications.anl.gov/anlpubs/2009/12/65724.pdf)
+
+</grid>
+
+---
+
 # <a href="https://www.github.com/saforem2/l2hmc-qcd"><i class="fab fa-github" /></a> `l2hmc-qcd`
     
-:::  block
+::: block
 
 <a href="https://pytorch.org/get-started/locally/"><img alt="pyTorch" src="https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white"></a> <a href="https://hydra.cc"><img alt="hydra" src="https://img.shields.io/badge/Config-Hydra-89b8cd"></a> <a href="https://www.tensorflow.org"><img alt="tensorflow" src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?&logo=TensorFlow&logoColor=white"></a> 
 <br>
@@ -512,7 +553,7 @@ $$x \sim \mathcal{N}(0, \mathbb{1})$$
 
 <grid drag="32 27" drop="33 15" align="center" class="note" style="font-size:1.5em;margin-bottom:20%;">
 $$\begin{align}
-    \dot{x} &= +\partial_{v} H \\\\
+    \dot{x} &= +\partial_{v} H \\
     \dot{v} &= - \partial_{x} H 
 \end{align}$$
 </grid> 
@@ -540,6 +581,15 @@ $$\begin{align}
 
 ---
 
+### `l2hmc`: LeapfrogLayer
+
+<img src="./assets/update_steps.svg" style="width:31%;align:left;"></img>
+<img src="./assets/leapfrog_layer_dark2.svg" style="width:64%;align:right;"></img>
+<img src="./assets/network_functions.svg" style="width:90%;align:center;"></img>
+
+
+---
+
 # L2HMC
 
 ![](assets/iso_gmm_chains.svg) <!-- .element align="stretch" -->
@@ -548,7 +598,6 @@ note:
 - Generic MCMC algorithm, designed to encourage efficient exploration of target space
 
 ---
-
 
 # Critical Slowing Down 
 
@@ -581,7 +630,169 @@ $\tau_{\mathrm{int}}^{Q} \longrightarrow \infty$
 
 ---
 
+## Comparison
+
+::: block <!-- .element style="font-size:0.9em;" -->
+
+- To calculate averages, we drop the first $\sim 25\\%$ of chains (thermalize), and average
+
+$$\langle \delta Q_{\mathbb{Z}}\rangle = \frac{1}{N_{b}}\sum_{n=1}^{N_{b}}\bigg\{\frac{1}{M}\sum_{m=1}^{M} \left|Q'_{\mathbb{Z}} - Q_{\mathbb{Z}}\right|\bigg\}$$
+
+:::
+
+<split even>
+
+![](./assets/dQint_eval.svg)
+![](./assets/dQint_hmc.svg)
+</split>
+
+::: block <!-- .element class="footer" -->
+
+Comparison of the tunneling rate between trained model (left) and HMC (right) (**Note**: Higher is better)
+
+:::
+
+---
+
+### HMC Sweep
+
+::: block <!-- .element style="font-size:0.75em!important;margin-bottom:-3%;" -->
+
+- Run HMC Sweep with $N_{\mathrm{LF}}=16$ on $16\times16$ lattice at $\beta = 4$
+
+- **Goal**: Maximize $\delta Q_{\mathbb{Z}} = f(N_{\mathrm{LF}}, \textcolor{#66bb6a}{\varepsilon})$  over _thermalized_ configs
+    - Fix $N_{\mathrm{LF}}$
+    - Sweep over $\textcolor{#66bb6a}\varepsilon$
+
+:::
+![](./assets/hmcNlf16_sweep2.svg) <!-- .element align="stretch" style="align:center!important;text-align:center!important;width:100%;" -->
+
+---
+
+<!-- .slide bg="white" -->
+<grid drop="0 0" drag="100 100">
+<iframe width="100%" height="100%" data-src="https://wandb.ai/l2hmc-qcd/l2hmc-qcd/reports/L2HMC-Report-04-04-2022---VmlldzoxNzgzODcx" style="border:none;width:100%" data-preload data-background-interactive></iframe>
+</grid>
+
+---
+
+<!-- .slide bg="white" -->
+
+<grid drop="0 0" drag="100 100">
+<iframe width="100%" height="100%" data-src="https://wandb.ai/l2hmc-qcd/l2hmc-qcd/reports/W-B-Sweep-1024x16x16-4-nlf-8-TensorFlow---VmlldzoxNzA1MzU4" style="border:none;width:100%" data-background-interactive></iframe>
+</grid>
+
+---
+
+#### Integrated Autocorrelation time: $\textcolor{#FF2052}{\tau_{\mathrm{int}}}$
+
+<grid drop="0 5" drag="40 65" align="center" style="text-align:right!important;">
+
+We can measure the performance by comparing $\tau_{\mathrm{int}}^{Q}$ for the <span style="color:#FF2052">**trained model**</span> to  <span style="color:#9F9F9F;">**HMC**</span>.
+
+::: block <!-- .element class="footer" style="color:#757575;text-align:right!important;font-size:1.0em;" align="bottomright" -->
+    
+**Note**: Lower is better <!-- .element style="text-align:right!important;" -->
+    
+:::
+
+</grid>
+
+<grid drop="40 10" drag="60 65" align="topleft" style="">
+
+![|650](./assets/autocorr_new.svg)
+</grid>
+
+<grid drop="0 75" drag="95 23" align="center" style="">
+
+![charge_histories](./assets/charge_histories.svg)
+</grid>
+
+---
+
+### Integrated Autocorrelation Time
+
+![](./assets/tint1.svg)
+
+::: block <!-- .element class="footer" -->
+
+Comparison of $\tau_{\mathrm{int}}^{Q}$ for <span style="color:#5BC461;">**trained models** </span> vs <span style="color:#757575;">**HMC** </span> with different trajectory lengths, $N_{\mathrm{LF}}$, at $\beta = 4, 5, 6, 7$
+
+:::
+
+---
+# Interpretation
+
+
+![](assets/ridgeplots.svg) <!-- .lement align="stretch" -->
+
+::: block <!-- .element style="font-size:0.7em;color:#757575;" -->
+
+<grid drop="5 65" drag="30 10" align="center" class="note">
+Deviation in $x_{P}$ 
+</grid>
+
+<grid drop="38 65" drag="30 10" align="center" class="note">
+Topological charge mixing
+</grid>
+
+<grid drop="70 65" drag="30 10" align="center" class="note">
+Artificial influx of energy
+</grid>
+
+:::
+
+<grid drag="100 15" drop="0 80" align="bottom">
+Illustration of how different observables evolve over a single L2HMC trajectory.
+</grid>
+
 <!-- .slide style="text-align:left;" -->
+---
+# <a href="https://www.github.com/saforem2/l2hmc-qcd"><i class="fab fa-github" /></a> `l2hmc-qcd` 
+<a href="https://arxiv.org/abs/2112.01582"><img alt="arxiv" src="http://img.shields.io/badge/arXiv-2112.01582-B31B1B.svg"></a> <a href="https://arxiv.org/abs/2105.03418"><img alt="arxiv" src="http://img.shields.io/badge/arXiv-2105.03418-B31B1B.svg"></a> <a href="https://arxiv.org/abs/2112.01586"><img alt="arxiv" src="http://img.shields.io/badge/arXiv-2112.01582-B31B1B.svg"></a>
+
+- Source code publicly available
+
+- Both `pytorch` and `tensorflow` implementations with support for distributed training, automatic checkpointing, etc.
+
+- Generic interface, easily extensible
+
+- <b>Work in progress</b> scaling up to 2D, 4D $SU(3)$
+
+---
+
+# References
+
+[^melko]: Carrasquilla, J., Melko, R. [Machine learning phases of matter](https://doi.org/10.1038/nphys4035). _Nature Phys_ **13,** 431–434 (2017).
+[^alcf]: [Argonne National Laboratory and Hewlett Packard Enterprise prepare for exascale era with new testbed supercomputer Argonne Leadership Computing Facility](https://www.alcf.anl.gov/news/argonne-national-laboratory-and-hewlett-packard-enterprise-prepare-exascale-era-new-testbed)
+
+---
+
+<grid drag="50 30" drop="center">
+# Thank you!
+Feel free to reach out!
+[foremans@anl.gov](mailto:///foremans@anl.gov)
+</grid>
+
+<grid drag="100 30" drop="bottom" align="top" flow="row" style="font-size:2.0em;margin-bottom:10%;">
+::: block 
+
+[<i class="fab fa-github"></i>](https://github.com/saforem2) <!-- .element style="margin:5%;" -->
+[<i class="fas fa-paper-plane"></i>](https://github.com/saforem2) <!-- .element style="margin:5%;" -->
+[<i class="fas fa-home"></i>](https://samforeman.me) <!-- .element style="margin:5%;" -->
+[<i class="fab fa-twitter"></i>](https://twitter.com/saforem2) <!-- .element style="margin:5%;" -->
+
+:::
+
+</grid>
+
+---
+
+<grid drag="85 40" drop="center" class="note">
+# BACKUPS
+</grid>
+
+---
 
 # Motivation
 
@@ -597,14 +808,6 @@ $\tau_{\mathrm{int}}^{Q} \longrightarrow \infty$
     $$\sigma^{2}=\frac{\textcolor{#0091ea}{\tau_{\mathrm{int}}^{\mathcal{O}}}}{N}\text{Var}\left[\mathcal{O}(x)\right]$$ <!-- .element style="text-align:center!important;" -->
 
 - <span id="blue">$\tau_{\mathrm{int}}^{\mathcal{O}}$</span> is known to scale <span id="red">exponentially</span> as we approach physical lattice spacing.
-
----
-
-### `l2hmc`: LeapfrogLayer
-
-<img src="./assets/update_steps.svg" style="width:31%;align:left;"></img>
-<img src="./assets/leapfrog_layer_dark2.svg" style="width:64%;align:right;"></img>
-<img src="./assets/network_functions.svg" style="width:90%;align:center;"></img>
 
 ---
 
@@ -782,126 +985,6 @@ $$A(\xi'|\xi) = \min\left(1, \frac{p(\xi')}{p(\xi)}\left|\frac{\partial \xi'}{\p
 
 ---
 
-### HMC Sweep
-
-::: block <!-- .element style="font-size:0.75em!important;margin-bottom:-3%;" -->
-
-- Run HMC Sweep with $N_{\mathrm{LF}}=16$ on $16\times16$ lattice at $\beta = 4$
-
-- **Goal**: Maximize $\delta Q_{\mathbb{Z}} = f(N_{\mathrm{LF}}, \textcolor{#66bb6a}{\varepsilon})$  over _thermalized_ configs
-    - Fix $N_{\mathrm{LF}}$
-    - Sweep over $\textcolor{#66bb6a}\varepsilon$
-
-:::
-![](./assets/hmcNlf16_sweep2.svg) <!-- .element align="stretch" style="align:center!important;text-align:center!important;width:100%;" -->
-
-
----
-## Comparison
-
-::: block <!-- .element style="font-size:0.9em;" -->
-
-- Maintain a buffer of:
-  - $N_{\mathrm{b}}$ chains ran to generate $M$ configurations (accept/reject steps)
-- To calculate averages, we drop the first $\sim 25\\%$ of chains (thermalize), and average
-
-$$\langle \delta Q_{\mathbb{Z}}\rangle = \frac{1}{N_{b}}\sum_{n=1}^{N_{b}}\bigg\{\frac{1}{M}\sum_{m=1}^{M} \left|Q'_{\mathbb{Z}} - Q_{\mathbb{Z}}\right|\bigg\}$$
-
-:::
-
-<split even>
-
-![](./assets/dQint_eval.svg)
-![](./assets/dQint_hmc.svg)
-</split>
-
-::: block <!-- .element class="footer" -->
-
-Comparison of the tunneling rate between trained model (left) and HMC (right) (**Note**: Higher is better)
-
-:::
-
----
-
-<!-- .slide bg="white" -->
-<grid drop="0 0" drag="100 100">
-<iframe width="100%" height="100%" data-src="https://wandb.ai/l2hmc-qcd/l2hmc-qcd/reports/L2HMC-Report-04-04-2022---VmlldzoxNzgzODcx" style="border:none;width:100%" data-preload data-background-interactive></iframe>
-</grid>
-
----
-
-<!-- .slide bg="white" -->
-
-<grid drop="0 0" drag="100 100">
-<iframe width="100%" height="100%" data-src="https://wandb.ai/l2hmc-qcd/l2hmc-qcd/reports/W-B-Sweep-1024x16x16-4-nlf-8-TensorFlow---VmlldzoxNzA1MzU4" style="border:none;width:100%" data-background-interactive></iframe>
-</grid>
-
----
-
-#### Integrated Autocorrelation time: $\textcolor{#FF2052}{\tau_{\mathrm{int}}}$
-
-<grid drop="0 5" drag="40 65" align="center" style="text-align:right!important;">
-
-We can measure the performance by comparing $\tau_{\mathrm{int}}^{Q}$ for the <span style="color:#FF2052">**trained model**</span> to  <span style="color:#9F9F9F;">**HMC**</span>.
-
-::: block <!-- .element class="footer" style="color:#757575;text-align:right!important;font-size:1.0em;" align="bottomright" -->
-    
-**Note**: Lower is better <!-- .element style="text-align:right!important;" -->
-    
-:::
-
-</grid>
-
-<grid drop="40 10" drag="60 65" align="topleft" style="">
-
-![|650](./assets/autocorr_new.svg)
-</grid>
-
-<grid drop="0 75" drag="95 23" align="center" style="">
-
-![charge_histories](./assets/charge_histories.svg)
-</grid>
-
----
-
-### Integrated Autocorrelation Time
-
-![](./assets/tint1.svg)
-
-::: block <!-- .element class="footer" -->
-
-Comparison of $\tau_{\mathrm{int}}^{Q}$ for <span style="color:#5BC461;">**trained models** </span> vs <span style="color:#757575;">**HMC** </span> with different trajectory lengths, $N_{\mathrm{LF}}$, at $\beta = 4, 5, 6, 7$
-
-:::
-
----
-# Interpretation
-
-
-![](assets/ridgeplots.svg) <!-- .lement align="stretch" -->
-
-::: block <!-- .element style="font-size:0.7em;color:#757575;" -->
-
-<grid drop="5 65" drag="30 10" align="center" class="note">
-Deviation in $x_{P}$ 
-</grid>
-
-<grid drop="38 65" drag="30 10" align="center" class="note">
-Topological charge mixing
-</grid>
-
-<grid drop="70 65" drag="30 10" align="center" class="note">
-Artificial influx of energy
-</grid>
-
-:::
-
-<grid drag="100 15" drop="0 80" align="bottom">
-Illustration of how different observables evolve over a single L2HMC trajectory.
-</grid>
-
----
-
 # Interpretation
 
 ![](assets/Hf_ridgeplot.svg) <!-- .element width="62%" align="top" -->
@@ -921,50 +1004,79 @@ Illustration of how different observables evolve over a single L2HMC trajectory.
 </grid>
 
 
----
-# <a href="https://www.github.com/saforem2/l2hmc-qcd"><i class="fab fa-github" /></a> `l2hmc-qcd` 
-<a href="https://arxiv.org/abs/2112.01582"><img alt="arxiv" src="http://img.shields.io/badge/arXiv-2112.01582-B31B1B.svg"></a> <a href="https://arxiv.org/abs/2105.03418"><img alt="arxiv" src="http://img.shields.io/badge/arXiv-2105.03418-B31B1B.svg"></a> <a href="https://arxiv.org/abs/2112.01586"><img alt="arxiv" src="http://img.shields.io/badge/arXiv-2112.01582-B31B1B.svg"></a>
-
-- Source code publicly available
-
-- Both `pytorch` and `tensorflow` implementations with support for distributed training, automatic checkpointing, etc.
-
-- Generic interface, easily extensible
-
-- <b>Work in progress</b> scaling up to 2D, 4D $SU(3)$
 
 ---
 
-# References
+#### Identifying Phase Transitions [`[1]`](https://doi.org/10.1038/nphys4035)
 
-[^melko]: Carrasquilla, J., Melko, R. [Machine learning phases of matter](https://doi.org/10.1038/nphys4035). _Nature Phys_ **13,** 431–434 (2017).
-[^alcf]: [Argonne National Laboratory and Hewlett Packard Enterprise prepare for exascale era with new testbed supercomputer Argonne Leadership Computing Facility](https://www.alcf.anl.gov/news/argonne-national-laboratory-and-hewlett-packard-enterprise-prepare-exascale-era-new-testbed)
-
----
-
-<grid drag="50 30" drop="center">
-# Thank you!
-Feel free to reach out!
-[foremans@anl.gov](mailto:///foremans@anl.gov)
+<grid drag="90 90" drop="center" align="top" flow="col" style="margin-top:5%;">
+![](assets/ising/configs.svg)
+![](assets/ising/network-dropout.svg)
 </grid>
 
-<grid drag="100 30" drop="bottom" align="top" flow="row" style="font-size:2.0em;margin-bottom:10%;">
-::: block 
+<grid drag="95 0" drop="3 92" align="left" class="horizontal_dotted_line">
+</grid>
 
-[<i class="fab fa-github"></i>](https://github.com/saforem2) <!-- .element style="margin:5%;" -->
-[<i class="fas fa-paper-plane"></i>](https://github.com/saforem2) <!-- .element style="margin:5%;" -->
-[<i class="fas fa-home"></i>](https://samforeman.me) <!-- .element style="margin:5%;" -->
-[<i class="fab fa-twitter"></i>](https://twitter.com/saforem2) <!-- .element style="margin:5%;" -->
-
-:::
-
+<grid drag="100 7" drop="3 93" align="left" class="footer">
+1. Carrasquilla, J., Melko, R. [Machine learning phases of matter](https://doi.org/10.1038/nphys4035). _Nature Phys_ **13,** 431–434 (2017). 
 </grid>
 
 ---
 
-<grid drag="85 40" drop="center" class="note">
-# BACKUPS
+### Identifying Phase Transitions[^melko]
+
+![](assets/ising/summary.svg) <!-- .element width="53%" -->
+
+---
+
+<!-- .slide bg="white" -->
+### Identifying Phase Transitions[^melko]
+![](assets/classification-net.jpg)
+
+
+---
+
+### Identifying Phase Transitions[^melko]
+![](assets/ising/pca.svg) <!-- .element width="65%" -->
+
+---
+
+### Renormalizing Images [`[1]`](https://arxiv.org/abs/1807.10250), [`[2]`](https://arxiv.org/abs/1410.3831)
+
+<grid drag="100 60" drop="0 12" flow="col" align="center">
+
+<grid drag="100 40" drop="0 0" flow="row" align="top">
+![](assets/cifar10/frog.svg) <!-- .element style="width:45%;margin-left:15%;" -->
+![](assets/cifar10/frog-gray.svg) <!-- .element style="width:45%;margin-right:15%;" -->
 </grid>
+
+<grid drag="100 40" drop="0 28" flow="row" align="bottom">
+![](assets/cifar10/frog-025.svg) <!-- .element style="width:70%;" -->
+![](assets/cifar10/frog-005.svg) <!-- .element style="width:70%;" -->
+![](assets/cifar10/frog-075.svg) <!-- .element style="width:70%;" -->
+</grid>
+</grid>
+
+<grid drag="95 0" drop="3 -17" align="left" class="horizontal_dotted_line">
+</grid>
+
+<grid drag="95 0" drop="0 -5" class="footer">
+1. <span style="background-color:#35353540;color:#F8F8F8;">Foreman, S.</span>, Giedt, J., Meurice, Y., & Unmuth-Yockey, J. (2018). Examples of renormalization group transformations for image sets. _Physical Review E_, _98_(5), 052129.Foreman, S., Giedt, J., Meurice, Y., & Unmuth-Yockey, J. (2018). Examples of renormalization group transformations for image sets. Physical Review E, 98(5), 052129. [`arXiv:1807.10250`](https://arxiv.org/abs/1807.10250)
+2. Mehta, P., & Schwab, D.J. (2014). An exact mapping between the Variational Renormalization Group and Deep Learning. [`arXiv:1410.3831`](https://arxiv.org/abs/1410.3831)
+</grid>
+
+note:
+Hinton's "deep belief networks" works, in a particular case, exactly like the renormalization group and seems to be closely related to the "information bottleneck"
+
+---
+
+# Tensor Networks
+
+<grid drag="100 100" drop="center" flow="col" align="stretch" style="margin-top:10%;">
+![](assets/renormalization/tm1.svg) 
+![](assets/renormalization/nb-insert.svg)
+</grid>
+
 
 ---
 

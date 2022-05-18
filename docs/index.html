@@ -125,25 +125,165 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
 
 <!-- .slide: class="drop" -->
 </script></section><section  data-markdown><script type="text/template">
-# Advanced Workflows
-- Real-time data analysis
-- APS Upgrade
-- **Idea**:
-    - Currently, much of science research is manually guided
-        - Try new architecture, play with hyperparameters, repeat
-    - Ideally, we would like to automate this
-    - Hyperparameter optimization, [DeepHyper](https://deephyper.org), etc.
+# Outline
+1. [Issues with current scientific workflows](#Science%20Workflows)
+    - [How ML can help](#Possibilities)
+2. [Current Workflows](#Current%20Workflows)
+3. [Advanced Workflows](#Advanced%20Workflows)
+    - [MLOps](#MLOps), [Distributed Training](#Distributed%20Training), etc.
+4. [Illustrative Example](#Identifying%20Phase%20Transitions%201%20https%20doi%20org%2010%201038%20nphys4035)
+- [Current Research / Future Plans](#Anomalous%20Magnetic%20Moment%20of%20the%20Muon)
+</script></section><section  data-markdown><script type="text/template">
+# Science Workflows
+
+<div class="block">
+
+<!-- .element: style="font-size: 0.8em" -->
+
+- Increasingly dependent on computing and data analysis / statistics
+- **Issues**:
+    - Science research is manually guided
+        - This is slow! 
+        - Depends on good ideas and large effort
+    - Publications are static
+    - Not all research code is public
+    - Reproducibility?
+    - Not always clear how to proceed
+    - Error prone and labor-intensive
+    
+</div>
+
+
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/science-workflow.svg" alt="" ></img></p>
+
+</script></section><section  data-markdown><script type="text/template">
+# 🤔 Current Issues 
+
+- Research publications are static
+    - Mistakes are inevitable
+    - Reproducibility issues are common
+    - Versioning
+    - Which code version made which reports?
+    
+- Jupyter Notebooks
+    - Better
+    - Still must be manually ran, cell by cell
+    - Useful as a "playground" for:
+        - testing ideas,
+        - debugging code
+        - making / fine-tuning plots
+
+- Can we do better?
+
+<aside class="notes"><ul>
+<li>FAIR</li>
+<li>v1, v2.4, ..., v3-final-1, ...</li>
+<li>Prone to human error</li>
+<li>Dependencies evolve and become incompatible</li>
+<li>Depends on users making</li>
+<li>May not reflect most up-to-date changes</li>
+</ul>
+</aside></script></section><section  data-markdown><script type="text/template">
+# Possibilities
+
+- Better data `$\longrightarrow$` better science
+
+- Dynamic resource management
+    - Specialized hardware
+    - AI Accelerators
+
+- **Use ML to guide experiments**
+    - Real-time data analysis
+    - Predictive modeling
+    - Advanced simulations
+    - Heterogeneous architectures
+    - Specialized hardware
+    - AI Testbeds
+    
+<aside class="notes"><ul>
+<li>Good idea</li>
+<li>Seems promising</li>
+<li>ML Still difficult</li>
+<li>Barrier for entry</li>
+<li>Difficulty getting started</li>
+<li>Hard to ensure results</li>
+<li>No working theory</li>
+<li>Error prone</li>
+<li>Unpredictable</li>
+</ul>
+</aside></script></section><section  data-markdown><script type="text/template">
+# ML Workflow
 
 <p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/frontend-workflow.svg" alt="" ></img></p>
 
 
-<aside class="notes"><ul>
-<li><p>Physics + ML</p>
+<div class="block">
+
+<!-- .element: style="margin-left: 10%; margin-top: 5%; margin-right: 10%" class="note" -->
+
+**Idea**: Automate this as much as possible and remove aspects prone to human error
+
+</div>
+
+
+
+<aside class="notes"></aside></script></section><section  data-markdown><script type="text/template">
+# Current Workflows
+
+- Try new architecture, play with hyperparameters, repeat
+    - Largely still manually guided
+    - ML Engineering
+    
+- Large "research institutes"
+    -  DeepMind, FAIR / Meta, Nvidia, etc
+    -  Hard to compete
+    -  Access to large scale systems
+    -  Iterative refinement of huge models
+    -  Operate in parallel over grad students / postdocs
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/deepmind-workflow.svg" alt="" ></img></p>
+
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: style="font-size: 0.9em" class="drop" -->
+
+# Advanced Workflows
+
+- Real-time data analysis
+    - Used to guide / plan future experiments
+    - Dynamic allocation of resources
+        - Improved efficiency, less time spent idle
+        - **More science per watts** [`[1]`](https://publications.anl.gov/anlpubs/2009/12/65724.pdf)
+
+- Possible solutions?
+    - Scaling up
+    - New parallelism techniques?
+    - Hyperparameter optimization, [DeepHyper](https://deephyper.org)
+    - ML Ops tools / libraries
+        - 🤗 [huggingface](https://huggingface.co)
+        - [Weights & Biases]((https://wandb.ai)
+        - [openai](https://openai.com)
+
+<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 19.2px; top: 651px; height: 0px; min-height: 0px; width: 931.1999999999999px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end" >
+
+</div>
+
+<div class="reset-margin" style="font-size: 80%; position: absolute; left: 0px; top: 665px; height: 35px; min-height: 35px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+
+1. [Argonne Leadership Computing Facility • 2008 annual report](https://publications.anl.gov/anlpubs/2009/12/65724.pdf)
+
+</div>
+
+<aside class="notes"><p>APS Upgrade
+Physics + ML</p>
 <ul>
-<li>Geometric Deep Learning</li>
+<li><p>Geometric Deep Learning</p>
+<ul>
 <li>Heavily influenced by symmetry considerations</li>
-<li>should be amenable to goemetric analysis</li>
 </ul>
+</li>
+<li><p>should be amenable to goemetric analysis</p>
 </li>
 <li><p>Relatively easy to prototype / try new models </p>
 <ul>
@@ -182,31 +322,6 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
 
 <!-- .slide: class="drop" -->
 </script></section><section  data-markdown><script type="text/template">
-# 🤔 Current Issues 
-
-- Research publications are static
-    - Mistakes are inevitable
-    - Reproducibility issues are common
-    - Versioning
-    - Which code version made which reports?
-    
-- Jupyter Notebooks
-    - Better
-    - Still must be manually ran, cell by cell
-    - Useful as a "playground" for:
-        - testing ideas,
-        - debugging code
-        - making / fine-tuning plots
-
-<aside class="notes"><ul>
-<li>FAIR</li>
-<li>v1, v2.4, ..., v3-final-1, ...</li>
-<li>Prone to human error</li>
-<li>Dependencies evolve and become incompatible</li>
-<li>Depends on users making</li>
-<li>May not reflect most up-to-date changes</li>
-</ul>
-</aside></script></section><section  data-markdown><script type="text/template">
 # Alternatives?
 
 - Dynamic reports:
@@ -248,7 +363,6 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
 <div class="note has-light-background reset-margin" style="text-align: left; background-color: #66bb6a; position: absolute; left: 192px; top: 262.5px; height: 175px; min-height: 175px; width: 576px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
 
-    
 **Goal**: Allow researchers to focus on their science / model development without all the boilerplate.
 
 </div>
@@ -272,19 +386,12 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
 <iframe width="100%" height="100%" data-src="https://wandb.ai/l2hmc-qcd/l2hmc-qcd/reports/L2HMC-Report-04-04-2022---VmlldzoxNzgzODcx" style="border:none;width:100%" data-preload data-background-interactive></iframe>
 </div>
 </script></section><section  data-markdown><script type="text/template">
-<!-- .slide: class="has-light-background drop" data-background-color="white" -->
-
-<div class="reset-margin" style="position: absolute; left: 0px; top: 0px; height: 700px; min-height: 700px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
-
-<iframe width="100%" height="100%" data-src="https://wandb.ai/l2hmc-qcd/l2hmc-qcd/reports/W-B-Sweep-1024x16x16-4-nlf-8-TensorFlow---VmlldzoxNzA1MzU4" style="border:none;width:100%" data-background-interactive></iframe>
-</div>
-</script></section><section  data-markdown><script type="text/template">
 ### Distributed Training
 
 <p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/avgGrads.svg" alt="" ></img></p>
 
 </script></section><section  data-markdown><script type="text/template">
- # Distributed Computing
+ # Distributed Training
 
  <div class="reset-margin" style="position: absolute; left: 0px; top: 105px; height: 700px; min-height: 700px; width: 460.79999999999995px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start" align="left">
 
@@ -302,101 +409,9 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
 
 <!-- .slide: class="drop" -->
 </script></section><section  data-markdown><script type="text/template">
-#### Identifying Phase Transitions [`[1]`](https://doi.org/10.1038/nphys4035)
+<div class="note reset-margin" style="position: absolute; left: 72px; top: 210px; height: 280px; min-height: 280px; width: 816px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
-<div class="reset-margin" style="margin-top: 5%; position: absolute; left: 48px; top: 35px; height: 630px; min-height: 630px; width: 864px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start" >
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/ising/configs.svg" alt="" ></img></p>
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/ising/network-dropout.svg" alt="" ></img></p>
-
-</div>
-
-<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 28.799999999999997px; top: 644px; height: 0px; min-height: 0px; width: 912px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
-
-</div>
-
-<div class="footer reset-margin" style="position: absolute; left: 28.799999999999997px; top: 651px; height: 49px; min-height: 49px; width: 960px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
-
-1. Carrasquilla, J., Melko, R. [Machine learning phases of matter](https://doi.org/10.1038/nphys4035). _Nature Phys_ **13,** 431–434 (2017). 
-</div>
-
-<!-- .slide: class="drop" -->
-</script></section><section  data-markdown><script type="text/template">
-### Identifying Phase Transitions<sup id="fnref:melko" role="doc-noteref">1</sup>
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/ising/summary.svg" alt="" width="53%"></img></p>
-
-
-<div class="footnotes" role="doc-endnotes">
-<ol>
-</ol>
-</div>
-</script></section><section  data-markdown><script type="text/template">
-<!-- .slide: class="has-light-background" data-background-color="white" -->
-### Identifying Phase Transitions<sup id="fnref:melko" role="doc-noteref">1</sup>
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/classification-net.jpg" alt="" ></img></p>
-
-
-
-<div class="footnotes" role="doc-endnotes">
-<ol>
-</ol>
-</div>
-</script></section><section  data-markdown><script type="text/template">
-### Identifying Phase Transitions<sup id="fnref:melko" role="doc-noteref">1</sup>
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/ising/pca.svg" alt="" width="65%"></img></p>
-
-
-<div class="footnotes" role="doc-endnotes">
-<ol>
-</ol>
-</div>
-</script></section><section  data-markdown><script type="text/template">
-### Renormalizing Images [`[1]`](https://arxiv.org/abs/1807.10250), [`[2]`](https://arxiv.org/abs/1410.3831)
-
-<div class="reset-margin" style="position: absolute; left: 0px; top: 84px; height: 420px; min-height: 420px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
-
-
-<div class="reset-margin flex-even" style="position: absolute; left: 0px; top: 0px; height: 280px; min-height: 280px; width: 960px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-evenly" >
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog.svg" alt="" style="width: 45%; margin-left: 15%"></img></p>
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-gray.svg" alt="" style="width: 45%; margin-right: 15%"></img></p>
-
-</div>
-
-<div class="reset-margin flex-even" style="position: absolute; left: 0px; top: 196px; height: 280px; min-height: 280px; width: 960px; display: flex; flex-direction: row; align-items: flex-end; justify-content: space-evenly" >
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-025.svg" alt="" style="width: 70%"></img></p>
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-005.svg" alt="" style="width: 70%"></img></p>
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-075.svg" alt="" style="width: 70%"></img></p>
-
-</div>
-</div>
-
-<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 28.799999999999997px; top: 581px; height: 0px; min-height: 0px; width: 912px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
-
-</div>
-
-<div class="footer reset-margin" style="position: absolute; left: 0px; top: 665px; height: 0px; min-height: 0px; width: 912px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
-
-1. <span style="background-color:#35353540;color:#F8F8F8;">Foreman, S.</span>, Giedt, J., Meurice, Y., & Unmuth-Yockey, J. (2018). Examples of renormalization group transformations for image sets. _Physical Review E_, _98_(5), 052129.Foreman, S., Giedt, J., Meurice, Y., & Unmuth-Yockey, J. (2018). Examples of renormalization group transformations for image sets. Physical Review E, 98(5), 052129. [`arXiv:1807.10250`](https://arxiv.org/abs/1807.10250)
-2. Mehta, P., & Schwab, D.J. (2014). An exact mapping between the Variational Renormalization Group and Deep Learning. [`arXiv:1410.3831`](https://arxiv.org/abs/1410.3831)
-</div>
-
-<aside class="notes"><p>Hinton&#39;s &quot;deep belief networks&quot; works, in a particular case, exactly like the renormalization group and seems to be closely related to the &quot;information bottleneck&quot;</p>
-<!-- .slide: class="drop" --></aside></script></section><section  data-markdown><script type="text/template">
-# Tensor Nets
-
-<div class="reset-margin stretch-column" style="margin-top: 10%; position: absolute; left: 0px; top: 0px; height: 700px; min-height: 700px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/renormalization/tm1.svg" alt="" ></img></p>
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/renormalization/nb-insert.svg" alt="" ></img></p>
-
+# Ongoing work
 </div>
 
 <!-- .slide: class="drop" -->
@@ -407,7 +422,8 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
 
 - Electricity & Magnetism, Strong and Weak Interactions, elementary particles
 
-- QCD:
+
+- (Lattice) QCD:
     - Theory of the **strong** interactions between quarks and gluons
     - ❌ Analytically intractable 
     - ✅ Discretize space-time onto lattice
@@ -443,7 +459,15 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
 <!-- .slide: class="drop" --></aside></script></section><section  data-markdown><script type="text/template">
 <section data-background-video-loop data-background-video-muted data-background-video="https://d2r55xnwy6nx47.cloudfront.net/uploads/2021/04/Muon_2560_Lede.mp4">
 
-#### Anomalous Magnetic Moment of the Muon <!-- .element: style="color: #EEEEEE; vertical-align: center; margin-top: 10%; text-shadow: 0px 0px 10px black" -->
+<div class="block">
+
+<!-- .element: style="color: #EEEEEE; vertical-align: center; margin-top: 10%; text-shadow: 0px 0px 10px black" -->
+
+#### Anomalous Magnetic Moment of the Muon 
+
+</div>
+
+
 
 <div class="note reset-margin" style="position: absolute; left: 288px; top: 280px; height: 140px; min-height: 140px; width: 384px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
@@ -478,10 +502,10 @@ May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8e
 - Hunt for Beyond Standard Model (BSM) physics
     - Upcoming experiments at Fermilab and JPARC aim to reduce uncertainty by factor of four
 
-<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 48px; top: 511px; height: 0px; min-height: 0px; width: 864px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 48px; top: 574px; height: 0px; min-height: 0px; width: 864px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
 </div>
-<div class="footer reset-margin" style="position: absolute; left: 28.799999999999997px; top: 525px; height: 35px; min-height: 35px; width: 864px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+<div class="footer reset-margin" style="position: absolute; left: 28.799999999999997px; top: 595px; height: 70px; min-height: 70px; width: 864px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
 
 <div class="block">
 
@@ -545,9 +569,6 @@ Virtual photon splits into (anti)-hadron pair (quarks, hard to calculate)
 </aside></script></section><section  data-markdown><script type="text/template">
 ## Lattice QCD
 
-- Non-perturbative approach to solving the QCD theory of the strong interaction between quarks and gluons.
-- Calculations in LatticeQCD proceed in 3 steps:
-
 <div class="block">
 
 <!-- .element: style="border: 1px solid #66BB6A; background-color: #66BB6A" class="note has-light-background" -->
@@ -563,7 +584,11 @@ Virtual photon splits into (anti)-hadron pair (quarks, hard to calculate)
   3. **Contractions**: Method for combining quark propagators into correlation
      functions and observables.
 
-</script></section><section  data-markdown><script type="text/template">
+<aside class="notes"><ul>
+<li>Calculations in LatticeQCD proceed in 3 steps:</li>
+<li>Non-perturbative approach to solving the QCD theory of the strong interaction between quarks and gluons.</li>
+</ul>
+</aside></script></section><section  data-markdown><script type="text/template">
 # More statistics!
 
 - Lattice QCD _may_ help resolve this tension
@@ -585,28 +610,7 @@ Virtual photon splits into (anti)-hadron pair (quarks, hard to calculate)
 <li>LQCD may help resolve the existing tension between the standard model predictions and experiments</li>
 <li>For many key applications the necessary LQCD calculations are limited by available computing resources</li>
 </ul>
-<!-- .slide: class="drop" --></aside></script></section><section  data-markdown><script type="text/template">
-## ALCF (2008)
-
-<div class="reset-margin" style="font-size: 0.6em; text-align: left!important; position: absolute; left: 96px; top: 87.5px; height: 525px; min-height: 525px; width: 768px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
-
-> The **Blue Gene/P** at the ALCF has tremendously accelerated the generation of the gauge configurations—in many cases, by a factor of 5 to 10 over what has been possible with other machines.
-> Significant progress has been made in simulations with two different implementations of the quarks—domain wall and staggered. [`[1]`](https://publications.anl.gov/anlpubs/2009/12/65724.pdf)
-</div>
-
-<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 19.2px; top: 623px; height: 0px; min-height: 0px; width: 931.1999999999999px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end" >
-
-</div>
-
-<div class="reset-margin" style="font-size: 80%; position: absolute; left: 19.2px; top: 630px; height: 70px; min-height: 70px; width: 931.1999999999999px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start" align="left">
-
-
-1. [Argonne Leadership Computing Facility • 2008 annual report](https://publications.anl.gov/anlpubs/2009/12/65724.pdf)
-
-</div>
-
-<!-- .slide: class="drop" -->
-</script></section><section  data-markdown><script type="text/template"><!-- .slide: style="vertical-align: center" class="drop" -->
+<!-- .slide: class="drop" --></aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: style="vertical-align: center" class="drop" -->
 
 # BMW Collaboration
 
@@ -634,11 +638,30 @@ Virtual photon splits into (anti)-hadron pair (quarks, hard to calculate)
 
 </div>
 </script></section><section  data-markdown><script type="text/template">
-# <a href="https://www.github.com/saforem2/l2hmc-qcd"><i class="fab fa-github" ></i></a> `l2hmc-qcd`
-    
+## LQCD @ ALCF (2008)
+
+<div class="reset-margin" style="font-size: 0.8em; text-align: left!important; position: absolute; left: 96px; top: 87.5px; height: 525px; min-height: 525px; width: 768px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+> The **Blue Gene/P** at the ALCF has tremendously accelerated the generation of the gauge configurations—in many cases, by a factor of 5 to 10 over what has been possible with other machines.
+> Significant progress has been made in simulations with two different implementations of the quarks—domain wall and staggered. [`[1]`](https://publications.anl.gov/anlpubs/2009/12/65724.pdf)
 </div>
 
-  block
+<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 19.2px; top: 623px; height: 0px; min-height: 0px; width: 931.1999999999999px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end" >
+
+</div>
+
+<div class="reset-margin" style="font-size: 80%; position: absolute; left: 19.2px; top: 630px; height: 70px; min-height: 70px; width: 931.1999999999999px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start" align="left">
+
+
+1. [Argonne Leadership Computing Facility • 2008 annual report](https://publications.anl.gov/anlpubs/2009/12/65724.pdf)
+
+</div>
+
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template">
+# <a href="https://www.github.com/saforem2/l2hmc-qcd"><i class="fab fa-github" ></i></a> `l2hmc-qcd`
+    
+<div class="block">
 
 <a href="https://pytorch.org/get-started/locally/"><img alt="pyTorch" src="https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white"></a> <a href="https://hydra.cc"><img alt="hydra" src="https://img.shields.io/badge/Config-Hydra-89b8cd"></a> <a href="https://www.tensorflow.org"><img alt="tensorflow" src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?&logo=TensorFlow&logoColor=white"></a> 
 <br>
@@ -689,7 +712,7 @@ Virtual photon splits into (anti)-hadron pair (quarks, hard to calculate)
 <div class="note reset-margin" style="font-size: 1.5em; margin-bottom: 20%; position: absolute; left: 316.8px; top: 105px; height: 189px; min-height: 189px; width: 307.2px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
 `$$\begin{align}
-    \dot{x} &= +\partial_{v} H \\\\
+    \dot{x} &= +\partial_{v} H \\
     \dot{v} &= - \partial_{x} H 
 \end{align}$$`
 </div> 
@@ -718,6 +741,13 @@ Virtual photon splits into (anti)-hadron pair (quarks, hard to calculate)
 <p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/hmc05.svg" alt="" align="stretch"></img></p>
 
 </script></section><section  data-markdown><script type="text/template">
+### `l2hmc`: LeapfrogLayer
+
+<img src="./assets/update_steps.svg" style="width:31%;align:left;"></img>
+<img src="./assets/leapfrog_layer_dark2.svg" style="width:64%;align:right;"></img>
+<img src="./assets/network_functions.svg" style="width:90%;align:center;"></img>
+
+</script></section><section  data-markdown><script type="text/template">
 # L2HMC
 
 <p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/iso_gmm_chains.svg" alt="" align="stretch"></img></p>
@@ -727,7 +757,6 @@ Virtual photon splits into (anti)-hadron pair (quarks, hard to calculate)
 <li>Generic MCMC algorithm, designed to encourage efficient exploration of target space</li>
 </ul>
 </aside></script></section><section  data-markdown><script type="text/template">
-
 # Critical Slowing Down 
 
 <div class="block">
@@ -761,8 +790,212 @@ Virtual photon splits into (anti)-hadron pair (quarks, hard to calculate)
 
 
 </script></section><section  data-markdown><script type="text/template">
-<!-- .slide: style="text-align: left" -->
+## Comparison
 
+<div class="block">
+
+<!-- .element: style="font-size: 0.9em" -->
+
+- To calculate averages, we drop the first `$\sim 25\\%$` of chains (thermalize), and average
+
+`$$\langle \delta Q_{\mathbb{Z}}\rangle = \frac{1}{N_{b}}\sum_{n=1}^{N_{b}}\bigg\{\frac{1}{M}\sum_{m=1}^{M} \left|Q'_{\mathbb{Z}} - Q_{\mathbb{Z}}\right|\bigg\}$$`
+
+</div>
+
+
+
+<split even>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/dQint_eval.svg" alt="" ></img></p>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/dQint_hmc.svg" alt="" ></img></p>
+
+</split>
+
+<div class="block">
+
+<!-- .element: class="footer" -->
+
+Comparison of the tunneling rate between trained model (left) and HMC (right) (**Note**: Higher is better)
+
+</div>
+
+
+</script></section><section  data-markdown><script type="text/template">
+### HMC Sweep
+
+<div class="block">
+
+<!-- .element: style="font-size: 0.75em!important; margin-bottom: -3%" -->
+
+- Run HMC Sweep with `$N_{\mathrm{LF}}=16$` on `$16\times16$` lattice at `$\beta = 4$`
+
+- **Goal**: Maximize `$\delta Q_{\mathbb{Z}} = f(N_{\mathrm{LF}}, \textcolor{#66bb6a}{\varepsilon})$`  over _thermalized_ configs
+    - Fix `$N_{\mathrm{LF}}$`
+    - Sweep over `$\textcolor{#66bb6a}\varepsilon$`
+
+</div>
+
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/hmcNlf16_sweep2.svg" alt="" style="align: center!important; text-align: center!important; width: 100%" align="stretch"></img></p>
+
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: class="has-light-background drop" data-background-color="white" -->
+<div class="reset-margin" style="position: absolute; left: 0px; top: 0px; height: 700px; min-height: 700px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+<iframe width="100%" height="100%" data-src="https://wandb.ai/l2hmc-qcd/l2hmc-qcd/reports/L2HMC-Report-04-04-2022---VmlldzoxNzgzODcx" style="border:none;width:100%" data-preload data-background-interactive></iframe>
+</div>
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: class="has-light-background drop" data-background-color="white" -->
+
+<div class="reset-margin" style="position: absolute; left: 0px; top: 0px; height: 700px; min-height: 700px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+<iframe width="100%" height="100%" data-src="https://wandb.ai/l2hmc-qcd/l2hmc-qcd/reports/W-B-Sweep-1024x16x16-4-nlf-8-TensorFlow---VmlldzoxNzA1MzU4" style="border:none;width:100%" data-background-interactive></iframe>
+</div>
+</script></section><section  data-markdown><script type="text/template">
+#### Integrated Autocorrelation time: `$\textcolor{#FF2052}{\tau_{\mathrm{int}}}$`
+
+<div class="reset-margin" style="text-align: right!important; position: absolute; left: 0px; top: 35px; height: 455px; min-height: 455px; width: 384px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+
+We can measure the performance by comparing `$\tau_{\mathrm{int}}^{Q}$` for the <span style="color:#FF2052">**trained model**</span> to  <span style="color:#9F9F9F;">**HMC**</span>.
+
+<div class="block">
+
+<!-- .element: style="color: #757575; text-align: right!important; font-size: 1.0em" class="footer" align="bottomright" -->
+    
+**Note**: Lower is better <!-- .element: style="text-align: right!important" -->
+    
+</div>
+
+
+
+</div>
+
+<div class="reset-margin" style="position: absolute; left: 384px; top: 70px; height: 455px; min-height: 455px; width: 576px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start" align="left">
+
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/autocorr_new.svg" alt="|650" style="width: 650px"></img></p>
+
+</div>
+
+<div class="reset-margin" style="position: absolute; left: 0px; top: 525px; height: 161px; min-height: 161px; width: 912px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/charge_histories.svg" alt="charge_histories" ></img></p>
+
+</div>
+
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template">
+### Integrated Autocorrelation Time
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/tint1.svg" alt="" ></img></p>
+
+
+<div class="block">
+
+<!-- .element: class="footer" -->
+
+Comparison of `$\tau_{\mathrm{int}}^{Q}$` for <span style="color:#5BC461;">**trained models** </span> vs <span style="color:#757575;">**HMC** </span> with different trajectory lengths, `$N_{\mathrm{LF}}$`, at `$\beta = 4, 5, 6, 7$`
+
+</div>
+
+
+</script></section><section  data-markdown><script type="text/template"># Interpretation
+
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/ridgeplots.svg" alt="" ></img></p>
+
+
+<div class="block">
+
+<!-- .element: style="font-size: 0.7em; color: #757575" -->
+
+<div class="note reset-margin" style="position: absolute; left: 48px; top: 455px; height: 70px; min-height: 70px; width: 288px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+Deviation in `$x_{P}$` 
+</div>
+
+<div class="note reset-margin" style="position: absolute; left: 364.8px; top: 455px; height: 70px; min-height: 70px; width: 288px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+Topological charge mixing
+</div>
+
+<div class="note reset-margin" style="position: absolute; left: 672px; top: 455px; height: 70px; min-height: 70px; width: 288px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+Artificial influx of energy
+</div>
+
+</div>
+
+
+
+<div class="reset-margin" style="position: absolute; left: 0px; top: 560px; height: 105px; min-height: 105px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end" >
+
+Illustration of how different observables evolve over a single L2HMC trajectory.
+</div>
+
+<!-- .slide: style="text-align: left" class="drop" --></script></section><section  data-markdown><script type="text/template"># <a href="https://www.github.com/saforem2/l2hmc-qcd"><i class="fab fa-github" ></i></a> `l2hmc-qcd` 
+<a href="https://arxiv.org/abs/2112.01582"><img alt="arxiv" src="http://img.shields.io/badge/arXiv-2112.01582-B31B1B.svg"></a> <a href="https://arxiv.org/abs/2105.03418"><img alt="arxiv" src="http://img.shields.io/badge/arXiv-2105.03418-B31B1B.svg"></a> <a href="https://arxiv.org/abs/2112.01586"><img alt="arxiv" src="http://img.shields.io/badge/arXiv-2112.01582-B31B1B.svg"></a>
+
+- Source code publicly available
+
+- Both `pytorch` and `tensorflow` implementations with support for distributed training, automatic checkpointing, etc.
+
+- Generic interface, easily extensible
+
+- <b>Work in progress</b> scaling up to 2D, 4D `$SU(3)$`
+</script></section><section  data-markdown><script type="text/template">
+# References
+
+
+
+
+<div class="footnotes" role="doc-endnotes">
+<ol>
+<li id="fn:melko" role="doc-endnote"><p>
+
+Carrasquilla, J., Melko, R. [Machine learning phases of matter](https://doi.org/10.1038/nphys4035). _Nature Phys_ **13,** 431–434 (2017).
+
+</p></li><li id="fn:alcf" role="doc-endnote"><p>
+
+[Argonne National Laboratory and Hewlett Packard Enterprise prepare for exascale era with new testbed supercomputer Argonne Leadership Computing Facility](https://www.alcf.anl.gov/news/argonne-national-laboratory-and-hewlett-packard-enterprise-prepare-exascale-era-new-testbed)
+
+</p></li></ol>
+</div>
+</script></section><section  data-markdown><script type="text/template">
+<div class="reset-margin" style="position: absolute; left: 240px; top: 245px; height: 210px; min-height: 210px; width: 480px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+# Thank you!
+Feel free to reach out!
+[foremans@anl.gov](mailto:///foremans@anl.gov)
+</div>
+
+<div class="reset-margin flex-even" style="font-size: 2.0em; margin-bottom: 10%; position: absolute; left: 0px; top: 490px; height: 210px; min-height: 210px; width: 960px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-evenly" >
+
+<div class="block">
+
+[<i class="fab fa-github"></i>](https://github.com/saforem2) <!-- .element: style="margin: 5%" -->
+[<i class="fas fa-paper-plane"></i>](https://github.com/saforem2) <!-- .element: style="margin: 5%" -->
+[<i class="fas fa-home"></i>](https://samforeman.me) <!-- .element: style="margin: 5%" -->
+[<i class="fab fa-twitter"></i>](https://twitter.com/saforem2) <!-- .element: style="margin: 5%" -->
+
+</div>
+
+
+
+</div>
+
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template">
+<div class="note reset-margin" style="position: absolute; left: 72px; top: 210px; height: 280px; min-height: 280px; width: 816px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+# BACKUPS
+</div>
+
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template">
 # Motivation
 
 - For independent samples: 
@@ -777,12 +1010,6 @@ Virtual photon splits into (anti)-hadron pair (quarks, hard to calculate)
     `$$\sigma^{2}=\frac{\textcolor{#0091ea}{\tau_{\mathrm{int}}^{\mathcal{O}}}}{N}\text{Var}\left[\mathcal{O}(x)\right]$$` <!-- .element: style="text-align: center!important" -->
 
 - <span id="blue">`$\tau_{\mathrm{int}}^{\mathcal{O}}$`</span> is known to scale <span id="red">exponentially</span> as we approach physical lattice spacing.
-</script></section><section  data-markdown><script type="text/template">
-### `l2hmc`: LeapfrogLayer
-
-<img src="./assets/update_steps.svg" style="width:31%;align:left;"></img>
-<img src="./assets/leapfrog_layer_dark2.svg" style="width:64%;align:right;"></img>
-<img src="./assets/network_functions.svg" style="width:90%;align:center;"></img>
 </script></section><section  data-markdown><script type="text/template">
 <!-- .slide: style="text-align: left; font-size: 0.78em" -->
 
@@ -997,156 +1224,6 @@ h_{n} &= \sigma\left(W_{n} h_{n} + b_{n}\right) \\\\
 
 
 </script></section><section  data-markdown><script type="text/template">
-### HMC Sweep
-
-<div class="block">
-
-<!-- .element: style="font-size: 0.75em!important; margin-bottom: -3%" -->
-
-- Run HMC Sweep with `$N_{\mathrm{LF}}=16$` on `$16\times16$` lattice at `$\beta = 4$`
-
-- **Goal**: Maximize `$\delta Q_{\mathbb{Z}} = f(N_{\mathrm{LF}}, \textcolor{#66bb6a}{\varepsilon})$`  over _thermalized_ configs
-    - Fix `$N_{\mathrm{LF}}$`
-    - Sweep over `$\textcolor{#66bb6a}\varepsilon$`
-
-</div>
-
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/hmcNlf16_sweep2.svg" alt="" style="align: center!important; text-align: center!important; width: 100%" align="stretch"></img></p>
-
-
-</script></section><section  data-markdown><script type="text/template">## Comparison
-
-<div class="block">
-
-<!-- .element: style="font-size: 0.9em" -->
-
-- Maintain a buffer of:
-  - `$N_{\mathrm{b}}$` chains ran to generate `$M$` configurations (accept/reject steps)
-- To calculate averages, we drop the first `$\sim 25\\%$` of chains (thermalize), and average
-
-`$$\langle \delta Q_{\mathbb{Z}}\rangle = \frac{1}{N_{b}}\sum_{n=1}^{N_{b}}\bigg\{\frac{1}{M}\sum_{m=1}^{M} \left|Q'_{\mathbb{Z}} - Q_{\mathbb{Z}}\right|\bigg\}$$`
-
-</div>
-
-
-
-<split even>
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/dQint_eval.svg" alt="" ></img></p>
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/dQint_hmc.svg" alt="" ></img></p>
-
-</split>
-
-<div class="block">
-
-<!-- .element: class="footer" -->
-
-Comparison of the tunneling rate between trained model (left) and HMC (right) (**Note**: Higher is better)
-
-</div>
-
-
-</script></section><section  data-markdown><script type="text/template">
-<!-- .slide: class="has-light-background drop" data-background-color="white" -->
-<div class="reset-margin" style="position: absolute; left: 0px; top: 0px; height: 700px; min-height: 700px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
-
-<iframe width="100%" height="100%" data-src="https://wandb.ai/l2hmc-qcd/l2hmc-qcd/reports/L2HMC-Report-04-04-2022---VmlldzoxNzgzODcx" style="border:none;width:100%" data-preload data-background-interactive></iframe>
-</div>
-</script></section><section  data-markdown><script type="text/template">
-<!-- .slide: class="has-light-background drop" data-background-color="white" -->
-
-<div class="reset-margin" style="position: absolute; left: 0px; top: 0px; height: 700px; min-height: 700px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
-
-<iframe width="100%" height="100%" data-src="https://wandb.ai/l2hmc-qcd/l2hmc-qcd/reports/W-B-Sweep-1024x16x16-4-nlf-8-TensorFlow---VmlldzoxNzA1MzU4" style="border:none;width:100%" data-background-interactive></iframe>
-</div>
-</script></section><section  data-markdown><script type="text/template">
-#### Integrated Autocorrelation time: `$\textcolor{#FF2052}{\tau_{\mathrm{int}}}$`
-
-<div class="reset-margin" style="text-align: right!important; position: absolute; left: 0px; top: 35px; height: 455px; min-height: 455px; width: 384px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
-
-
-We can measure the performance by comparing `$\tau_{\mathrm{int}}^{Q}$` for the <span style="color:#FF2052">**trained model**</span> to  <span style="color:#9F9F9F;">**HMC**</span>.
-
-<div class="block">
-
-<!-- .element: style="color: #757575; text-align: right!important; font-size: 1.0em" class="footer" align="bottomright" -->
-    
-**Note**: Lower is better <!-- .element: style="text-align: right!important" -->
-    
-</div>
-
-
-
-</div>
-
-<div class="reset-margin" style="position: absolute; left: 384px; top: 70px; height: 455px; min-height: 455px; width: 576px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start" align="left">
-
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/autocorr_new.svg" alt="|650" style="width: 650px"></img></p>
-
-</div>
-
-<div class="reset-margin" style="position: absolute; left: 0px; top: 525px; height: 161px; min-height: 161px; width: 912px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
-
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/charge_histories.svg" alt="charge_histories" ></img></p>
-
-</div>
-
-<!-- .slide: class="drop" -->
-</script></section><section  data-markdown><script type="text/template">
-### Integrated Autocorrelation Time
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/tint1.svg" alt="" ></img></p>
-
-
-<div class="block">
-
-<!-- .element: class="footer" -->
-
-Comparison of `$\tau_{\mathrm{int}}^{Q}$` for <span style="color:#5BC461;">**trained models** </span> vs <span style="color:#757575;">**HMC** </span> with different trajectory lengths, `$N_{\mathrm{LF}}$`, at `$\beta = 4, 5, 6, 7$`
-
-</div>
-
-
-</script></section><section  data-markdown><script type="text/template"># Interpretation
-
-
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/ridgeplots.svg" alt="" ></img></p>
-
-
-<div class="block">
-
-<!-- .element: style="font-size: 0.7em; color: #757575" -->
-
-<div class="note reset-margin" style="position: absolute; left: 48px; top: 455px; height: 70px; min-height: 70px; width: 288px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
-
-Deviation in `$x_{P}$` 
-</div>
-
-<div class="note reset-margin" style="position: absolute; left: 364.8px; top: 455px; height: 70px; min-height: 70px; width: 288px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
-
-Topological charge mixing
-</div>
-
-<div class="note reset-margin" style="position: absolute; left: 672px; top: 455px; height: 70px; min-height: 70px; width: 288px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
-
-Artificial influx of energy
-</div>
-
-</div>
-
-
-
-<div class="reset-margin" style="position: absolute; left: 0px; top: 560px; height: 105px; min-height: 105px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end" >
-
-Illustration of how different observables evolve over a single L2HMC trajectory.
-</div>
-
-<!-- .slide: class="drop" -->
-</script></section><section  data-markdown><script type="text/template">
 # Interpretation
 
 <p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/Hf_ridgeplot.svg" alt="" width="62%" align="top"></img></p>
@@ -1166,64 +1243,106 @@ Illustration of how different observables evolve over a single L2HMC trajectory.
 </div>
 
 
+
 <!-- .slide: class="drop" -->
-</script></section><section  data-markdown><script type="text/template"># <a href="https://www.github.com/saforem2/l2hmc-qcd"><i class="fab fa-github" ></i></a> `l2hmc-qcd` 
-<a href="https://arxiv.org/abs/2112.01582"><img alt="arxiv" src="http://img.shields.io/badge/arXiv-2112.01582-B31B1B.svg"></a> <a href="https://arxiv.org/abs/2105.03418"><img alt="arxiv" src="http://img.shields.io/badge/arXiv-2105.03418-B31B1B.svg"></a> <a href="https://arxiv.org/abs/2112.01586"><img alt="arxiv" src="http://img.shields.io/badge/arXiv-2112.01582-B31B1B.svg"></a>
-
-- Source code publicly available
-
-- Both `pytorch` and `tensorflow` implementations with support for distributed training, automatic checkpointing, etc.
-
-- Generic interface, easily extensible
-
-- <b>Work in progress</b> scaling up to 2D, 4D `$SU(3)$`
 </script></section><section  data-markdown><script type="text/template">
-# References
+#### Identifying Phase Transitions [`[1]`](https://doi.org/10.1038/nphys4035)
 
+<div class="reset-margin" style="margin-top: 5%; position: absolute; left: 48px; top: 35px; height: 630px; min-height: 630px; width: 864px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start" >
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/ising/configs.svg" alt="" ></img></p>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/ising/network-dropout.svg" alt="" ></img></p>
+
+</div>
+
+<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 28.799999999999997px; top: 644px; height: 0px; min-height: 0px; width: 912px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+</div>
+
+<div class="footer reset-margin" style="position: absolute; left: 28.799999999999997px; top: 651px; height: 49px; min-height: 49px; width: 960px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+1. Carrasquilla, J., Melko, R. [Machine learning phases of matter](https://doi.org/10.1038/nphys4035). _Nature Phys_ **13,** 431–434 (2017). 
+</div>
+
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template">
+### Identifying Phase Transitions<sup id="fnref:melko" role="doc-noteref">1</sup>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/ising/summary.svg" alt="" width="53%"></img></p>
+
+
+<div class="footnotes" role="doc-endnotes">
+<ol>
+</ol>
+</div>
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: class="has-light-background" data-background-color="white" -->
+### Identifying Phase Transitions<sup id="fnref:melko" role="doc-noteref">1</sup>
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/classification-net.jpg" alt="" ></img></p>
 
 
 
 <div class="footnotes" role="doc-endnotes">
 <ol>
-<li id="fn:melko" role="doc-endnote"><p>
-
-Carrasquilla, J., Melko, R. [Machine learning phases of matter](https://doi.org/10.1038/nphys4035). _Nature Phys_ **13,** 431–434 (2017).
-
-</p></li><li id="fn:alcf" role="doc-endnote"><p>
-
-[Argonne National Laboratory and Hewlett Packard Enterprise prepare for exascale era with new testbed supercomputer Argonne Leadership Computing Facility](https://www.alcf.anl.gov/news/argonne-national-laboratory-and-hewlett-packard-enterprise-prepare-exascale-era-new-testbed)
-
-</p></li></ol>
+</ol>
 </div>
 </script></section><section  data-markdown><script type="text/template">
-<div class="reset-margin" style="position: absolute; left: 240px; top: 245px; height: 210px; min-height: 210px; width: 480px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+### Identifying Phase Transitions<sup id="fnref:melko" role="doc-noteref">1</sup>
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/ising/pca.svg" alt="" width="65%"></img></p>
 
-# Thank you!
-Feel free to reach out!
-[foremans@anl.gov](mailto:///foremans@anl.gov)
+
+<div class="footnotes" role="doc-endnotes">
+<ol>
+</ol>
 </div>
-
-<div class="reset-margin flex-even" style="font-size: 2.0em; margin-bottom: 10%; position: absolute; left: 0px; top: 490px; height: 210px; min-height: 210px; width: 960px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-evenly" >
-
-<div class="block">
-
-[<i class="fab fa-github"></i>](https://github.com/saforem2) <!-- .element: style="margin: 5%" -->
-[<i class="fas fa-paper-plane"></i>](https://github.com/saforem2) <!-- .element: style="margin: 5%" -->
-[<i class="fas fa-home"></i>](https://samforeman.me) <!-- .element: style="margin: 5%" -->
-[<i class="fab fa-twitter"></i>](https://twitter.com/saforem2) <!-- .element: style="margin: 5%" -->
-
-</div>
-
-
-
-</div>
-
-<!-- .slide: class="drop" -->
 </script></section><section  data-markdown><script type="text/template">
-<div class="note reset-margin" style="position: absolute; left: 72px; top: 210px; height: 280px; min-height: 280px; width: 816px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+### Renormalizing Images [`[1]`](https://arxiv.org/abs/1807.10250), [`[2]`](https://arxiv.org/abs/1410.3831)
 
-# BACKUPS
+<div class="reset-margin" style="position: absolute; left: 0px; top: 84px; height: 420px; min-height: 420px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+
+<div class="reset-margin flex-even" style="position: absolute; left: 0px; top: 0px; height: 280px; min-height: 280px; width: 960px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-evenly" >
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog.svg" alt="" style="width: 45%; margin-left: 15%"></img></p>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-gray.svg" alt="" style="width: 45%; margin-right: 15%"></img></p>
+
 </div>
+
+<div class="reset-margin flex-even" style="position: absolute; left: 0px; top: 196px; height: 280px; min-height: 280px; width: 960px; display: flex; flex-direction: row; align-items: flex-end; justify-content: space-evenly" >
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-025.svg" alt="" style="width: 70%"></img></p>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-005.svg" alt="" style="width: 70%"></img></p>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-075.svg" alt="" style="width: 70%"></img></p>
+
+</div>
+</div>
+
+<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 28.799999999999997px; top: 581px; height: 0px; min-height: 0px; width: 912px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+</div>
+
+<div class="footer reset-margin" style="position: absolute; left: 0px; top: 665px; height: 0px; min-height: 0px; width: 912px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+1. <span style="background-color:#35353540;color:#F8F8F8;">Foreman, S.</span>, Giedt, J., Meurice, Y., & Unmuth-Yockey, J. (2018). Examples of renormalization group transformations for image sets. _Physical Review E_, _98_(5), 052129.Foreman, S., Giedt, J., Meurice, Y., & Unmuth-Yockey, J. (2018). Examples of renormalization group transformations for image sets. Physical Review E, 98(5), 052129. [`arXiv:1807.10250`](https://arxiv.org/abs/1807.10250)
+2. Mehta, P., & Schwab, D.J. (2014). An exact mapping between the Variational Renormalization Group and Deep Learning. [`arXiv:1410.3831`](https://arxiv.org/abs/1410.3831)
+</div>
+
+<aside class="notes"><p>Hinton&#39;s &quot;deep belief networks&quot; works, in a particular case, exactly like the renormalization group and seems to be closely related to the &quot;information bottleneck&quot;</p>
+<!-- .slide: class="drop" --></aside></script></section><section  data-markdown><script type="text/template">
+# Tensor Networks
+
+<div class="reset-margin stretch-column" style="margin-top: 10%; position: absolute; left: 0px; top: 0px; height: 700px; min-height: 700px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/renormalization/tm1.svg" alt="" ></img></p>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/renormalization/nb-insert.svg" alt="" ></img></p>
+
+</div>
+
 
 <!-- .slide: class="drop" -->
 </script></section><section  data-markdown><script type="text/template">
