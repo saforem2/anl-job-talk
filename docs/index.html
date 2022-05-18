@@ -5,609 +5,1331 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
     <title>Scientific Data Science</title>
-    <link rel="shortcut icon" href="./favicon.ico" />
-    <link rel="stylesheet" href="./dist/reset.css" />
-    <link rel="stylesheet" href="./dist/reveal.css" />
-    <link rel="stylesheet" href="./dist/theme/black.css" id="theme" />
-    <link rel="stylesheet" href="./css/highlight/monokai-sublime.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" id="theme" />
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+	<link rel="stylesheet" href="css/layout.css" />
+	<link rel="stylesheet" href="plugin/customcontrols/style.css">
+	<link rel="stylesheet" href="plugin/chalkboard/style.css">
 
-    <link rel="stylesheet" href="./_assets/custom/custom_theme.css" />
-    <link rel="stylesheet" href="./_assets/plugin/reveal.js-menu/menu.css" />
-    <link rel="stylesheet" href="./_assets/plugin/reveal.js-plugins/chalkboard/style.css" />
-    <link rel="stylesheet" href="./_assets/plugin/reveal.js-plugins/customcontrols/style.css" />
+    <link rel="stylesheet" href="css/custom.css" />
 
+    <script defer src="dist/fontawesome/all.min.js"></script>
+
+	<script type="text/javascript">
+		var forgetPop = true;
+		function onPopState(event) {
+			if(forgetPop){
+				forgetPop = false;
+			} else {
+				parent.postMessage(event.target.location.href, "app://obsidian.md");
+			}
+        }
+		window.onpopstate = onPopState;
+		window.onmessage = event => {
+			if(event.data == "reload"){
+				window.document.location.reload();
+			}
+			forgetPop = true;
+		}
+
+		function fitElements(){
+			const itemsToFit = document.getElementsByClassName('fitText');
+			for (const item in itemsToFit) {
+				if (Object.hasOwnProperty.call(itemsToFit, item)) {
+					var element = itemsToFit[item];
+					fitElement(element,1, 1000);
+					element.classList.remove('fitText');
+				}
+			}
+		}
+
+		function fitElement(element, start, end){
+
+			let size = (end + start) / 2;
+			element.style.fontSize = `${size}px`;
+
+			if(Math.abs(start - end) < 1){
+				while(element.scrollHeight > element.offsetHeight){
+					size--;
+					element.style.fontSize = `${size}px`;
+				}
+				return;
+			}
+
+			if(element.scrollHeight > element.offsetHeight){
+				fitElement(element, start, size);
+			} else {
+				fitElement(element, size, end);
+			}		
+		}
+
+
+		document.onreadystatechange = () => {
+			fitElements();
+			if (document.readyState === 'complete') {
+				if (window.location.href.indexOf("?export") != -1){
+					parent.postMessage(event.target.location.href, "app://obsidian.md");
+				}
+				if (window.location.href.indexOf("print-pdf") != -1){
+					let stateCheck = setInterval(() => {
+						clearInterval(stateCheck);
+						window.print();
+					}, 250);
+				}
+			}
+	};
+
+
+        </script>
   </head>
   <body>
     <div class="reveal">
       <div class="slides"><section  data-markdown><script type="text/template">
 
-<!-- # [<img width=7% src="assets/github-sketch.svg" align="center" style="vertical-align:middle;" />`l2hmc-qcd`](https://github.com/saforem2/l2hmc-qcd) <br> -->
-<br>
-<br>
+<div class="reset-margin" style="font-family: 'Inter', sans-serif!important; background-color: #303030; border-radius: 8px!important; padding: auto; align: center; position: absolute; left: 48px; top: 140px; height: 175px; min-height: 175px; width: 864px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
-# Scientific Data Science
-## An Emerging Symbiosis
+# Scientific Data Science <!-- .element: style="color: #F8F8F8; font-family: 'Inter" -->
 
-<br>
-<br>
-<br>
+#### An Emerging Symbiosis <!-- .element: style="color: #9e9e9e; font-family: 'Inter'; font-weight: 600" -->
+</div>
 
-#### Sam Foreman
+<div class="reset-margin" style="line-height: 0.6em; position: absolute; left: 0px; top: 385px; height: 210px; min-height: 210px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start" >
 
-May, 2022
+Sam Foreman <!-- .element: style="font-family: 'Inter'; font-size: 1.6em; font-weight: 500; line-height: 0.6; color: #E0E0E0!important; vertical-align: bottom!important" -->
 
-<div align="bottom">
+May, 2022 <!-- .element: style="font-family: 'Nanum Pen Script'; font-size: 1.8em; color: #616161; vertical-align: top; font-weight: 400" -->
+</div>
 
-<br>
-<br>
-<br>
+<div class="reset-margin flex-even" style="font-size: 1.5em; position: absolute; left: 0px; top: 630px; height: 70px; min-height: 70px; width: 960px; display: flex; flex-direction: row; align-items: center; justify-content: space-evenly" align="left">
 
-<a href="https://github.com/saforem2/anl-job-talk"><img src="assets/github-sketch.svg" align="left" width=10% style="vertical-align:bottom;"></a>
-<img src="assets/static/logo.png" style="width:15vw;vertical-align:bottom!important;margin-top:2%;" align="right">
+<div class="block">
+
+<!-- .element: style="margin-left: 2%; margin-bottom: 2%" -->
+
+[<i class="fab fa-github"></i>](https://github.com/saforem2)
+[<i class="fas fa-home"></i>](https://samforeman.me)
+[<i class="fab fa-twitter"></i>](https://twitter.com/saforem2)
 
 </div>
 
-<!-- <h1 display=inline:block;></h1> -->
-<!-- # [<img width=7% src="assets/github.svg" align="top">](https://github.com/saforem2/l2hmc-qcd) [l2hmc-qcd](https://github.com/saforem2/l2hmc-qcd) -->
-<!-- <i class="fab  fa-twitter faa-float animated "></i> @saforem2</a></h4> -->
-<!-- <div id="float" align="bottom"> -->
 
-<!-- [<img align="left" width=10% src="assets/github-sketch.svg" />](https://github.com/saforem2/l2hmc-qcd) -->
-<!-- <img align="left" style="padding-left:45px;" width=10% src="assets/qr.svg"> -->
+    
+</div>
 
-<!-- <img src="assets/static/logo.png" style="width:10vw;vertical-align:bottom;padding-right:4%;" align="right"> -->
+<div class="reset-margin" style="position: absolute; left: 672px; top: 490px; height: 210px; min-height: 210px; width: 288px; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-end" align="right">
 
-<!-- </div> -->
+<img src="./assets/anl.svg" width="100%" align="center" ></img>
+</div>
 
+<!-- .slide: class="drop" -->
 </script></section><section  data-markdown><script type="text/template">
-<div style="text-align: left;">
+# Advanced Workflows
+- Real-time data analysis
+- APS Upgrade
+- **Idea**:
+    - Currently, much of science research is manually guided
+        - try new architecture, play with hyperparameters, repeat
+    - Ideally, we would like to automate this
+    - Hyperparameter optimization, [DeepHyper](https://deephyper.org), etc.
+    
+<aside class="notes"><ul>
+<li>Physics + ML<ul>
+<li>Geometric Deep Learning</li>
+<li>Heavily influenced by symmetry considerations</li>
+<li>should be amenable to goemetric analysis</li>
+</ul>
+</li>
+</ul>
+</aside></script></section><section  data-markdown><script type="text/template">
+# Typical life cycle
 
-### Hamiltonian Monte Carlo (HMC)
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/frontend-workflow.svg" alt="" ></img></p>
 
-- Hamiltonian Dynamics:
+
+<aside class="notes"><ul>
+<li>Relatively easy to prototype / try new models <ul>
+<li>esp on toy problems</li>
+</ul>
+</li>
+<li>Typically the refinement stage is most involved</li>
+</ul>
+</aside></script></section><section  data-markdown><script type="text/template">
+<div class="block">
+
+<!-- .element: style="font-size: 0.9em" align="center" -->
+
+> Polaris is well equipped to help move the ALCF into the exascale era of computational science by accelerating the application of AI capabilities to the growing data and simulation demands of our users. **Polaris will also provide a broader opportunity to help prototype and test the integration of HPC with _real-time experiments and sensor networks_.**
+>
+> — Michael E. Papka, ALCF director [`[1]`](https://www.alcf.anl.gov/news/argonne-national-laboratory-and-hewlett-packard-enterprise-prepare-exascale-era-new-testbed) <!-- .element: align="" ="bottomright" -->
 
 </div>
 
-<div id="note" style="width=60%;max-width:60%;font-size:120%;line-height:150%;">
 
-<!-- `\[ -->
-<!-- \left(\begin{smallmatrix} \dot x\\ \dot v \end{smallmatrix}\right) -->
-<!-- = \left(\begin{smallmatrix}+\partial_v & \cdot \\ \cdot & -\partial_x\end{smallmatrix}\right)  -->
-<!-- \]` -->
 
-$\dot{x} = \frac{\partial H}{\partial v}$,
-$\quad$
-$\dot{v} = - \frac{\partial H}{\partial x}$
+<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 48px; top: 581px; height: 0px; min-height: 0px; width: 864px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+</div>
+<div class="footer reset-margin" style="position: absolute; left: 28.799999999999997px; top: 595px; height: 70px; min-height: 70px; width: 864px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+<div class="block">
+
+1. [Argonne National Laboratory and Hewlett Packard Enterprise prepare for exascale era with new testbed supercomputer  Argonne Leadership Computing Facility](https://www.alcf.anl.gov/news/argonne-national-laboratory-and-hewlett-packard-enterprise-prepare-exascale-era-new-testbed)
 
 </div>
 
-![](assets/hmc1.svg)  <!-- .element width="90%" -->
+
+</div>
+
+<!-- .slide: class="drop" -->
 </script></section><section  data-markdown><script type="text/template">
-<div style="text-align:left;">
+# 🤔 Current Issues 
 
-### HMC: Leapfrog Integrator
+- Research publications are static
+    - Mistakes are inevitable
+    - Reproducibility issues are common
+    - Versioning
+    - Which code version made which reports?
+    
+- Jupyter Notebooks
+    - Better
+    - Still must be manually ran, cell by cell
+    - Useful as a "playground" for:
+        - testing ideas,
+        - debugging code
+        - making / fine-tuning plots
+   
+<aside class="notes"><ul>
+<li>FAIR</li>
+<li>v1, v2.4, ..., v3-final-1, ...</li>
+<li>Prone to human error</li>
+<li>Dependencies evolve and become incompatible</li>
+<li>Depends on users making</li>
+<li>May not reflect most up-to-date changes</li>
+</ul>
+</aside></script></section><section  data-markdown><script type="text/template">
+# Alternatives?
 
-- Hamiltonian: $H(x, v) = S(x) + \frac{1}{2} v^{2}$
+- Dynamic reports:
+    - Grow and change over time (**alive**)
+    - Present results **with context** seamlessly
+    - Central hub for team
+    - Arbitrarily customizable
+    - Live-updating
+    - Having dynamic "reports" that can grow and change
 
-- Target distribution: <span id="blue">$p(x)$
-  $\propto e^{-S(x)}$</span>, <span id="green">$p(v)$ $\propto
-  e^{-\frac{1}{2}v^{2}}$ </span> $\Longrightarrow$
-  - $p(x, v) \propto $<span id="blue"> $e^{-S(x)}$</span> $\cdot$ <span id="green">$e^{-\frac{v^{2}}{2}}$</span>$ = e^{-H(x, v)}$
+- Experiment tracking
+    - [TensorBoard](https://tensorboard.org)
+    - [Weights and Biases](https://wandb.ai)
+    - [Neptune](https://neptune.ai/product)
+    -  [Comet](https://www.comet.ml/site/data-scientists/)
+    
+<aside class="notes"><ul>
+<li>Empirical DL research + Scientific Research could be more effective with reports that are alive &amp; with researchers adding to it</li>
+<li>Make sense of the countless recipes researchers have and move towards systematizing these ideas</li>
+<li>For DataScience team @ ALCF:<ul>
+<li>Centralized hub for:<ul>
+<li>Storing and versioning models from multiple projects</li>
+<li>displaying real-time machine performance</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Share ideas / models with team<ul>
+<li>Borrowing / fine tuning</li>
+</ul>
+</li>
+</ul>
+</aside></script></section><section  data-markdown><script type="text/template"><!-- .slide: class="has-light-background drop" data-background-color="white" -->
 
-- Hamilton's equations:
-</div>
+<div class="reset-margin" style="position: absolute; left: 0px; top: 0px; height: 700px; min-height: 700px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
-<span id="note" style="font-size:1.0em">$\dot{x} = \frac{\partial H}{\partial v}$</span>
-$\hspace{10pt}$
-<span id="note" style="font-size:1.0em">$\dot{v} = - \frac{\partial H}{\partial x}$</span>
-
-<div style="text-align:left;">
-
-- <span id="red">Leapfrog Integrator</span>:
-
-</div>
-
-<div id="note" style="max-width:50%;">
-
-1. $ \tilde{v} = v + \frac{\varepsilon}{2} \partial_{x} U$
-
-2. $ x' = x + \varepsilon \tilde{v} $
-
-3. $ v' = \tilde{v} + \frac{\varepsilon}{2} \partial_{x} U$
-
-</div>
-</script></section><section  data-markdown><script type="text/template">
-# HMC 
-
-<section data-background-iframe="https://chi-feng.github.io/mcmc-demo/app.html"
-          data-background-interactive>
-</script></section><section  data-markdown><script type="text/template">
-<div id='dark'>
-
-# <span style="color: #3B4CC0;">Critical Slowing Down</span>
-
-<div id="left" style="width: 45%; font-size: 100%;text-align:left;align:left;margin-left:25pt;margin-top:20pt;font-size:1.1em;">
-
-<h6><span id="note" style="color:rgb(123,159,249);background-color:rgba(123,159,249,0.15);">Charge Freezing</span></h6>
-
-- <span style="color:rgb(192,212,245);font-weight:600;">$Q$ gets stuck!
-<br>
-<br>
-- <span style="color:rgb(242, 203, 183);">$\delta Q \longrightarrow 0$</span> <span style="color:rgb(242, 203, 183);"> </span>
-<br>
-<br>
-- <span style="color:rgb(238, 132, 104);">need to wait $N_{\mathrm{configs}}\longrightarrow \infty$</span>
-
-<br><span id="note" style="color:rgb(255,82,82);background-color:rgba(255,82,82,0.15);padding:10px;margin-left:35pt;align:center;">
-$\tau_{\mathrm{int}}^{Q} \longrightarrow \infty$
-</span>
-
-</div>
-
-<div id="right" style="align:right;">
-
-<img src="assets/critical_slowing_down.svg" style="max-width:85%; height:auto;align:right;">
-
-</div>
-
-</div>
-</script></section><section  data-markdown><script type="text/template">
-<div id='dark' style="vertical-align:center;text-align:left;">
-
-# Motivation
-
-<span style="font-size:0.8em;">
-
-- For independent samples: 
-  $$\langle \mathcal{O}\rangle \propto\int\left[\mathcal{D}x\right]\mathcal{O}(x)e^{-S(x)}
-  \simeq\frac{1}{N}\sum_{n=1}^{N}\mathcal{O}(x_{n})$$
-  $$\Rightarrow \sigma^{2}=\frac{1}{N}\text{Var}\left[\mathcal{O}(x\right)]$$
-- Accounting for <span id="blue">autocorrelations</span>:
-  $$ \sigma^{2}=\frac{\color{#0091ea}{\tau_{\mathrm{int}}^{\mathcal{O}}}}{N}\text{Var}\left[\mathcal{O}(x)\right] $$
-- <span id="blue">$\tau_{\mathrm{int}}^{\mathcal{O}}$</span> is known to scale <span
-  id="red">exponentially</span> as we approach physical lattice spacing.
-
-</span>
-
-</div>
-
-<!-- --- -->
-<!-- ## Lattice QCD -->
-
-<!-- - Non-perturbative approach to solving the QCD theory of the strong interaction -->
-<!--   between quarks and gluons. -->
-<!-- - Calculations in LatticeQCD proceed in 3 steps: -->
-<!--   1. <span id="red">Gauge Field Generation</span>: Use Markov Chain Monte Carlo (MCMC) methods -->
-<!--      for sampling _independent_ gauge field (gluon) configurations. -->
-<!--   2. <span id="red">Propagator calculations</span>: Compute how quarks propagate in these fields -->
-<!--      (_quark propagators_) -->
-<!--   3. <span id="red">Contractions</span>: Method for combining quark propagators into correlation -->
-<!--      functions and observables. -->
-</script></section><section  data-markdown><script type="text/template">
-<div id='dark'>
-
-#### L2HMC: LeapfrogLayer
-
-<div id="float" style="width:100%;align:center;">
-
-<img src="assets/drawio/update_steps.svg" style="width:31%;align:left;">
-<img src="assets/drawio/leapfrog_layer_dark2.svg" style="width:64%;align:right;">
-<img src="assets/drawio/network_functions.svg" style="width:90%;align:center;">
-
+<iframe width="100%" height="100%" data-src="https://wandb.ai/l2hmc-qcd/l2hmc-qcd/reports/L2HMC-Report-04-04-2022---VmlldzoxNzgzODcx" style="border:none;width:100%" data-preload data-background-interactive> </iframe>
 </div>
 </script></section><section  data-markdown><script type="text/template">
-<div style="text-align:left;">
+<!-- .slide: class="has-light-background drop" data-background-color="white" -->
+<div class="reset-margin" style="position: absolute; left: 0px; top: 0px; height: 700px; min-height: 700px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
-## Algorithm
+<iframe width="100%" height="100%" data-src="https://wandb.ai/l2hmc-qcd/l2hmc-qcd/reports/W-B-Sweep-1024x16x16-4-nlf-8-TensorFlow---VmlldzoxNzA1MzU4" style="border:none;width:100%" data-background-interactive></iframe>
+</div>
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: class="has-light-background drop" data-background-color="white" -->
 
-1. <span style="background-color:#303030;border-radius:6px;">`input:`</span> $x$ (lattice configuration)
+### MLOps
 
-2. $v\sim\mathcal{N}(0, \mathbb{1})$
+<div class="reset-margin" style="position: absolute; left: 0px; top: 56px; height: 644px; min-height: 644px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
-3. `\((x'',v'') \gets \texttt{TransitionKernel}(x, v)\)`
+<iframe id="mlops" width="100%" height="100%" data-src="https://www.mlops.toys" data-preload data-background-interactive></iframe>
+</div>
 
-    1. $v' = \color{#ff5252}{\Gamma^{\pm}}\left[x, \partial_{x}U\right]$
+# Standard Model
 
-    2. Update $x$ in two parts:
+<div class="reset-margin" style="font-size: 0.8em; position: absolute; left: 48px; top: 105px; height: 280px; min-height: 280px; width: 480px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start" align="left">
 
-    `\[\begin{align}
-    x' &= m_{A}\odot x + m_{B}\odot\color{#0091ea}{\Lambda^{\pm}}\left[x, v'\right]\\
-    x'' &= m_{B}\odot x' + m_{A}\odot \color{#0091ea}{\Lambda^{\pm}}\left[x', v'\right]
-    \end{align}\]`
+- Electricity & Magnetism, Strong and Weak Interactions, elementary particles
 
-    3. $v'' = \color{#ff5252}{\Gamma^{\pm}}\left[x'', \partial_{x}U''\right]$
+- QCD:
+    - Theory of the **strong** interactions between quarks and gluons
+    - ❌ Analytically intractable 
+    - ✅ Discretize space-time onto lattice
+</div>
+
+<div class="reset-margin" style="position: absolute; left: 480px; top: 70px; height: 350px; min-height: 350px; width: 480px; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start" align="right">
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/nucleus.svg" alt="" ></img></p>
+
+</div>
+
+<div class="reset-margin" style="position: absolute; left: 0px; top: 350px; height: 350px; min-height: 350px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end" >
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/feynman.svg" alt="" ></img></p>
+
+</div>
+</script></section><section  data-markdown><script type="text/template">
+
+<!-- .slide: style="text-align: left" -->
+
+# Overview
+
+1. Background / Interesting Work
+    - Why its interesting?
+    - What I've learned
+    - What aspects are relevant outside of domain expertise
+2. Ongoing Work
+     - Lattice QCD
+     - Common history with HPC
+     - Mutually beneficial
+3. Plans for future research
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left; font-size: 100%" class="drop" -->
+
+#### Center for Complex Systems Research @ UIUC
+
+<div class="block">
+
+<!-- .element: style="max-width: 30" -->
+
+- [Alfred Hübler](https://en.wikipedia.org/wiki/Alfred_H%C3%BCbler) [`[1]`](https://nosh.northwestern.edu/conferences/schedule.pdf)
+    - Neural nets in 2006! [`[2]`](https://meetings.aps.org/Meeting/MAR06/Event/42791)
+
+- Energy conversion, storage 
+
+- Resulted in a publication [`[3]`](https://doi.org/10.1063/1.5009698)
+
+- And a patent! [`[4]`](https://experts.illinois.edu/en/publications/energy-storage-in-quantum-resonators)
+
+</div>
+
+
+
+<div class="reset-margin" style="position: absolute; left: 576px; top: 70px; height: 245px; min-height: 245px; width: 336px; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start" align="right">
+
+<img src="https://ws.engr.illinois.edu/sitemanager/viewphoto.aspx?id=50402">
+</div>
+
+<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 28.799999999999997px; top: 364px; height: 0px; min-height: 0px; width: 931.1999999999999px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+</div>
+
+<div class="footer reset-margin" style="position: absolute; left: 28.799999999999997px; top: 420px; height: 70px; min-height: 70px; width: 912px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+<div class="block">
+
+1. [Understanding Complex Systems Workshop 2004](https://nosh.northwestern.edu/conferences/schedule.pdf)
+2. [2006 APS March Meeting - Scaling Properties of Topological Neural Nets](https://meetings.aps.org/Meeting/MAR06/Event/42791)
+3. A. Hubler, <span style="background-color:#35353540;color:#F8F8F8;">**S. Foreman**</span>, J. Liu, & L. Wortsmann <a href="https://doi.org/10.1063/1.5009698"><b>Large Energy Density in Three-Plate Nanocapacitors due to Coulomb Blockade</b></a> <i>J. Appl. Phys</i>, 2018
+4. Liu, Jiaqi; Hubler, Alfred W; <span style="background-color:#35353540;color:#f8f8f8;">**Foreman, Samuel A**</span>; Ott, Katharina. [**Energy storage in quantum resonators**](https://experts.illinois.edu/en/publications/energy-storage-in-quantum-resonators) U.S. Patent No.: _9741492_. Aug 22, 2017.
+
+</div>
+
+
+</div>
+
+<aside class="notes"><ul>
+<li>Heavily influenced my trajectory</li>
+</ul>
+</aside></script></section><section  data-markdown><script type="text/template">
+### Distributed Computing
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/avgGrads.svg" alt="" ></img></p>
+
+</script></section><section  data-markdown><script type="text/template">
+ # Distributed Computing
+
+ <div class="reset-margin" style="position: absolute; left: 0px; top: 105px; height: 700px; min-height: 700px; width: 460.79999999999995px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start" align="left">
+
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/data-parallel.svg" alt="" ></img></p>
+
+ </div>
+
+ <div class="reset-margin" style="position: absolute; left: 384px; top: 105px; height: 700px; min-height: 700px; width: 576px; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start" align="right">
+
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/model-parallel.svg" alt="" align="stretch"></img></p>
+
+ </div>
+
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template"></script></section><section  data-markdown><script type="text/template">
+#### Identifying Phase Transitions [`[1]`](https://doi.org/10.1038/nphys4035)
+
+<div class="reset-margin" style="margin-top: 5%; position: absolute; left: 48px; top: 35px; height: 630px; min-height: 630px; width: 864px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start" >
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/ising/configs.svg" alt="" ></img></p>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/ising/network-dropout.svg" alt="" ></img></p>
+
+</div>
+
+<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 28.799999999999997px; top: 644px; height: 0px; min-height: 0px; width: 912px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+</div>
+
+<div class="footer reset-margin" style="position: absolute; left: 28.799999999999997px; top: 651px; height: 49px; min-height: 49px; width: 960px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+1. Carrasquilla, J., Melko, R. [Machine learning phases of matter](https://doi.org/10.1038/nphys4035). _Nature Phys_ **13,** 431–434 (2017). 
+</div>
+    
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template">
+### Identifying Phase Transitions<sup id="fnref:melko" role="doc-noteref">1</sup>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/ising/summary.svg" alt="" width="53%"></img></p>
+
+
+<div class="footnotes" role="doc-endnotes">
+<ol>
+</ol>
+</div>
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: class="has-light-background" data-background-color="white" -->
+### Identifying Phase Transitions<sup id="fnref:melko" role="doc-noteref">1</sup>
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/classification-net.jpg" alt="" ></img></p>
+
+
+
+<div class="footnotes" role="doc-endnotes">
+<ol>
+</ol>
+</div>
+</script></section><section  data-markdown><script type="text/template">
+### Identifying Phase Transitions<sup id="fnref:melko" role="doc-noteref">1</sup>
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/ising/pca.svg" alt="" width="65%"></img></p>
+
+
+<div class="footnotes" role="doc-endnotes">
+<ol>
+</ol>
+</div>
+</script></section><section  data-markdown><script type="text/template">
+## Renormalizing Images
+
+<div class="reset-margin flex-even" style="position: absolute; left: 0px; top: 105px; height: 280px; min-height: 280px; width: 960px; display: flex; flex-direction: row; align-items: flex-end; justify-content: space-evenly" >
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog.svg" alt="" style="width: 60%"></img></p>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-gray.svg" alt="" style="width: 60%"></img></p>
+
+</div>
+
+<div class="reset-margin flex-even" style="position: absolute; left: 0px; top: 406px; height: 280px; min-height: 280px; width: 960px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-evenly" >
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-025.svg" alt="" style="width: 90%"></img></p>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-005.svg" alt="" style="width: 90%"></img></p>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/cifar10/frog-075.svg" alt="" style="width: 90%"></img></p>
+
+</div>
+
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template">
+<div class="reset-margin" style="position: absolute; left: 0px; top: 0px; height: 700px; min-height: 700px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+# Tensor Nets
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/renormalization/tm1.svg" alt="" ></img></p>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/renormalization/nb-insert.svg" alt="" ></img></p>
+
+</div>
+
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" class="drop" -->
+
+# Research
+
+- Identifying possible connections with existing statistical physics
+
+<div class="block">
+
+<!-- .element: style="margin: 5%" -->
+ 
+
+<div class="callout callout-color-default">
+<div class="callout-title">
+<div class="callout-icon">
+
+<i class="fas fa-pencil-alt" ></i>
+
+</div>
+<div class="callout-title-inner">
+
+Mehta & Schwab [`[1]`](https://arxiv.org/abs/1410.3831)
+
+</div>
+</div>
+<div class="callout-content">
+
+Hinton's "deep belief networks" works, in a particular case, exactly like the renormalization group and seems to be closely related to the "information bottleneck" <!-- .element: style="background-color: #353535!important" -->
+
+</div>
+</div>
+
+</div>
+
+
+
+<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 28.799999999999997px; top: 630px; height: 0px; min-height: 0px; width: 912px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+</div>
+
+<div class="reset-margin" style="position: absolute; left: 0px; top: 665px; height: 0px; min-height: 0px; width: 912px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+
+1. Mehta, P., & Schwab, D.J. (2014). An exact mapping between the Variational Renormalization Group and Deep Learning. [`arXiv:1410.3831`](https://arxiv.org/abs/1410.3831).
+
+<!-- .element: class="footer" -->
+
+</div>
+</script></section><section  data-markdown><script type="text/template">
+<section data-background-video-loop data-background-video-muted data-background-video="https://d2r55xnwy6nx47.cloudfront.net/uploads/2021/04/Muon_2560_Lede.mp4">
+
+#### Anomalous Magnetic Moment of the Muon  <!-- .element: style="color: #EEEEEE; vertical-align: center; margin-top: 10%; text-shadow: 0px 0px 10px black" -->
+
+
+<div class="note reset-margin" style="position: absolute; left: 288px; top: 210px; height: 280px; min-height: 280px; width: 384px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+`$$a_{\mu} = \frac{(g_{\mu} - 2)}{2}$$` <!-- .element: style="color: #EEEEEE; font-size: 1.5em; text-shadow: 0px 0px 10px black" -->
+</div>
+
+<div class="reset-margin" style="text-align: center; position: absolute; left: 0px; top: 420px; height: 280px; min-height: 280px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+
+# New Physics? <!-- .element: style="color: #f8f8f8; vertical-align: center; margin-top: 10%; text-shadow: 0px 0px 10px black" -->
+</div>
+</section>
+
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+# HPC + HEP
+
+- Lattice QCD historically has been in lock-step with developments in HPC 
+
+<div class="block">
+
+<!-- .element: style="max-width: 90%!important; margin-left: 5%; background-color: #35353550!important; text-align: left" --> 
+
+<div class="callout callout-color5">
+<div class="callout-title">
+<div class="callout-icon">
+
+<i class="fas fa-exclamation-triangle" ></i>
+
+</div>
+<div class="callout-title-inner">
+
+Testing callouts
+
+</div>
+</div>
+<div class="callout-content">
+
+This warning is aligned left
+
+</div>
+</div>
+
+</div>
+
+
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left; font-size: 1.1em" class="drop" -->
+
+### Muon `$g-2$` from Lattice QCD
+
+- From BNL [`[1]`](https://arxiv.org/abs/2002.12347):
+
+<div class="block">
+
+<!-- .element: style="text-align: center!important; margin-left: 10%; margin-right: 10%; border: 1px solid white; margin-top: 1%; margin-bottom: 1%" class="note" align="center" -->
+
+`$$a_{\mu}^{\mathrm{exp}} = 11659209.1(5.4)(3.3)\times 10^{-10}$$`
+
+</div>
+
+
+
+- Hunt for Beyond Standard Model (BSM) physics
+    - Upcoming experiments at Fermilab and JPARC aim to reduce uncertainty by factor of four
+    
+<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 48px; top: 511px; height: 0px; min-height: 0px; width: 864px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+</div>
+<div class="footer reset-margin" style="position: absolute; left: 28.799999999999997px; top: 525px; height: 35px; min-height: 35px; width: 864px; display: flex; flex-direction: column; align-items: flex-start; justify-content: space-evenly" align="left">
+
+<div class="block">
+
+1. Leading hadronic contribution to the muon magnetic moment from lattice QCD [arXiv:2002.12347](https://arxiv.org/abs/2002.12347)
+
+</div>
+
+
+</div>
+</script></section><section  data-markdown><script type="text/template">
+# Contributions
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/feynman.svg" alt="" ></img></p>
+
+<!-- .element: style="margin-top: 10%" -->
+
+<split even>
+<div class="block">
+
+<!-- .element: style="margin-right: 0%; font-size: 0.9em" class="note" align="bottom" -->
+
+<u>**One Photon Correction**</u>  <!-- .element: style="color: #888888" -->
+
+`$\mu$` emits and reabsorbs a virtual photon (largest effect)
+
+</div>
+
+
+
+<div class="block">
+
+<!-- .element: style="margin-left: 1%; font-size: 0.9em" class="note" -->
+
+<u>**Hadronic Vacuum Polarization**</u> <!-- .element: style="color: #888888" -->
+
+Virtual photon splits into (anti)-hadron pair (quarks, hard to calculate)
+
+</div>
+
+
+</split>
+</script></section><section  data-markdown><script type="text/template">
+
+## [<i class="fab fa-github"></i>](https://www.github.com/quda/quda) QUDA 
+
+[![DOI](https://zenodo.org/badge/1300564.svg)](https://zenodo.org/badge/latestdoi/1300564)
+
+Multi-GPU Support[`[1]`](https//arxiv.org/1109.2935/abs), with:
+  - adaptive multigrid[`[2]`](https//arxiv.org/abs/2104.05615)
+  - block CG[`[3]`](https://arxiv.org/abs/1710.09745)
+  - the Möbius MSPCG solver[`[4]`](https://arxiv.org/1612.07873)
+
+
+<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 48px; top: 371px; height: 0px; min-height: 0px; width: 864px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end" >
+
+</div>
+
+<div class="footer reset-margin" style="font-size: 0.5em; position: absolute; left: 48px; top: 385px; height: 420px; min-height: 420px; width: 864px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start" align="left">
+
+
+1. R. Babich, M. A. Clark, B. Joo, G. Shi, R. C. Brower, and S. Gottlieb, "Scaling lattice QCD beyond 100 GPUs," International Conference for High Performance Computing, Networking, Storage and Analysis (SC), 2011 [arXiv:1109.2935[hep-lat]](https://arxiv.org/1109.2935/abs).
+
+2. Jiqun Tu, M. A. Clark, Chulwoo Jung, Robert Mawhinney, "Solving DWF Dirac Equation Using Multi-splitting Preconditioned Conjugate Gradient with Tensor Cores on NVIDIA GPUs," published in the Platform of Advanced Scientific Computing (PASC21) [arXiv:2104.05615[hep-lat]](https://arxiv.org/abs/2104.05615).
+
+3. M. A. Clark, A. Strelchenko, A. Vaquero, M. Wagner, and E. Weinberg, "Pushing Memory Bandwidth Limitations Through Efficient Implementations of Block-Krylov Space Solvers on GPUs," Comput. Phys. Commun. 233 (2018), 29-40 [arXiv:1710.09745 [hep-lat]](https://arxiv.org/abs/1710.09745).
+
+4. M. A. Clark, B. Joo, A. Strelchenko, M. Cheng, A. Gambhir, and R. Brower, "Accelerating Lattice QCD Multigrid on GPUs Using Fine-Grained Parallelization," International Conference for High Performance Computing, Networking, Storage and Analysis (SC), 2016 [arXiv:1612.07873 [hep-lat]](https://arxiv.org/1612.07873).
+
+5. M. A. Clark, R. Babich, K. Barros, R. Brower, and C. Rebbi, "Solving Lattice QCD systems of equations using mixed precision solvers on GPUs," Comput. Phys. Commun. 181, 1517 (2010) [arXiv:0911.3191 [hep-lat]](https://arxiv.org/abs/0911.3191).
+    
+</div>
+
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template">
+##### Hadronic Vacuum Polarization (HVP) Contribution
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/feynman.svg" alt="" ></img></p>
+
+
+<div class="block">
+
+<!-- .element: style="font-size: 0.8em" -->
+
+- The blobs (quark loops) represent all possible intermediate hadronic states (`$\rho$`, `$\pi\pi$`, `$\ldots$`)
+    - Not calculable in perturbation theory
+- Can be calculated from:
+   - First principles using **lattice QCD**
+
+</div>
+
+
+
+`$$a_{\mu}(\mathrm{HVP}) = \left(\frac{\alpha}{\pi}\right)^{2}\int_{0}^{\infty} dq^{2}\, f(q^{2}) \hat{\Pi}(q^{2})$$` <!-- .element: style="text-align: center!important" -->
+</script></section><section  data-markdown><script type="text/template">
+# More statistics!
+
+- Lattice QCD _may_ help resolve this tension
+- Currently limited by computing power
+- New algorithms + ML seem promising...
+- See [`[1]`](https://arxiv.org/abs/2202.05838) for a broad overview of prospects
+
+<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 0px; top: 609px; height: 0px; min-height: 0px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end" >
 
 </div>
     
-</script></section><section  data-markdown><script type="text/template"><div id='dark' style="text-align:left;">
+<div class="footer reset-margin" style="position: absolute; left: 0px; top: 630px; height: 70px; min-height: 70px; width: 960px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start" align="left">
 
-## Algorithm
+    
+1. [Applications of Machine Learning to Lattice Quantum Field Theory arXiv:2202.05838](https://arxiv.org/abs/2202.05838)
+</div>
 
-- **Input**: <span id="red" style="text-align:left;">$x$</span>
 
-<div class="column" style="width=100%;font-size:0.77em;">
+<aside class="notes"><ul>
+<li>LQCD may help resolve the existing tension between the standard model predictions and experiments</li>
+<li>For many key applications the necessary LQCD calculations are limited by available computing resources</li>
+</ul>
+<!-- .slide: class="drop" --></aside></script></section><section  data-markdown><script type="text/template">
+## ALCF (2008)
 
-1. Resample <span id="red">$\mathbf{v} \sim \mathcal{N}(0, \mathbb{1})$</span>,
-   construct <span id="red">$\xi$</span>$=($<span id="red">$\mathbf{x}$</span>$,$ <span id="red">$\mathbf{v}$</span>$)$, also construct $\xi' = (x', v)$ where $x' = R x$, $\xi'' = (x'', v)$, etc
- 
-2. Generate <span style="color:#0091ea;">proposal $\xi^{\ast}$</span> by passing <span id="red">initial
-   $\xi$</span> through $N_{\mathrm{LF}}$ **leapfrog
-   layers**:
+<div class="reset-margin" style="font-size: 0.6em; text-align: left!important; position: absolute; left: 96px; top: 87.5px; height: 525px; min-height: 525px; width: 768px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
-   <div id="note" style="width:55%;color:rgb(255, 255, 255);background-color:rgba(255, 255, 255, 0.1);text-align:center;padding:5px;">
+> The **Blue Gene/P** at the ALCF has tremendously accelerated the generation of the gauge configurations—in   many cases, by a factor of 5 to 10 over what has been possible with other machines.
+> Significant progress has been made in simulations with two different implementations of the quarks—domain wall and  staggered. [`[1]`](https://publications.anl.gov/anlpubs/2009/12/65724.pdf)
+</div>
 
-   <span id="red">$\xi$</span> $ \hspace{1pt}\xrightarrow[]{\tiny{\mathrm{LF} \text{ layer}}}\xi_{1} \longrightarrow\cdots \longrightarrow \xi_{N_{\mathrm{LF}}} =$ <span style="color:#0091ea;">$\xi^{\ast}$</span>
-
-   </div>
-
-3. Compute the **Metropolis-Hastings** (MH) acceptance (with Jacobian
-   $\mathcal{J}$) 
-
-   <div id="note" style="width:55%;align:center;text-align:center;padding:5px; color:rgb(255,255,255);background-color:rgba(255,255,255,0.1);padding:5px;">
-
-   $A(\color{#0091ea}{\xi^{\ast}}|\color{#ff5252}{\xi})=
-   \mathrm{min}\left\\{1,
-   \frac{p(\color{#0091ea}{\xi^{\ast}})}{p(\color{#ff5252}{\xi})}\mathcal{J}\left(\color{#0091ea}{\xi^{\ast}},\color{#ff5252}{\xi}\right)\right\\}$
-
-   </div>
-
-4. <span id="green">`if training`</span>: Evaluate the **loss function** $\mathcal{L}\gets
-   \mathcal{L}_{\theta}(\color{#ff5252}{\xi^{\ast}}, \color{#ff5252}{\xi})$ and backprop
-
-5. Evaluate MH criteria and assign the next state in the chain according to
-
-   <div id="note" style="width:65%;align:center;text-align:center;padding:5px; color:rgb(255,255,255);background-color:rgba(255,255,255,0.15);padding:5px;">
-
-   $\mathbf{x}_{i+1}\gets
-   \begin{cases}
-     \color{#0091ea}{\mathbf{x}^{\ast}} \small{\text{ w/ prob }} A(\color{#ff5252}{\xi^{\ast}}|\color{#0091ea}{\xi}) \hspace{25pt}✅ \\\\
-     \color{#ff5252}{\mathbf{x}} \hspace{14px}\small{\text{ w/ prob }} 1 - A(\color{#ff5252}{\xi^{\ast}}|\color{#0091ea}{\xi}) \hspace{11pt}❌
-     \end{cases}$
-
-   </div>
+<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 19.2px; top: 623px; height: 0px; min-height: 0px; width: 931.1999999999999px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end" >
 
 </div>
 
-</div></script></section><section  data-markdown><script type="text/template">
-<div id='dark'>
+<div class="reset-margin" style="font-size: 80%; position: absolute; left: 19.2px; top: 630px; height: 70px; min-height: 70px; width: 931.1999999999999px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start" align="left">
 
+
+1. [Argonne Leadership Computing Facility • 2008 annual report](https://publications.anl.gov/anlpubs/2009/12/65724.pdf)
+    
+</div>
+
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: style="vertical-align: center" class="drop" -->
+
+# BMW Collaboration
+
+<div class="reset-margin" style="position: absolute; left: 0px; top: 0px; height: 700px; min-height: 700px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/bmw_supercomputer.jpg" alt="" ></img></p>
+
+</div>
+
+<div class="horizontal_dotted_line reset-margin" style="position: absolute; left: 19.2px; top: 623px; height: 0px; min-height: 0px; width: 931.1999999999999px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end" >
+
+</div>
+<div class="reset-margin" style="font-size: 80%; position: absolute; left: 19.2px; top: 630px; height: 70px; min-height: 70px; width: 931.1999999999999px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start" align="left">
+
+
+<div class="block">
+
+<!-- .element: class="footer" -->
+
+2. The JUWELS supercomputer at the Jülich Research Center in Germany, used to calculate the anomalous magnetic moment of the muon
+
+</div>
+
+
+
+</div>
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: style="text-align: center" class="drop" -->
+
+### Hamiltonian Monte Carlo (HMC)
+
+<div class="note reset-margin" style="font-size: 1.5em; margin-bottom: 20%; position: absolute; left: 316.8px; top: 140px; height: 140px; min-height: 140px; width: 288px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+
+`$$\begin{align} \dot{x} &= +\partial_{v} H \\ \dot{v} &= - \partial_{x} H \end{align}$$`
+</div>
+
+<div class="reset-margin stretch-column" style="position: absolute; left: 0px; top: 280px; height: 700px; min-height: 700px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/hmc1.svg" alt="" align="bottom"></img></p>
+
+</div>
+</script></section><section  data-markdown><script type="text/template">
+<div class="reset-margin" style="position: absolute; left: 384px; top: 280px; height: 140px; min-height: 140px; width: 192px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+
+# HMC <!-- .element: style="text-shadow: 0px 0px 10px black" -->
+</div>
+
+<section data-background-iframe="https://chi-feng.github.io/mcmc-demo/app.html"
+          data-background-interactive>
+</section>
+
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template">
+# Critical Slowing Down <!-- .element: style="color: #3B4CC0" -->
+
+<div class="block">
+
+<!-- .element: style="font-size: 1.25em; line-height: 1.75em" -->
+
+<div id="left" style="width: 45%; font-size: 100%;text-align:left;align:left;margin-left:25pt;margin-top:20pt;font-size:1.1em;">
+
+<h6><span id="note" style="color:rgb(123,159,249);background-color:rgba(123,159,249,0.15);border-radius:8px;margin-left:10%;margin-top:2%;">Charge Freezing</span></h6>
+
+- <span style="color:rgb(192,212,245);font-weight:600;">`$Q$` gets stuck!
+
+<br>
+
+- <span style="color:rgb(242, 203, 183);">`$\delta Q \longrightarrow 0$`</span> <span style="color:rgb(242, 203, 183);"> </span>
+
+<br>
+
+- <span style="color:rgb(238, 132, 104);">need to wait `$N_{\mathrm{configs}}\longrightarrow \infty$`</span>
+
+<br><span id="note" style="color:rgb(255,82,82);background-color:rgba(255,82,82,0.15);padding:10px;margin-left:20%;border-radius:8px;align:center;">
+`$\tau_{\mathrm{int}}^{Q} \longrightarrow \infty$`
+</span>
+</div>
+<div id="right" style="align:right;">
+<img src="assets/critical_slowing_down.svg" style="max-width:85%; height:auto;align:right;">
+</div>
+</div>
+
+</div>
+
+
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+# Motivation
+
+- For independent samples: 
+
+    `$$\langle \mathcal{O}\rangle \propto\int\left[\mathcal{D}x\right]\mathcal{O}(x)e^{-S(x)} \simeq\frac{1}{N}\sum_{n=1}^{N}\mathcal{O}(x_{n})$$`
+
+    `$$\Rightarrow \sigma^{2}=\frac{1}{N}\text{Var}\left[\mathcal{O}(x\right)]$$`
+
+
+- Accounting for <span id="blue">autocorrelations</span>:
+
+    `$$\sigma^{2}=\frac{\textcolor{#0091ea}{\tau_{\mathrm{int}}^{\mathcal{O}}}}{N}\text{Var}\left[\mathcal{O}(x)\right]$$` <!-- .element: style="text-align: center!important" -->
+
+- <span id="blue">`$\tau_{\mathrm{int}}^{\mathcal{O}}$`</span> is known to scale <span id="red">exponentially</span> as we approach physical lattice spacing.
+</script></section><section  data-markdown><script type="text/template">
+## Lattice QCD
+
+- Non-perturbative approach to solving the QCD theory of the strong interaction
+  between quarks and gluons.
+- Calculations in LatticeQCD proceed in 3 steps:
+
+<div class="block">
+
+<!-- .element: style="border: 1px solid #66BB6A; background-color: #66BB6A" class="note has-light-background" -->
+
+  1. **Gauge Field Generation**: Use Markov Chain Monte Carlo (MCMC) methods
+     for sampling _independent_ gauge field (gluon) configurations. 
+     
+</div>
+
+
+
+  2. **Propagator calculations**: Compute how quarks propagate in these fields
+     (_quark propagators_)
+  3. **Contractions**: Method for combining quark propagators into correlation
+     functions and observables.
+</script></section><section  data-markdown><script type="text/template">
+### `l2hmc`: LeapfrogLayer
+
+<split even>
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/leapfrog-layer-excalidraw.svg" alt="" style="margin-left: 20%; margin-right: -20%; margin-top: 10%" align="right"></img></p>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/update_steps.svg" alt="750" ></img></p>
+
+</split>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/network_functions.svg" alt="" ></img></p>
+
+</script></section><section  data-markdown><script type="text/template">
+### `l2hmc`: LeapfrogLayer
+
+<img src="./assets/update_steps.svg" style="width:31%;align:left;"></img>
+<img src="./assets/leapfrog_layer_dark2.svg" style="width:64%;align:right;"></img>
+<img src="./assets/network_functions.svg" style="width:90%;align:center;"></img>
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: ="text-align:left;line-height:2.0em;font-size:2.0em;" -->
+
+## Algorithm
+
+1. <span style="background-color:#303030;border-radius:6px;">`input:`</span> `$x$` (lattice configuration)
+
+2. `$v\sim\mathcal{N}(0, \mathbb{1})$`
+
+3. `$(x'',v'') \gets \texttt{TransitionKernel}(x, v)$`:
+
+    1. `$v' = \textcolor{#ff5252}{\Gamma^{\pm}}\left[x, \partial_{x}U\right]$`
+
+    2. Update `$x$` in two parts:
+
+        `$$\begin{align}
+        x' &= m_{A}\odot x + m_{B}\odot\textcolor{#0091ea}{\Lambda^{\pm}}\left[x, v'\right]\\\\
+        x'' &= m_{B}\odot x' + m_{A}\odot \textcolor{#0091ea}{\Lambda^{\pm}}\left[x', v'\right]
+        \end{align}$$` <!-- .element: align="center" -->
+
+   3. `$v'' = \textcolor{#ff5252}{\Gamma^{\pm}}\left[x'', \partial_{x}U''\right]$`
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left; font-size: 0.78em" -->
+
+## Algorithm
+
+1. `input`: `$\textcolor{#AE81FF}{x}$`
+
+2. Resample `$\textcolor{#FD971F}{\mathbf{v}} \sim \mathcal{N}(0, \mathbb{1})$`
+
+3. construct `$\textcolor{#FF5252}{\xi} = (\textcolor{#AE81FF}{x}, \textcolor{#FD971F}{\mathbf{v}})$`
+
+4. Generate <span style="color:#0091ea;">proposal `$\xi^{\ast}$`</span> by passing <span id="red">initial `$\xi$`</span> through `$N_{\mathrm{LF}}$` **leapfrog layers**:
+
+<div class="block">
+
+<!-- .element: style="text-align: center!important; margin-left: 20%; padding: 0.5%; margin-right: 20%" class="note" align="center" -->
+
+  `$\textcolor{#FF5252}{\xi}\hspace{1pt}\xrightarrow[\mathrm{LFL}]{}\xi_{1} \longrightarrow\cdots \longrightarrow \xi_{N_{\mathrm{LF}}} = \textcolor{#0091ea}{\xi^{\ast}}$` 
+
+</div>
+
+
+
+3. Compute the **Metropolis-Hastings** (MH) acceptance (with Jacobian `$\mathcal{J}$`) 
+
+<div class="block">
+
+<!-- .element: style="text-align: center!important; margin-left: 10%; padding: 0.5%; margin-right: 10%" class="note" align="center" -->
+
+`$A(\textcolor{#0091ea}{\xi^{\ast}}|\textcolor{#ff5252}{\xi})=\mathrm{min}\left[1, \frac{p(\textcolor{#0091ea}{\xi^{\ast}})}{p(\textcolor{#ff5252}{\xi})}\mathcal{J}\left(\textcolor{#0091ea}{\xi^{\ast}},\textcolor{#ff5252}{\xi}\right)\right]$`
+   
+</div>
+
+
+
+4. <span id="green">`if training`</span>: 
+
+    1. Evaluate the **loss function** `$\mathcal{L}\gets \mathcal{L}_{\theta}(\textcolor{#ff5252}{\xi^{\ast}}, \textcolor{#ff5252}{\xi})$` and backprop
+
+    2. Evaluate MH criteria and assign the next state in the chain by 
+
+<div class="block">
+
+<!-- .element: style="text-align: center!important; margin-left: 20%; padding: 0.5%; margin-right: 20%" class="note" align="center" -->
+
+`$\mathbf{x}_{i+1}\gets \begin{cases} \textcolor{#0091ea}{\mathbf{x}^{\ast}} \small{\text{ w/ prob }} A(\textcolor{#ff5252}{\xi^{\ast}}|\textcolor{#0091ea}{\xi}) \hspace{26pt}✅ \\\\ \textcolor{#ff5252}{\mathbf{x}} \hspace{14px}\small{\text{ w/ prob }} 1 - A(\textcolor{#ff5252}{\xi^{\ast}}|\textcolor{#0091ea}{\xi}) \hspace{11pt}❌ \end{cases}$`
+     
+</div>
+
+
+</script></section><section  data-markdown><script type="text/template">
 ### Lattice Gauge Theory
 
 <div class="row">
 
-<div class="column" style="width: 65%; font-size: 90%; align:right;">
+<div class="column" style="width: 80%; font-size: 90%; align:right;margin-left:15%;text-align:left;margin-bottom:3%;">
 
-<h5><b><u> <span style="color:#cfcfcf;">Link variables</span></u></b></h5>
-   $U_{\mu}(x) = e^{i x_{\mu}(n)}\in U(1)$, <br>with <span id="note" style="color:rgb(255,255,255);background-color:rgba(255,255,255,0.1);padding:5px;">$x_{\mu}(n)\in[-\pi,\pi]$</span><br><br>
-
-<h5><b><u><span style="color:#cfcfcf;">Wilson Action</span></u></b></h5>
+##### <b><u> <span style="color:#cfcfcf;">Link variables</span></u></b>
+   `$U_{\mu}(x) = e^{i x_{\mu}(n)}\in U(1)$`, <br>with <span id="note" style="color:rgb(255,255,255);background-color:rgba(255,255,255,0.1);border-radius:8px;padding:5px;">`\(x_{\mu}(n)\in[-\pi,\pi]\)`</span><br><br>
+##### <b><u><span style="color:#cfcfcf;">Wilson Action</span></u></b></h5>
   <span id="note"
-  style="color:rgb(255,255,255);padding:5px;background:rgba(255,255,255,0.15);"> $S_{\beta}(x)
-  = \beta\sum_{P} 1 - \cos \color{#0091Ea}{x_{P}}$</span>
-  <span id="blue" style="font-size:0.65em;align:right;">$x_{P}= x_{\mu}(n) + x_{\nu}(n+\hat{\mu})-x_{\mu}(n+\hat{\nu})-x_{\nu}(n)$</span>
-<!-- <br><br><h5><b><u> Topological Charge</u></b></h5> -->
+  style="color:rgb(255,255,255);border-radius:8px;padding:5px;background:rgba(255,255,255,0.15);"> `\(S_{\beta}(x)
+  = \beta\sum_{P} 1 - \cos \textcolor{#0091Ea}{x_{P}}\)`</span>
+  <span id="blue" style="font-size:0.65em;align:right;">`\(x_{P}= x_{\mu}(n) + x_{\nu}(n+\hat{\mu})-x_{\mu}(n+\hat{\nu})-x_{\nu}(n)\)`</span>
 
 </div>
 
-<div class="column" style="width:30%;vertical-align:center;">
+<div class="column" style="width:60%;align:left;" align="left">
+</div>
+</div>
 
-![](assets/plaq.drawio.svg)  <!-- .element align="center" width="90%"-->
+<div class="reset-margin" style="margin-top: 9%!important; margin-right: 15%!important; position: absolute; left: 499.20000000000005px; top: 0px; height: 336px; min-height: 336px; width: 460.79999999999995px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/plaq.drawio.svg" alt="|700" style="width: 700px"></img></p>
 
 </div>
 
-</div>
+<div class="block">
 
-<div style="align=center;">
 <h5><b><u>Topological Charge</u></b></h5>
 
-<span id="green">**Continuous:** </span> <span id="note" style="padding:7px;background:#D0F3D5;color:#1c1c1c!important;">$Q_{\mathbb{R}} = \frac{1}{2\pi}\sum_{P} \sin x_{P}\in\mathbb{R}$ </span>
+<span id="green">**Continuous:** </span> <span id="note" style="padding:7px;border-radius:8px;background:#D0F3D5;color:#1c1c1c!important;">`$Q_{\mathbb{R}} = \frac{1}{2\pi}\sum_{P} \sin x_{P}\in\mathbb{R}$` </span>
 
-$\hspace{10pt}$ <span id="red"> **Discrete:**</span> <span id="note" style="padding:7px;background:#F7C2CC;color:#1c1c1c;text-align:right;">$Q_{\mathbb{Z}} = \frac{1}{2\pi}\sum_{P} \left\lfloor x_{P}\right\rfloor\hspace{18px}\in\mathbb{Z}$</span>
+`$\hspace{10pt}$` <span id="red"> **Discrete:**</span> <span id="note" style="padding:7px;border-radius:8px;background:#F7C2CC;color:#1c1c1c;text-align:right;">`$Q_{\mathbb{Z}} = \frac{1}{2\pi}\sum_{P} \left\lfloor x_{P}\right\rfloor\hspace{18px}\in\mathbb{Z}$`</span>
 
-  $\hspace{45pt}$ with $\left\lfloor x_{P}\right\rfloor = x_{P}-2\pi\left\lfloor\frac{x_{P}+\pi}{2\pi}\right\rfloor$</span>
-
-<br>
-</div>
-
-
-  <!-- <span id="note" style="padding:8px;background:rgba(232, 245, 233,0.8);color:rgb(76, 175, 80);">✅ $Q_{\mathbb{R}} = \frac{1}{2\pi}\sum_{P} \sin x_{P}\in\mathbb{R}$ </span> -->
-
-  <!-- <span id="note" style="padding:8px;background:rgba(255, 235, 238,0.8);color:rgb(244, 67, 54);align:right;">❌ $Q_{\mathbb{Z}} = \frac{1}{2\pi}\sum_{P} \left\lfloor x_{P}\right\rfloor\hspace{18px}\in\mathbb{Z}$</span> -->
-
+  `$\hspace{45pt}$` with `$\left\lfloor x_{P}\right\rfloor = x_{P}-2\pi\left\lfloor\frac{x_{P}+\pi}{2\pi}\right\rfloor$`</span>
 
 </div>
+
+
+
+<!-- .slide: class="drop" -->
 </script></section><section  data-markdown><script type="text/template">
-<div style="text-align:left;">
+<!-- .slide: style="text-align: left" -->
 
 # Networks
 
 - Stack gauge links as `x.shape = [Nb, 2, Nt, Nx, 2]`
 
-`\[
-x_{\mu}(n) \gets \left[\cos(x), \sin(x)\right]
-\]`
+`$$x_{\mu}(n) \gets \left[\cos(x), \sin(x)\right]$$`
 
-- <span id="blue">`\(x\)`</span> network: 
-  - <span id="blue">`\(\Lambda^{\pm}\)`</span> `\((x, v) \rightarrow \left[S_{x}, T_{x}, Q_{x}\right]\)`
-  - $S_{v}, T_{v}, Q_{v}$ used to update $v$ L2HMC update
-- <span id="red">`\(v\)`</span> network: 
-  - <span id="red">`\(\Gamma^{\pm}\)`</span> `\((x, \partial_{x}U) \rightarrow \left[S_{v}, T_{v}, Q_{v}\right]\)`
-  - $S_{x}, T_{x}, Q_{x}$ used to update $v$ L2HMC update
+- <span id="blue">`$x$`</span> network: 
 
-</div>
+  - <span id="blue">`$\Lambda^{\pm}$`</span> `$(x, v) \rightarrow \left[S_{x}, T_{x}, Q_{x}\right]$`
+
+  - `$S_{v}, T_{v}, Q_{v}$` used to update `$v$` L2HMC update
+
+- <span id="red">`$v$`</span> network: 
+
+  - <span id="red">`$\Gamma^{\pm}$`</span> `$(x, \partial_{x}U) \rightarrow \left[S_{v}, T_{v}, Q_{v}\right]$`
+
+  - `$S_{x}, T_{x}, Q_{x}$` used to update `$x$` L2HMC update
 </script></section><section  data-markdown><script type="text/template">
-<div style="text-align:left; font-size:smaller;">
+<!-- .slide: style="text-align: center" class="drop" -->
 
-# $x$ Networks $\Lambda^{\pm}$:
+# `$x$` Networks `$\textcolor{#42A5F5}{\Lambda^{\pm}}$`:
+<!-- .element: align="center" -->
 
-- **input**: $\color{#0091EA}{(x, v)}$
+<div class="block">
 
-`\[
-\begin{align}
-h_{1} &= \sigma\left(W_{x}\, \color{#0091EA}{x} + W_{v}\, \color{#0091EA}{v} + b\right)\\
-h_{2} &= \sigma\left(W_{1} h_{1} + b_{1}\right)\\
-\quad\vdots&\\
-h_{n} &= \sigma\left(W_{n} h_{n} + b_{n}\right)\\
-\color{#00CF53}{S_{x}} &= \color{#ff5252}{\lambda_{S}}\tanh\left(W_{S} h_{n} + b_{S} \right)\\
-\color{#00CF53}{Q_{x}} &= \color{#ff5252}{\lambda_{Q}}\tanh\left(W_{Q} h_{n} + b_{Q} \right)\\
-\color{#00CF53}{T_{x}} &= W_{T} h_{n} + b_{T}
-\end{align}
-\]`
+<!-- .element: style="margin-left: 25%; margin-right: 25%" class="note" -->
 
-
-- **output**: $\color{#00CF53}{S_{x}, T_{x}, Q_{x}}$
-
-- **Note**: $\color{#ff5252}{\lambda_{S}}$, $\color{#ff5252}{\lambda_{Q}}$ are trainable parameters
+`input`: `$(\textcolor{#42A5F5}{x}, \textcolor{#FD971F}{v})$` 
 
 </div>
+
+
+
+<div class="block">
+
+`$$\begin{align}
+h_{1} &= \sigma\left(W_{x}\, \textcolor{#42A5F5}{x} + W_{v}\, \textcolor{#FD971F}{v} + b\right) \\
+h_{2} &= \sigma\left(W_{1} h_{1} + b_{1}\right) \\
+\quad\vdots& \\
+h_{n} &= \sigma\left(W_{n} h_{n} + b_{n}\right) \\
+\textcolor{#00CF53}{S_{x}} &= \textcolor{#ff5252}{\lambda_{S}}\tanh\left(W_{S} h_{n} + b_{S} \right) \\
+\textcolor{#00CF53}{Q_{x}} &= \textcolor{#ff5252}{\lambda_{Q}}\tanh\left(W_{Q} h_{n} + b_{Q} \right) \\
+\textcolor{#00CF53}{T_{x}} &= W_{T} h_{n} + b_{T}
+\end{align}$$`
+
+</div>
+
+
+
+<div class="block">
+
+<!-- .element: style="margin-left: 25%; margin-right: 25%" class="note" -->
+
+`output`: `$\textcolor{#00CF53}{S_{x}, T_{x}, Q_{x}}$` <!-- .element: class="note" -->
+
+</div>
+
+
+
+
+<div class="reset-margin" style="position: absolute; left: 0px; top: 630px; height: 70px; min-height: 70px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end" >
+
+**Note**: `$\textcolor{#ff5252}{\lambda_{S}}$`, `$\textcolor{#ff5252}{\lambda_{Q}}$` are trainable parameters <!-- .element: class="footer" align="bottom" -->
+</div>
+
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: style="font-size: 80%" -->
+
+# Detail
+
+<div class="block">
+
+<!-- .element: style="text-align: left" -->
+
+1. **Update** `$v$`:
+
+`$$v' = v \cdot \exp\left[\varepsilon \textcolor{#ff5252}{S_{v}}\left(x, \partial_{x}U\right)\right] - \frac{\varepsilon}{2} \bigg[\partial_{x} U\cdot \exp\left[\varepsilon \textcolor{#ff5252}{Q_{v}}\left(x, \partial_{x}U\right)\right] + \textcolor{#ff5252}{T_{v}}\left(x, \partial_{x}U\right)\bigg]$$`
+<!-- .element: style="text-align: center!important; font-size: 0.9em" -->
+
+2. **Update** `$x$` (in two parts):
+<!-- .element: style="text-align: left!important" -->
+
+   <span style="color:#8b8b8b;">Update first half of `$x$`: </span>
+<!-- .element: style="text-align: left!important" -->
+  `$$x' = x_{A} + \bigg\{x_{B}\cdot\exp\left[\varepsilon \textcolor{#00CCFF}{S_{x}}(x_{B}, v')\right] + \varepsilon\cdot\big[v'\cdot \exp\left[\varepsilon \textcolor{#00CCFF}{Q_{x}}\left(x_{B}, v'\right)\right] + \textcolor{#00CCFF}{T_{x}}\left(x_{B}, v'\right)\big]\bigg\}$$`
+<!-- .element: style="text-align: left!important; font-size: 0.9em" -->
+  <span style="color:#8b8b8b;">Update second half of `$x$`: </span>
+<!-- .element: style="text-align: left!important" -->
+  `$$x'' = x'_{B} + \bigg\{x'_{A}\cdot\exp\left[\varepsilon \textcolor{#00CCFF}{S_{x}}(x'_{A}, v')\right] + \varepsilon\cdot\big[v'\cdot \exp\left[\varepsilon \textcolor{#00CCFF}{Q_{x}}\left(x'_{A}, v'\right)\right] + \textcolor{#00CCFF}{T_{x}}\left(x'_{A}, v'\right)\big]\bigg\}$$`
+<!-- .element: style="text-align: left!important; font-size: 0.9em" -->
+
+3. **Update** `$v$`:
+<!-- .element: style="text-align: left!important" -->
+`$$v'' = v' \cdot \exp\left[\varepsilon \textcolor{#ff5252}{S_{v}}\left(x'', \partial_{x}U\right)\right] - \frac{\varepsilon}{2} \bigg[\partial_{x} U\cdot \exp\left[\varepsilon \textcolor{#ff5252}{Q_{v}}\left(x'', \partial_{x}U''\right)\right] + \textcolor{#ff5252}{T_{v}}\left(x'', \partial_{x}U''\right)\bigg]$$` 
+<!-- .element: style="text-align: right!important; font-size: 0.9em" -->
+
+</div>
+
+
 </script></section><section  data-markdown><script type="text/template">
-<div style="font-size:75%;">
-
-## Detail
-
-1. **Update** $v$:
-`\[v' = v \cdot \exp\left[\varepsilon \color{#ff5252}{S_{v}}\left(x, \partial_{x}U\right)\right] - \frac{\varepsilon}{2} \bigg[\partial_{x} U\cdot \exp\left[\varepsilon \color{#ff5252}{Q_{v}}\left(x, \partial_{x}U\right)\right] + \color{#ff5252}{T_{v}}\left(x, \partial_{x}U\right)\bigg]\]`
-2. **Update** $x$ (in two parts):
-    1. `\(x' = x_{A} + \bigg\{x_{B}\cdot\exp\left[\varepsilon \color{#00CCFF}{S_{x}}(x_{B}, v')\right] + \varepsilon\cdot\big[v'\cdot \exp\left[\varepsilon \color{#00CCFF}{Q_{x}}\left(x_{B}, v'\right)\right] + \color{#00CCFF}{T_{x}}\left(x_{B}, v'\right)\big]\bigg\}\)`
-    2. `\(x'' = x'_{B} + \bigg\{x'_{A}\cdot\exp\left[\varepsilon \color{#00CCFF}{S_{x}}(x'_{A}, v')\right] + \varepsilon\cdot\big[v'\cdot \exp\left[\varepsilon \color{#00CCFF}{Q_{x}}\left(x'_{A}, v'\right)\right] + \color{#00CCFF}{T_{x}}\left(x'_{A}, v'\right)\big]\bigg\}\)`
-3. **Update** $v$:
-`\[v'' = v' \cdot \exp\left[\varepsilon \color{#ff5252}{S_{v}}\left(x'', \partial_{x}U\right)\right] - \frac{\varepsilon}{2} \bigg[\partial_{x} U\cdot \exp\left[\varepsilon \color{#ff5252}{Q_{v}}\left(x'', \partial_{x}U''\right)\right] + \color{#ff5252}{T_{v}}\left(x'', \partial_{x}U''\right)\bigg]\]`
-
-</div>
-
-</script></section><section  data-markdown><script type="text/template"><div style="text-align:left;">
-
 ## Loss Function
 
-</div>
+<div class="block">
 
-<div style="font-size:0.9em;">
+<!-- .element: style="text-align: left!important" -->
 
-<div style="text-align:left;">
+- Maximize the <span id="blue">_expected squared charge difference_</span>: 
 
-- Maximize the <span id="blue">_expected squared charge difference_ </span>:
+<div class="block">
 
-</div>
+<!-- .element: style="text-align: center!important; margin-left: 20%; margin-right: 20%; padding: 0.1%" class="note" -->
 
-<span id="note" style="text-align:center;align:center;">`\(\mathcal{L}(\theta) = \color{#228BE6}{\mathbb{E}_{p(\xi)}}
-\left[-\color{#FA5252}{{\delta Q}}^{2}_{\color{#FA5252}{\mathbb{R}}}(\xi', \xi)\cdot
-A(\xi'|\xi)\right]\)`</span>
-
-<div style="text-align:left;">
-
-<br>
-
-- $\color{#FA5252}{\delta Q_{\mathbb{R}}}$ is the <span id="red">tunneling rate</span>
-  $$\color{#FA5252}{\delta Q_{\mathbb{R}}}(\xi',\xi)=\left|Q_{\mathbb{R}}(x') - Q_{\mathbb{R}}(x)\right|$$
-- $A(\xi'|\xi)$ is probability of accepting the proposal $\xi'$.
-  $$ A(\xi'|\xi) = \min\left(1, \frac{p(\xi')}{p(\xi)}\left|\frac{\partial \xi'}{\partial \xi^{T}}\right|\right\)$$
+`$$\mathcal{L}(\theta) = \textcolor{#228BE6}{\mathbb{E}_{p(\xi)}}\left[-\textcolor{#FA5252}{{\delta Q}}^{2}_{\textcolor{#FA5252}{\mathbb{R}}}(\xi', \xi)\cdot A(\xi'|\xi)\right]$$` 
 
 </div>
 
-</div>
+
+
+- `$\textcolor{#FA5252}{\delta Q_{\mathbb{R}}}$` is the <span id="red">tunneling rate</span> <!-- .element: style="text-align: left" -->
+
+<div class="block">
+
+<!-- .element: style="text-align: center!important; margin-left: 20%; margin-right: 20%; padding: 0.1%" class="note" -->
+
+`$$\textcolor{#FA5252}{\delta Q_{\mathbb{R}}}(\xi',\xi)=\left|Q_{\mathbb{R}}(x') - Q_{\mathbb{R}}(x)\right|$$`
 
 </div>
+
+
+
+- `$A(\xi'|\xi)$` is probability of accepting the proposal `$\xi'$`.
+
+<div class="block">
+
+<!-- .element: style="text-align: center!important; margin-left: 20%; margin-right: 20%; padding: 0.1%" class="note" -->
+
+`$$A(\xi'|\xi) = \min\left(1, \frac{p(\xi')}{p(\xi)}\left|\frac{\partial \xi'}{\partial \xi^{T}}\right|\right)$$`
+
+</div>
+
+
 </script></section><section  data-markdown><script type="text/template">
-<div style="text-align:left;font-size:smaller;">
+### HMC Sweep
 
-## HMC Sweep
+<div class="block">
 
-- Fix $N_{\mathrm{LF}}$
-- Sweep over $\varepsilon$ for generic HMC
-- **Goal:** Maximize $\langle \delta Q_{\mathbb{Z}}\rangle$, averaged over _thermalized_ configs
+<!-- .element: style="font-size: 0.75em!important; text-align: left" -->
 
-<figure>
-<p><img src="./assets/hmcNlf16_sweep2.svg" align="center" style="max-width:90%;">
-<figcaption>HMC Sweep with $N_{\mathrm{LF}}=16$ on $16\times16$ lattice at $\beta = 4$</figcaption>
-</figure>
+- Fix `$N_{\mathrm{LF}}$`
+- Sweep over `$\varepsilon$` for generic HMC
+- **Goal:** Maximize `$\langle \delta Q_{\mathbb{Z}}\rangle$`, averaged over _thermalized_ configs
 
 </div>
-</script></section><section  data-markdown><script type="text/template">
-<div style="font-size:smaller;text-align:left;">
 
-## Comparison
+
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/hmcNlf16_sweep2.svg" alt="" style="align: center!important; text-align: center!important; width: 90%" align="center"></img></p>
+
+
+HMC Sweep with `$N_{\mathrm{LF}}=16$` on `$16\times16$` lattice at `$\beta = 4$`
+<!-- .element: style="font-size: 0.8em; color: #757575; vertical-align: bottom; text-align: center" -->
+</script></section><section  data-markdown><script type="text/template">## Comparison
+
+<div class="block">
+
+<!-- .element: style="font-size: 0.9em" -->
 
 - Maintain a buffer of:
-  - $N_{\mathrm{b}}$ chains ran to generate $M$ configurations (accept/reject steps)
-- To calculate averages, we drop the first $\sim 25\\%$ of chains (thermalize), and average
+  - `$N_{\mathrm{b}}$` chains ran to generate `$M$` configurations (accept/reject steps)
+- To calculate averages, we drop the first `$\sim 25\\%$` of chains (thermalize), and average
 
-`\[
-  \langle \delta Q_{\mathbb{Z}}\rangle = \frac{1}{N_{b}}\sum_{n=1}^{N_{b}}\bigg\{\frac{1}{M}\sum_{m=1}^{M} \left|Q'_{\mathbb{Z}} - Q_{\mathbb{Z}}\right|\bigg\}
-\]`
-
-<figure>
-<img src="./assets/dQint_eval.svg" align="left" style="max-width:49%;">
-<img src="./assets/dQint_hmc.svg" align="right" style="max-width:49%;">
-<p><figcaption>Comparison of the tunneling rate between trained model (left) and HMC (right).</figcaption>
-</figure>
-
+`$$\langle \delta Q_{\mathbb{Z}}\rangle = \frac{1}{N_{b}}\sum_{n=1}^{N_{b}}\bigg\{\frac{1}{M}\sum_{m=1}^{M} \left|Q'_{\mathbb{Z}} - Q_{\mathbb{Z}}\right|\bigg\}$$`
 
 </div>
+
+
+
+<split even>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/dQint_eval.svg" alt="" ></img></p>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/dQint_hmc.svg" alt="" ></img></p>
+
+</split>
+
+Comparison of the tunneling rate between trained model (left) and HMC (right). <!-- .element: class="footer" -->
 </script></section><section  data-markdown><script type="text/template">
-<div id='dark'>
+#### Integrated Autocorrelation time: `$\textcolor{#FF2052}{\tau_{\mathrm{int}}}$`
 
-#### Integrated Autocorrelation time: <span style="color:#FF2052">$\tau_{\mathrm{int}}$</span>
+<div class="reset-margin" style="text-align: right!important; position: absolute; left: 48px; top: 70px; height: 315px; min-height: 315px; width: 288px; display: flex; flex-direction: column; align-items: flex-end; justify-content: space-evenly" align="right">
 
-<div id="left" style="margin-left:6%;max-width:75%;">
 
-<img src="assets/autocorr_new.svg" style="width:100%;">
+We can measure the performance by comparing `$\tau_{\mathrm{int}}^{Q}$` for the <span style="color:#FF2052">**trained model**</span> to  <span style="color:#9F9F9F;">**HMC**</span>.
+</div>
+
+<div class="reset-margin" style="position: absolute; left: 336px; top: 70px; height: 455px; min-height: 455px; width: 624px; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start" align="left">
+
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/autocorr_new.svg" alt="|650" style="width: 650px"></img></p>
 
 </div>
 
-<div id="right" style="align:left;text-align:left;width:30%;margin-right:15%;">
+<div class="reset-margin" style="position: absolute; left: 0px; top: 525px; height: 161px; min-height: 161px; width: 912px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
-We can measure the performance by comparing $\tau_{\mathrm{int}}^{Q}$ for the
-<span style="color:#FF2052">**trained model**</span> to <span
-style="color:#9F9F9F;">**HMC**</span>.
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/charge_histories.svg" alt="charge_histories" ></img></p>
+
 </div>
 
-<img src="assets/charge_histories.svg" style="width:90%;margin-top:-4%;">
-
-</div></script></section><section  data-markdown><script type="text/template">
-<div id="dark">
-
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template">
 ### Integrated Autocorrelation Time
 
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/tint1.svg" alt="" ></img></p>
 
-<img src="assets/tint1.svg" style="width:100%;">
 
-Comparison of $\tau_{\mathrm{int}}^{Q}$ for <span
+Comparison of `$\tau_{\mathrm{int}}^{Q}$` for <span
 style="color:#5BC461;">**trained models** </span> vs <span
 style="color:#9F9F9F;">**HMC** </span> with different trajectory lengths,
-$N_{\mathrm{LF}}$, at $\beta = 4, 5, 6, 7$
+`$N_{\mathrm{LF}}$`, at `$\beta = 4, 5, 6, 7$`
+</script></section><section  data-markdown><script type="text/template"># Interpretation
+
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/ridgeplots.svg" alt="" ></img></p>
+
+
+<div class="block">
+
+<!-- .element: style="font-size: 0.7em; color: #757575" -->
+
+<div class="note reset-margin" style="position: absolute; left: 48px; top: 455px; height: 70px; min-height: 70px; width: 288px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+Deviation in `$x_{P}$` 
+</div>
+
+<div class="note reset-margin" style="position: absolute; left: 364.8px; top: 455px; height: 70px; min-height: 70px; width: 288px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+Topological charge mixing
+</div>
+
+<div class="note reset-margin" style="position: absolute; left: 672px; top: 455px; height: 70px; min-height: 70px; width: 288px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+Artificial influx of energy
+</div>
 
 </div>
+
+
+
+<div class="reset-margin" style="position: absolute; left: 0px; top: 560px; height: 105px; min-height: 105px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: flex-end" >
+
+Illustration of how different observables evolve over a single L2HMC trajectory.
+</div>
+
+
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template"># Interpretation
+
+<div class="reset-margin stretch-row flex-even" style="position: absolute; left: 0px; top: 70px; height: 630px; min-height: 630px; width: 960px; display: flex; flex-direction: row; align-items: center; justify-content: space-evenly" >
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/plaqsf_ridgeplot.svg" alt="" ></img></p>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/Hf_ridgeplot.svg" alt="" ></img></p>
+
+</div>
+
+<!-- .slide: class="drop" -->
 </script></section><section  data-markdown><script type="text/template">
-
-<div id="dark">
-
-# Interpretation
-
-<span style="font-size:0.6em; align:center;">
-$\hspace{32pt}$
-Deviation in $x_{P}\hspace{20pt}$
-$\hspace{10pt}$ Topological charge mixing
-$\hspace{20pt}$ Artificial influx of energy
-</span>
-
-![](assets/ridgeplots.svg)
-
-<span style="font-size:0.7em;">
-Illustration of how different observables evolve over a
-single L2HMC trajectory.
-</span>
-
-</div>
-</script></section><section  data-markdown><script type="text/template"><div id="dark">
-
 ## Interpretation
 
-![](assets/plaqsf_ridgeplot.svg) <!-- .element width="48%" align="center" -->
-![](assets/Hf_ridgeplot.svg)  <!-- .element width="48%" align="center" -->
+<div class="reset-margin stretch-row flex-even" style="position: absolute; left: 0px; top: 70px; height: 630px; min-height: 630px; width: 960px; display: flex; flex-direction: row; align-items: center; justify-content: space-evenly" >
 
-<div class="row">
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/plaqsf_ridgeplot.svg" alt="" ></img></p>
 
-<div class="column" style="font-size:0.6em;margin-left:11%;max-width:55%;text-align:center;">
-
-<div id="note" style="color:rgb(255,255,255);background-color:rgba(255,255,255,0.15);margin-top:-40px;">
-
-Average plaq $\langle x_{P}\rangle$
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/Hf_ridgeplot.svg" alt="" ></img></p>
 
 </div>
 
-</div>
-<div class="column" style="font-size:0.6em;margin-left:12%;text-align:center;margin-right:4%;">
+<!-- .slide: class="drop" -->
 
-<div id="note" style="color:rgb(255,255,255);background-color:rgba(255,255,255,0.15);margin-top:-40px;">
-
-Average energy $H - \sum\log|\mathcal{J}|$
-</div>
-</div>
-</div>
-<small><b>Fig.</b> Illustration of how the trained model artificially
-increases the energy towards the middle of the trajectory, allowing the sampler
-to tunnel between isolated sectors.
+<!-- .slide: class="drop" -->
 </script></section><section  data-markdown><script type="text/template">
-<div id="dark">
+# Interpretation
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/Hf_ridgeplot.svg" alt="" width="48%" align="center"></img></p>
 
-## Plaquette analysis: $x_{P}$
-
-
-![](assets/plaqsf_vs_lf_step1.svg) <!-- .element width="100%" -->
-
-<div class="row">
-<div class="column" style="font-size:0.6em;margin-left:11%;max-width:55%;text-align:center;">
-
-<div id="note" style="color:rgb(255,255,255);background-color:rgba(255,255,255,0.15);margin-top:-40px;">
-
-Deviation from $V\rightarrow\infty$ limit,  $x_{P}^{\ast}$
-
-</div>
-
-</div>
-<div class="column" style="font-size:0.6em;margin-left:12%;text-align:center;margin-right:4%;">
-
-<div id="note" style="color:rgb(255,255,255);background-color:rgba(255,255,255,0.15);margin-top:-40px;">
-
-Average $\langle x_{P}\rangle$, with $x_{P}^{\ast}$ (dotted-lines)
-</div>
-</div>
-</div>
-<small><b>Fig.</b> Plot showing how <b>average plaquette</b>, $\left\langle
-x_{P}\right\rangle$ varies over a single trajectory for models trained at
-different $\beta$, with varying trajectory lengths $N_{\mathrm{LF}}$</small>
-
-</div></script></section><section  data-markdown><script type="text/template">
-<div align="left">
-
-## $SU(3)$
-
-- **Plaquettes**:
-
-</div>
-
-![](./assets/plaquetteUxy.svg)  <!-- .element width="40%" align="center" -->
-
-<br>
-
-![](./assets/plaquetteUtx.svg)  <!-- .element width="50%" align="center" -->
 </script></section><section  data-markdown><script type="text/template">
-<div align="left">
+# Interpretation
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/plaqsf_ridgeplot.svg" alt="" width="45%" align="topright"></img></p>
 
-## Topological Charge $Q$
+</script></section><section  data-markdown><script type="text/template">
+# Testing
+</script></section><section  data-markdown><script type="text/template">
+- Deviation from `$V\rightarrow\infty$` limit,  `$x_{P}^{\ast}$`
+- Average `$\langle x_{P}\rangle$`, with `$x_{P}^{\ast}$` (dotted-lines)
+- Plot showing how <b>average plaquette</b>, `$\left\langle x_{P}\right\rangle$` varies over a single trajectory for models trained at different `$\beta$`, with varying trajectory lengths `$N_{\mathrm{LF}}$`
+</script></section><section  data-markdown><script type="text/template">
+## Plaquette analysis: `$x_{P}$`
 
-- **Field Theoretic Definition**:
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/plaqsf_vs_lf_step1.svg" alt="" ></img></p>
 
-$$Q = \int d^{4}x q(x)$$
+</script></section><section  data-markdown><script type="text/template">
+### `$SU(3)$`: Plaquettes
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/plaquetteUxy.svg" alt="" ></img></p>
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/plaquetteUtx.svg" alt="" ></img></p>
+
+
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+## Topological Charge `$Q$`
+
+**Field Theoretic Definition**:
+
+`$$Q = \int d^{4}x q(x)$$`
 
 where
 
-$$q(x) = \frac{1}{32\pi^{2}} \varepsilon_{\mu\nu\rho\sigma} \mathrm{Tr}\left[F_{\mu\nu} F_{\rho\sigma}\right]$$
-
-</div>
-</script></section><section  data-markdown><script type="text/template">
-<div align="left">
+`$$q(x) = \frac{1}{32\pi^{2}} \varepsilon_{\mu\nu\rho\sigma} \mathrm{Tr}\left[F_{\mu\nu} F_{\rho\sigma}\right]$$`
+</script></section><section  data-markdown><script type="text/template"><!-- .slide: style="text-align: left" -->
 
 ### Topological Charge
 
-- Discretize $Q$ on the lattice as 
+Discretize `$Q$` on the lattice as 
+`$$Q = a^{4} \sum_{x} q_{L}(x)$$`
 
-$$Q = a^{4} \sum_{x} q_{L}(x)$$
+Discretize `$q_{L}$` using `$C_{\mu\nu}^{\mathrm{plaq}}(x)$`
 
-- Discretize $q_{L}$ using $C_{\mu\nu}^{\mathrm{plaq}}(x)$
+`$$q_{L}^{\mathrm{plaq}} = \frac{1}{32\pi^{2}} \varepsilon_{\mu\nu\rho\sigma}\mathrm{Tr}\left(C_{\mu\nu}^{\mathrm{plaq}} C_{\rho\sigma}^{\mathrm{plaq}}\right)$$`
 
-$$q_{L}^{\mathrm{plaq}} = \frac{1}{32\pi^{2}} \varepsilon_{\mu\nu\rho\sigma}\mathrm{Tr}\left(C_{\mu\nu}^{\mathrm{plaq}} C_{\rho\sigma}^{\mathrm{plaq}}\right)$$
+Where `$C_{\mu\nu}^{\mathrm{plaq}}(x)$` is the imaginary part of the plaquette:
 
-with
-
-</div>
-
-![](./assets/qplaq.svg)  <!-- .element width="50%" align="center" -->
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/qplaq.svg" alt="" style="align: center!important; margin-left: 20%; margin-right: 20%" width="50%" align="center"></img></p>
 
 </script></section><section  data-markdown><script type="text/template">
-<div id="dark">
+# <a href="https://www.github.com/saforem2/l2hmc-qcd"><i class="fab fa-github" ></i></a> `l2hmc-qcd` <div align="center">  
+    
+<a href="https://pytorch.org/get-started/locally/"><img alt="pyTorch" src="https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white"></a> <a href="https://hydra.cc"><img alt="hydra" src="https://img.shields.io/badge/Config-Hydra-89b8cd"></a> <a href="https://www.tensorflow.org"><img alt="tensorflow" src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?&logo=TensorFlow&logoColor=white"></a> 
+<br>
+<a href="https://arxiv.org/abs/2112.01582"><img alt="arxiv" src="http://img.shields.io/badge/arXiv-2112.01582-B31B1B.svg"></a> <a href="https://arxiv.org/abs/2105.03418"><img alt="arxiv" src="http://img.shields.io/badge/arXiv-2105.03418-B31B1B.svg"></a> 
+<br>
+<a href="https://github.com/saforem2/l2hmc-qcd/"><img alt="l2hmc-qcd" src="https://img.shields.io/badge/-l2hmc--qcd-252525?style=flat&logo=github&labelColor=gray"></a> <a href="https://www.codefactor.io/repository/github/saforem2/l2hmc-qcd"><img alt="codefactor" src="https://www.codefactor.io/repository/github/saforem2/l2hmc-qcd/badge"></a>
+<br>
+<a href="https://hits.seeyoufarm.com"><img alt="hits" src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fsaforem2%2Fl2hmc-qcd&count_bg=%2300CCFF&title_bg=%23555555&icon=&icon_color=%23111111&title=👋&edge_flat=false"></a>
+<br>
 
-# [<img width=7% src="assets/github.svg" align="top">](https://github.com/saforem2/l2hmc-qcd) [l2hmc-qcd](https://github.com/saforem2/l2hmc-qcd)
+
+    
+</div>
+</script></section><section  data-markdown><script type="text/template">
+# <a href="https://www.github.com/saforem2/l2hmc-qcd"><i class="fab fa-github" ></i></a> `l2hmc-qcd` 
 
 - [arXiv: 2105.03418](https://arxiv.org/abs/2105.03418)
 - [arXiv: 2112.01582](https://arxiv.org/abs/2112.01582)
@@ -619,525 +1341,223 @@ with
 
 - Generic interface, easily extensible
 
-- <b>Work in progress</b> scaling up to 2D, 4D $SU(3)$
-
-</div>
-</script></section><section  data-markdown><script type="text/template">
+- <b>Work in progress</b> scaling up to 2D, 4D `$SU(3)$`
+</script></section><section  data-markdown><script type="text/template"></script></section><section  data-markdown><script type="text/template">
 # Gauge Equivariance
 
-- Transform untraced plaquettes (matrix valued) `\(P'_{\mu\nu}(x)\gets P_{\mu\nu}(x)\)`
+<div class="block">
 
-<div id="note" align="center" style="text-align:center;max-width:80%;">
+<!-- .element: style="text-align: left!important" -->
 
-`\[
-P_{\mu\nu}(x) \equiv U_{\mu}(x)\,U_{\nu}(x+\hat{\mu})\,U^{\dagger}(x+\hat{\nu})\,U^{\dagger}(x)
-\]`
+- Transform untraced plaquettes (matrix valued) `$P'_{\mu\nu}(x)\gets P_{\mu\nu}(x)$`
+
+`$$P_{\mu\nu}(x) \equiv U_{\mu}(x)\,U_{\nu}(x+\hat{\mu})\,U^{\dagger}(x+\hat{\nu})\,U^{\dagger}(x)$$` 
+<!-- .element: style="text-align: center!important; background-color: #35353550; margin-top: 5%; margin-bottom: 5%; margin-left: 10%; margin-right: 10%" class="note" -->
+
+- Change back to links and update gauge configuration 
+
+`$$U'_{\mu}(x) = P'_{\mu\nu}(x)P^{\dagger}_{\mu\nu}(x)U_{\mu}(x)$$`
+<!-- .element: style="text-align: center!important; margin-top: 5%; background-color: #35353550; margin-bottom: 5%; margin-left: 20%; margin-right: 20%" class="note" -->
 
 </div>
 
-- Change back to links and update gauge configuration
-
-`\[
-U'_{\mu}(x) = P'_{\mu\nu}(x)P^{\dagger}_{\mu\nu}(x)U_{\mu}(x)
-\]`
 
 </script></section><section  data-markdown><script type="text/template">
-## Non-Compact Projection 
-<small>[arXiv:2002.02428](https://arxiv.org/abs/2002.02428)</small>
+ # 📊 ML Ops
 
-<div style="font-size:0.8em;">
+<div class="block">
 
-- Project $x \in[-\pi, \pi]$ onto $\mathbb{R}$ using a transformation $z = g(x)$:
-$$ z = \tan\left(\frac{x}{2}\right) $$
-- Perform the update in $\mathbb{R}$:
-  $$ z' = m^{t}\odot z + \bar{m}^{t}\odot \left[\alpha z + \beta\right]$$
-- Project back to $[-\pi, \pi]$ using $x = g^{-1}(z)$:
-  $$ x = 2 \tan^{-1}(z) $$
+<!-- .element: style="margin-left: 20%; margin-right: 20%; background-color: #66bb6a" class="note has-light-background" -->
+
+**Goal**: Allow researchers to focus on their science / model development without all the boilerplate.
 
 </div>
 
+
+</script></section><section  data-markdown><script type="text/template">
+</script></section><section  data-markdown><script type="text/template">
+# References
+
+
+
+<div class="footnotes" role="doc-endnotes">
+<ol>
+<li id="fn:melko" role="doc-endnote"><p>
+
+Carrasquilla, J., Melko, R. [Machine learning phases of matter](https://doi.org/10.1038/nphys4035). _Nature Phys_ **13,** 431–434 (2017).
+
+</p></li></ol>
+</div>
+</script></section><section  data-markdown><script type="text/template">
+<div class="reset-margin" style="position: absolute; left: 240px; top: 245px; height: 210px; min-height: 210px; width: 480px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+# Thank you!
+Feel free to reach out!
+[foremans@anl.gov](mailto:///foremans@anl.gov)
+</div>
+
+<div class="reset-margin flex-even" style="font-size: 2.0em; margin-bottom: 10%; position: absolute; left: 0px; top: 490px; height: 210px; min-height: 210px; width: 960px; display: flex; flex-direction: row; align-items: flex-start; justify-content: space-evenly" >
+
+<div class="block">
+
+[<i class="fab fa-github"></i>](https://github.com/saforem2) <!-- .element: style="margin: 5%" -->
+[<i class="fas fa-paper-plane"></i>](https://github.com/saforem2) <!-- .element: style="margin: 5%" -->
+[<i class="fas fa-home"></i>](https://samforeman.me) <!-- .element: style="margin: 5%" -->
+[<i class="fab fa-twitter"></i>](https://twitter.com/saforem2) <!-- .element: style="margin: 5%" -->
+
+</div>
+
+
+
+</div>
+
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template">
+<div class="note reset-margin" style="position: absolute; left: 72px; top: 210px; height: 280px; min-height: 280px; width: 816px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+# BACKUPS
+</div>
+
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template">
+## Probabilistic Generative Models
+<div class="reset-margin" style="position: absolute; left: 9.6px; top: 70px; height: 630px; min-height: 630px; width: 950.4px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+<iframe id="lecun" width="100%" height="100%" data-src="https://twitter.com/ylecun/status/1525560489216028677" data-preload data-background-interactive></iframe>
+</div>
+
+<!-- .slide: class="drop" -->
+</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left" -->
+
+## Non-Compact Projection<sup id="fnref:1" role="doc-noteref">1</sup>
+
+Project `$x \in[-\pi, \pi]$` onto `$\mathbb{R}$` using a transformation `$z = g(x)$`:
+
+`$z = \tan\left(\frac{x}{2}\right) $`
+<!-- .element: style="margin-top: 1em; margin-bottom: 1em" align="center" -->
+
+Perform the update in `$\mathbb{R}$`:
+
+`$ z' = m^{t}\odot z + \bar{m}^{t}\odot \left[\alpha z + \beta\right]$`
+<!-- .element: style="margin-top: 1em; margin-bottom: 1em" align="center" -->
+
+Project back to `$[-\pi, \pi]$` using `$x = g^{-1}(z)$`:
+
+`$ x = 2 \tan^{-1}(z) $`
+<!-- .element: style="margin-top: 1em; margin-bottom: 1em" align="center" -->
+
+
+
+<div class="footnotes" role="doc-endnotes">
+<ol>
+<li id="fn:1" role="doc-endnote"><p>
+
+[arXiv:2002.02428](https://arxiv.org/abs/2002.02428)
+
+</p></li></ol>
 </div>
 </script></section><section  data-markdown><script type="text/template"><!-- .slide: data-background="#1c1c1c" -->
 
-<div id="dark">
-
 ## Non-Compact Projection
-<small>[arXiv:2002.02428](https://arxiv.org/abs/2002.02428)</small>
 
-- Combine into a single update:
-  $$ x' = \color{#228BE6}{m^{t}}\odot x +
-  \color{#FA5252}{\bar{m}^{t}}\odot\left[2\tan^{-1}\left(\alpha\tan\left(\frac{x}{2}\right)\right)+\beta\right]
-  $$
-- With corresponding Jacobian:
-  $$ \frac{\partial x'}{\partial x} = \frac{\exp(\varepsilon s_{x})}{\cos^{2}(x/2)+exp(2\varepsilon s_{x})\sin(x/2)} $$
+[arXiv:2002.02428](https://arxiv.org/abs/2002.02428)
 
+Combine into a single update:
+`$$x' = \textcolor{#228BE6}{m^{t}}\odot x + \textcolor{#FA5252}{\bar{m}^{t}}\odot\left[2\tan^{-1}\left(\alpha\tan\left(\frac{x}{2}\right)\right)+\beta\right]$$`
 
-</div>
-
+With corresponding Jacobian:
+`$$ \frac{\partial x'}{\partial x} = \frac{\exp(\varepsilon s_{x})}{\cos^{2}(x/2)+exp(2\varepsilon s_{x})\sin(x/2)} $$`
 </script></section><section  data-markdown><script type="text/template">
+<!-- .slide: style="text-align: left!important" -->
 
-<!-- <div style="text-align:left;font-size:0.7em;"> -->
+### HMC: Leapfrog Integrator
 
-<!-- # [Adversarial Training](https://mdpi-res.com/d_attachment/entropy/entropy-24-00415/article_deploy/entropy-24-00415-v2.pdf) -->
+- Hamiltonian: `$H(x, v) = S(x) + \frac{1}{2} v^{2}$`
+- Target distribution: `$\textcolor{#42a5f5}{p(x)\propto e^{-S(x)}}$`, <span id="green">`$p(v)$` `$\propto e^{-\frac{1}{2}v^{2}}$` </span> `$\Longrightarrow$`
 
+`$$p(x, v) \propto \textcolor{#42A5F5}{e^{-S(x)}} \cdot \textcolor{e^{-\frac{v^{2}}{2}}} = e^{-H(x, v)}$$`
+<!-- .element: style="max-width: 100%; margin-left: 20%; margin-right: 20%" class="note" -->
 
-<!-- - Use Real-NVP flows as generator object -->
-<!-- - First update $v$ via  -->
+- Hamilton's equations:
 
-<!-- $$ -->
-<!-- v' = v + \varepsilon \cdot t_{x}(x) -->
-<!-- $$ -->
+`$$\dot{x} = \partial_{v} H,\quad \dot{v} = - \partial_{x} H$$`
+<!-- .element: style="max-width: 100%; margin-left: 30%; margin-right: 30%" class="note" -->
 
-<!-- - Next we update $x$ using -->
+- <u>Leapfrog Integrator </u> (step size `$\varepsilon$`)
+<!-- .element: style="margin-top: 4%; font-weight: 600; margin-bottom: -2%" align="left" -->
 
-<!-- $$ -->
-<!-- x' = x \odot \exp\left[\varepsilon \cdot s(v) \right] + t(v')\odot \exp\left[\varepsilon \cdot s(v')\right] -->
-<!-- $$ -->
+<div class="block">
 
-<!-- <div align="center"> -->
+<!-- .element: style="max-width: 80%; margin-left: 10%; margin-right: 10%; line-height: 1.5em" class="note" -->
 
-<!-- > Note that we update $x$ in a single step -->
-
-<!-- </div> -->
-
-<!-- - When a part of $x$ is updated through another part of $x$, the correlation between data will inevitably increase -->
-<!--   - Thus, we can try instead only updating $x$ based on $v$ -->
-
-<!-- </div> -->
-
-<!-- <div style="text-align:left;"> -->
-
-<!-- # Adversarial Training -->
-
-<!-- - At each epoch of training, generate samples through the <span id="red">transition kernel</span> -->
-<!--   - Treated as <span id="red">fake</span> samples -->
-<!-- - Use <span id="blue">MC algorithm </span> to compute $A(\xi'|\xi)$ -->
-<!--   - Treated as <span id="blue">true</span> samples -->
-
-<!-- - A discriminator will be trained to distinguish the <span id="blue">"true samples"</span> from the <span id="red">"fake samples"</span> -->
-
-<!-- - Our transition kernel will be trained to fool the discriminator. -->
-<!-- <div id="note"> -->
-
-<!-- A discriminator will be trained to distinguish the <span id="blue">"true -->
-<!-- samples"</span> from the <span id="red">"fake samples"</span> -->
-
-<!-- </div> -->
-
-
-<!-- </div> -->
-
-<!-- --- -->
-
-<!-- <div style="text-align:left;"> -->
-
-<!-- # Adversarial Training -->
-
-<!-- - After getting new samples, we: -->
-<!--   1. <span id="red">Drop</span> some samples of the buffer in a constant ratio -->
-<!--   2. <span id="green">Insert</span> new accepted samples -->
-<!--     - <span id="note">Improves the quality of the sampler</span> -->
-<!-- - Train using GANs w/ objective: -->
-
-<!-- `\[ -->
-<!-- \begin{align} -->
-<!-- \min_{K}\,\,\max_{D} V(D, K) =\,\,\min_{T}\,&\,\max_{D}\bigg\{\mathbb{E}_{x\sim B(x)}\left[D(x)\right]\\ &\,-\mathbb{E}_{z\sim\mathcal{N}(0, 1)}\left[D(K(z))\right]\bigg\} -->
-<!-- \end{align} -->
-<!-- \]` -->
-
-<!-- $$ -->
-<!-- - \mathbb{E}_{z\sim\mathcal{N}(0, 1)}\left[D(K(z))\right] -->
-<!-- $$ -->
-
-
-<!-- </div> -->
-</script></section><section  data-markdown><script type="text/template">
-<div id="dark">
-
-## Acknowledgements
-
-<div id="left">
-
-### Collaborators:
- - Xiao-Yong Jin
- - James C. Osborn
-
-### References:
- - [Link to slides](https://bit.ly/phys-sem)
- - [Link to github](https://github.com/saforem2/l2hmc-qcd)
- - [reach out!](mailto://foremans@anl.gov)
- - [Link to HMC demo](https://chi-feng.github.io/mcmc-demo/app.html)
- - [arXiv:2105.03418](https://arxiv.org/abs/2002.02428)
- - [arXiv:2002.02428](https://arxiv.org/abs/2002.02428)
+1. Half-step `$\textcolor{#26A69A}{v}$` update: `$\,\tilde{v} \,= v + \frac{\varepsilon}{2} \partial_{x} U$` <!-- .element: style="color: #26A69A!important" --> 
+2. Full-step `$\,\textcolor{#AB47BC}{x}$` update: `$x' = x + \varepsilon \tilde{v} $` <!-- .element: style="color: #AB47BC!important" --> 
+3. Half-step `$\textcolor{#26A69A}{v}$` update: `$v' \,= \tilde{v} + \frac{\varepsilon}{2} \partial_{x} U$` <!-- .element: style="color: #26A69A!important" -->
 
 </div>
 
-<div id="right">
 
-### Huge thank you to:
- - Yannick Meurice
- - Norman Christ
- - Akio Tomiya
- - Luchang Jin
- - Chulwoo Jung
- - Peter Boyle
- - Taku Izubuchi
- - ECP-CSD group
- - ALCF Staff + Datascience Group
-
-</div>
-
-<small> 
-
-<br>
-
-This research used resources of the Argonne Leadership Computing Facility,
-which is a DOE Office of Science User Facility supported under Contract
-DE-AC02-06CH11357.
-
-</small>
-
-</div>
-</script></section><section  data-markdown><script type="text/template"># Thank you!
-
-
-<!-- - 🔗 Slides: [bit.ly/phys-sem](https://bit.ly-phys-sem) -->
-- Reach out! [foremans@anl.gov](mailto:///foremans@anl.gov)
-  - <i class="fab  fa-twitter faa-float animated "></i><a href="https://www.twitter.com/saforem2"> @saforem2</a>
-  - <i class="fab  fa-github faa-float animated "></i><a href="https://www.github.com/saforem2"> saforem2</a>
-<!-- - <a href="https://twitter.com/saforem2/status/1505576506696900608?s=20&t=qtuJbHVVIfYKoWwFWUjcNw"> -->
-<!-- <i class="fab  fa-twitter faa-float animated "></i> What advice would you give to yourself as an undergrad?</a> -->
-
-
-<style>
-
-@import url('https://fonts.googleapis.com/css2?family=Coming+Soon&display=swap');
+</script></section><section  data-markdown><script type="text/template"></script></section><section  data-markdown><script type="text/template"><style>
 
 :root {
-    --r-heading-text-transform: none;
-    --r-heading-margin: 0 0 20px 0;
-    --r-heading-font: "Inter", serif; "Merriweather", "Inter", "OpenSans-Bold","Inter","graze-pro", "Open Sans", Helvetica, Impact, sans-serif;
-    --r-main-background-color: #1c1c1c;
-    --r-main-font: "Inter", sans-serif, "Inter", "SourceSansPro", "Open Sans", "SourceSansPro", Helvetica Neue, sans-serif;
-    --r-main-font-size: 34px;
-    --r-block-margin: 5px;
-    --r-heading-margin: 0 0 20px 0;
-    --r-heading-line-height: 1.2;
-    --r-heading-letter-spacing: -0.45px;
-    --r-heading-word-spacing: 0.5px;
-    --r-heading-text-transform: none;
-    --r-heading-text-shadow: none;
-    --r-heading-font-weight: 700;
-    --r-heading1-text-shadow: none;
-    --r-heading1-size: 2em;
-    --r-heading2-size: 1.75em;
-    --r-heading3-size: 1.5em;
-    --r-heading4-size: 1.25em;
-    --r-heading5-size: 1.1em;
-    --r-heading6-size: 1.05em;
-    --r-code-font: "agave Nerd Font", monospace;
-    --r-link-color: #007DFF;
-    --r-link-color-dark: #f92672;
-    --r-link-color-hover: #63ff51;
-    --r-controls-color: #228BE6;
-    --r-progress-color: #404040;
-    --r-selection-background-color: rgba(255, 255, 0, 0.15);
-    --r-selection-color: rgb(255, 255, 0);
-    --r-main-color: #bbbbbb;
-    --text-muted: #757575;
-    --text-faint: #404040;
-    --r-heading-color: #cfcfcf;
-    --r-background-color: #fff;
-    -webkit-font-smoothing:subpixel-antialiased;
+   --r-heading-font: 'Inter', sans-serif;
+  font-size: 34px;
 }
-
-.reveal {
-    font-family: var(--r-main-font), sans-serif;
-    font-size: var(--r-main-font-size);
-    font-weight: 400 !important;
-    color: var(--r-main-color);
-    background-color: var(--r-main-background-color);
+.horizontal_dotted_line{
+  border-bottom: 2px dotted gray;
+} 
+.footer {
+  font-size: 60%;
+  vertical-align:bottom;
+  color:#bdbdbd;
+  font-weight:400;
+  margin-left:-5px;
+  margin-bottom:1%;
 }
-
-.reveal h1,
-.reveal h2,
-.reveal h3,
-.reveal h4 {
-    margin: var(--r-heading-margin);
-    color: var(--r-heading-color);
-    font-family: var(--r-heading-font);
-    line-height: var(--r-heading-line-height);
-    word-spacing: var(--r-heading-word-spacing);
-    text-transform: var(--r-heading-text-transform);
-    text-shadow: var(--r-heading-text-shadow);
-    font-weight: var(--heading-font-weight);
-    word-wrap: break-word;
+.note {
+  color:#ffffff;
+  padding:auto;
+  border-radius:8px;
+  background-color:#40404050;
+  border-color:#66666690;
+  text-align:center!important;
 }
-
-.reveal h1 {
-    font-weight: 800;
-    font-size: var(--r-heading1-size);
-}
-
-.reveal h2 {
-    font-weight: 700;
-    font-size: var(--r-heading2-size);
-}
-
-.reveal h3 {
-    font-weight: 700;
-    font-size: var(--r-heading3-size);
-}
-
-.reveal h4 {
-    font-weight: 700;
-    font-size: var(--r-heading4-size);
-}
-
-.reveal h5 {
-    font-weight: 600;
-    font-size: var(--r-heading5-size);
-}
-.reveal h6 {
-    font-weight: 500;
-    font-size: var(--r-heading6-size);
-}
-
-
 .reveal ul ul,
 .reveal ul ol,
 .reveal ol ol,
 .reveal ol ul {
   margin-bottom: 10px;
 }
-
-.reveal ul:not(:last-child) {
-    margin-bottom: 2px;
+.callout {
+  background-color: #35353550
+  color: #eeeeee;
 }
-
-.reveal ul:last-child {
-    margin-bottom: 20px;
-}
-
-.reveal ul ul {
-    list-style: circle;
-}
-.container {
-  position: relative;
-}
-
-.make-it-pop {
-  filter: drop-shadow(0 0 10px purple);
-}
-
-.bottomright {
-  position: absolute;
-  bottom: 8px;
-  right: 16px;
-  font-size: 18px;
-}
-
-@media (max-width: 600px) {
-  section {
-    -webkit-flex-direction: column;
-    flex-direction: column;
-  }
-}
-
-.row {
-  display: flex;
-}
-
-.column {
-  flex: 50%;
-}
-
-
-#left {
-  margin: 0 0 5px 5px;
-  text-align: left;
-  float: left;
-  z-index: -10;
-  width: 48%;
-  font-size: 0.85em;
-}
-
-#right {
-  margin: 0 0 5px 0;
-  float: right;
-  max-width: 48%;
-  text-align: left;
-  z-index: -10;
-  width: 48%;
-  font-size: 0.85em;
-}
-
-#darkBack {
-    background-color: #1c1c1c;
-    color: #efefef;
-    .reveal a {
-        color: #F92672;
-        transition: color 0.15s ease;
-    }
-    .reveal a:hover {
-        color: var(--r-link-color-hover);
-    }
-}
-
-.multiCol {
-    display: table;
-    table-layout: fixed; /* don't fudge depending on content */
-    width: 100%;
-    text-align: left; /* matter of taste, makes imho sense */
-    .col {
-        display: table-cell;
-        vertical-align: top;
-        width: 50%;
-        padding: 2% 0 2% 3%; /* some vertical, and between columns */
-        &:first-of-type { padding-left: 0; } /* there's nothing before col1 */
-    }
-}
-
-.reveal blockquote:before {
-  content: "❝";
-  font-size: 2.5em;
-  margin-right: .05em;
-  line-height: 0.1em;
-  vertical-align: -0.3em;
-  text-align: left !important;
-  color: var(--text-faint);
-  font-style: normal !important;
-}
-
-.reveal blockquote p {
-  color: var(--text-muted);
-  font-style: normal !important;
-  font-align: left;
-  display: inline;
-  text-align: left;
-}
-
-.reveal blockquote em{
-  color: var(--text-muted);
-  text-align: left;
-}
-
-.reveal blockquote {
-  border-radius: 8px !important;
-  margin: 0.5rem 0rem 0.5rem 0rem;
-  text-align: center;
-  padding-top: 1rem;
-  padding-left: 2rem;
-  padding-bottom: 1rem;
-  padding-right: 2rem;
-  width: auto;
-  max-width: 66%;
-  font-style: normal !important;
-}
-
-.reveal hljs {
-    background: #1c1c1c !important;
-}
-
-.hljs {
-    background: #202020 !important;
-    border-radius: 8px !important;
-}
-
-#blue {
-    color: #0091EA;
-}
-#bright {
-    color: #00A2FF;
-}
-#cyan {
-    color: #00CCFF;
-}
-#purple {
-    color: #AE81ff;
-}
-#green {
-    color: #00CF53;
-}
-#yellow {
-    color: #FFFF00;
-}
-#lightpink {
-    color: #E64980;
-}
-#pink {
-    color: #F92672;
-}
-#red {
-    color: #FA5252;
-}
-#grey {
-    color: #666666;
-}
-
-#noteinverse {
-    background-color: #1c1c1c;
-    border-radius: 5px;
-    border-color: #1c1c1c;
-    color: #efefef;
-    padding: 8px;
-    margin: 4px;
-}
-
-#note {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 10px;
-    border-radius: 8;
-    border-color: rgba(240, 240, 240, 1.0);
-    color: rgb(255, 255, 255);
-    margin: auto;
-}
-
-#mark {
-    border-radius: 7;
-    margin: 4px;
-    padding: 8px;
-    background-color: #FFFF00;
-    color: #1c1c1c;
-    font-weight: 700;
-}
-
-.reveal .mark {
-    border-radius: 7;
-    margin: 4px;
-    padding: 8px;
-    background-color: #FFFF00;
-    color: #1c1c1c;
-    font-weight: 700;
-}
-
-#dark {
-    background-color: #1c1c1c;
-    color: #efefef;
-    --r-link-color: #228bE6;
-    --r-header-color: #666666;
-    -webkit-font-smoothing:subpixel-antialiased;
-}
-
-#halfsize {
-    font-size: 0.5em;
-}
-
-#large {
-  font-size: 1.25em;
+.callout-content {
+  overflow-x: auto;
+  color: #eeeeee;
+  background-color:#353535;
+  padding: 5px 15px;
 }
 
 </style>
 </script></section></div>
     </div>
 
-    <script src="./dist/reveal.js"></script>
+    <script src="dist/reveal.js"></script>
 
-    <script src="./plugin/markdown/markdown.js"></script>
-    <script src="./plugin/highlight/highlight.js"></script>
-    <script src="./plugin/zoom/zoom.js"></script>
-    <script src="./plugin/notes/notes.js"></script>
-    <script src="./plugin/math/math.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script src="plugin/zoom/zoom.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/math/math.js"></script>
+	<script src="plugin/mermaid/mermaid.js"></script>
+	<script src="plugin/chart/chart.min.js"></script>
+	<script src="plugin/chart/plugin.js"></script>
+	<script src="plugin/menu/menu.js"></script>
+	<script src="plugin/customcontrols/plugin.js"></script>
+	<script src="plugin/chalkboard/plugin.js"></script>
+
     <script>
       function extend() {
         var target = {};
@@ -1152,6 +1572,29 @@ DE-AC02-06CH11357.
         return target;
       }
 
+	  function isLight(color) {
+		let hex = color.replace('#', '');
+
+		// convert #fff => #ffffff
+		if(hex.length == 3){
+			hex = `${hex[0]}${hex[0]}${hex[1]}${hex[1]}${hex[2]}${hex[2]}`;
+		}
+
+		const c_r = parseInt(hex.substr(0, 2), 16);
+		const c_g = parseInt(hex.substr(2, 2), 16);
+		const c_b = parseInt(hex.substr(4, 2), 16);
+		const brightness = ((c_r * 299) + (c_g * 587) + (c_b * 114)) / 1000;
+		return brightness > 155;
+	}
+
+	var bgColor = getComputedStyle(document.documentElement).getPropertyValue('--r-background-color').trim();
+
+	if(isLight(bgColor)){
+		document.body.classList.add('has-light-background');
+	} else {
+		document.body.classList.add('has-dark-background');
+	}
+
       // default options to init reveal.js
       var defaultOptions = {
         controls: true,
@@ -1164,23 +1607,45 @@ DE-AC02-06CH11357.
           RevealHighlight,
           RevealZoom,
           RevealNotes,
-          RevealMath
-        ]
+          RevealMath.MathJax3,
+		  RevealMermaid,
+		  RevealChart,
+		  RevealCustomControls,
+		  RevealMenu,
+		  RevealChalkboard, 
+        ],
+
+		mathjax3: {
+			mathjax: 'plugin/math/mathjax/tex-mml-chtml.js',
+		},
+
+		customcontrols: {
+			controls: [
+				{id: 'toggle-overview',
+				title: 'Toggle overview (O)',
+				icon: '<i class="fa fa-th"></i>',
+				action: 'Reveal.toggleOverview();'
+				},
+				{ icon: '<i class="fa fa-pen-square"></i>',
+				title: 'Toggle chalkboard (B)',
+				action: 'RevealChalkboard.toggleChalkboard();'
+				},
+				{ icon: '<i class="fa fa-pen"></i>',
+				title: 'Toggle notes canvas (C)',
+				action: 'RevealChalkboard.toggleNotesCanvas();'
+				},
+			]
+		},
+		menu: {
+			loadIcons: false
+		}
       };
 
       // options from URL query string
       var queryOptions = Reveal().getQueryHash() || {};
 
-      var options = extend(defaultOptions, {"transition":"slide","scripts":["plugin/reveal.js-menu/menu.js","plugin/reveal.js-plugins/chalkboard/plugin.js","plugin/reveal.js-plugins/customcontrols/plugin.js","plugin.js"],"menu":{"themes":true,"transitions":true,"transition":"slide"}}, queryOptions);
+      var options = extend(defaultOptions, {"width":960,"height":700,"margin":0.04,"controls":false,"progress":true,"slideNumber":true,"center":true,"transition":"slide","transitionSpeed":"fast"}, queryOptions);
     </script>
-
-    <script src="./_assets/plugin/reveal.js-menu/menu.js"></script>
-    <script src="./_assets/plugin/reveal.js-plugins/chalkboard/plugin.js"></script>
-    <script src="./_assets/plugin/reveal.js-plugins/customcontrols/plugin.js"></script>
-    <script src="./_assets/plugin/fontawesome.js"></script>
-    <script src="./_assets/js/fontawesome-all.min.js"></script>
-    <script src="./_assets/./plugin/embed-tweet/plugin.js"></script>
-    <script src="./_assets/plugin.js"></script>
 
     <script>
       Reveal.initialize(options);
