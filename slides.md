@@ -343,7 +343,7 @@ note:
 
 ::: block <!-- .element style="color:#EEEEEE;vertical-align:center;margin-top:10%;text-shadow:0px 0px 10px black;" -->
 
-#### Anomalous Magnetic Moment of the Muon 
+#### Anomalous Magnetic Moment of the Muon[^quanta]
 
 :::
 
@@ -355,7 +355,19 @@ $$a_{\mu} = \frac{(g_{\mu} - 2)}{2}$$ <!-- .element style="color:#EEEEEE;font-si
 
 #### New physics? <!-- .element style="color:#f8f8f8;;vertical-align:center;margin-top:10%;text-shadow:0px 0px 10px black;" -->
 </grid>
+    
+::: block <!-- .element class="footer" -->
+    
+    
+[‘Last Hope’ Experiment Finds Evidence for Unknown Particles  Quanta Magazine](https://www.quantamagazine.org/last-hope-experiment-finds-evidence-for-unknown-particles-20210407/)
+    
+
+    
+:::
+
 </section>
+
+
 
 note:
 muon g-2
@@ -527,18 +539,20 @@ note:
 #### Markov Chain Monte Carlo (MCMC)
 
 $$x \sim \mathcal{N}(0, \mathbb{1})$$
-![](assets/samples/mh1d.svg) <!-- .element align="stretch" width="80%" -->
+![](assets/samples/mh1d.svg) <!-- .element align="stretch" width="60%" -->
 
 ---
 
-#### Markov Chain Monte Carlo (MCMC)
+<grid drop="top" drag=" 15" align="topright" class="note">
+</grid>
 
-<grid drag="100 85" drop="0 15" flow="col">
-<grid drag="100 35" drop="0 15" flow="row">
+<grid drag="100 40" drop="0 5" flow="row">
+**Markov Chain Monte Carlo** (MCMC)<br> [`[slide w/ src]`](#Metropolis-Hastings%20in%20Python) <!-- .element align="left" style="text-align:center!important;" -->
+
 ![](./assets/samples/samples-100.svg)
 ![](./assets/samples/samples-1000.svg)
 </grid>
-<grid drag="100 35" drop="0 65" flow="row">
+<grid drag="100 30" drop="0 60" flow="row">
 ![](./assets/samples/samples-10000.svg)
 ![](./assets/samples/samples-1e06.svg)
 </grid>
@@ -568,7 +582,7 @@ $$\begin{align}
 
 <grid drag="20 20" drop="center" align="center">
 
-# HMC <!-- .element style="text-shadow: 0px 0px 10px black;" -->
+# HMC[^hmc] <!-- .element style="text-shadow: 0px 0px 10px black;" -->
 </grid>
 
 
@@ -724,29 +738,29 @@ Comparison of $\tau_{\mathrm{int}}^{Q}$ for <span style="color:#5BC461;">**train
 # Interpretation
 
 
-![](assets/ridgeplots.svg) <!-- .lement align="stretch" -->
+![](assets/ridgeplots.svg) <!-- .element align="stretch" -->
 
 ::: block <!-- .element style="font-size:0.7em;color:#757575;" -->
 
-<grid drop="5 65" drag="30 10" align="center" class="note">
+<grid drop="8 65" drag="26 10" align="center" class="note" style="font-size:0.9em;">
 Deviation in $x_{P}$ 
 </grid>
 
-<grid drop="38 65" drag="30 10" align="center" class="note">
+<grid drop="38 65" drag="30 10" align="center" class="note" style="font-size:0.9em;">
 Topological charge mixing
 </grid>
 
-<grid drop="70 65" drag="30 10" align="center" class="note">
+<grid drop="72 65" drag="26 10" align="center" class="note" style="font-size:0.9em;">
 Artificial influx of energy
 </grid>
 
 :::
 
-<grid drag="100 15" drop="0 80" align="bottom">
+<grid drag="100 15" drop="0 70" align="bottom" class="footer" style="margin-left:2%;">
 Illustration of how different observables evolve over a single L2HMC trajectory.
 </grid>
 
-<!-- .slide style="text-align:left;" -->
+
 ---
 # <a href="https://www.github.com/saforem2/l2hmc-qcd"><i class="fab fa-github" /></a> `l2hmc-qcd` 
 <a href="https://arxiv.org/abs/2112.01582"><img alt="arxiv" src="http://img.shields.io/badge/arXiv-2112.01582-B31B1B.svg"></a> <a href="https://arxiv.org/abs/2105.03418"><img alt="arxiv" src="http://img.shields.io/badge/arXiv-2105.03418-B31B1B.svg"></a> <a href="https://arxiv.org/abs/2112.01586"><img alt="arxiv" src="http://img.shields.io/badge/arXiv-2112.01582-B31B1B.svg"></a>
@@ -765,6 +779,8 @@ Illustration of how different observables evolve over a single L2HMC trajectory.
 
 [^melko]: Carrasquilla, J., Melko, R. [Machine learning phases of matter](https://doi.org/10.1038/nphys4035). _Nature Phys_ **13,** 431–434 (2017).
 [^alcf]: [Argonne National Laboratory and Hewlett Packard Enterprise prepare for exascale era with new testbed supercomputer Argonne Leadership Computing Facility](https://www.alcf.anl.gov/news/argonne-national-laboratory-and-hewlett-packard-enterprise-prepare-exascale-era-new-testbed)
+[^quanta]: [‘Last Hope’ Experiment Finds Evidence for Unknown Particles  Quanta Magazine](https://www.quantamagazine.org/last-hope-experiment-finds-evidence-for-unknown-particles-20210407/)
+[^hmc]: https://chi-feng.github.io/mcmc-demo/app.html
 
 ---
 
@@ -791,6 +807,35 @@ Feel free to reach out!
 <grid drag="85 40" drop="center" class="note">
 # BACKUPS
 </grid>
+
+---
+# Metropolis-Hastings in Python
+
+```python
+import numpy as np
+
+def prob(x: float) -> float:
+    denom = np.sqrt(2 * np.pi ** 2)
+    return np.exp(-0.5 * (x ** 2)) / denom
+
+def metropolis_hastings(steps: int = 1000):
+    x = 0.                                           # initialize config
+    samples = np.zeros(steps)
+    for n in range(steps):
+        xp = x + np.random.randn()                   # generate proposal
+        if np.random.rand() < (prob(xp) / prob(x)):
+            x = xp                                   # accept if xp more likely
+        samples[i] = x                               # collect our samples
+
+    return samples
+```
+
+### $1\times10^{6}$ samples <span id="red"> in $< 4s$</span>!</li></ul></span>
+
+```python
+>>> %timeit metropolis_hastings(int(1e6))
+3.85 s ± 173 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+```
 
 ---
 
@@ -1272,13 +1317,6 @@ Multi-GPU Support[`[1]`](https//arxiv.org/1109.2935/abs), with:
 ![](./assets/plaquetteUxy.svg) <!-- .element style="width=20%!important;" -->
 ![](./assets/plaquetteUtx.svg) <!-- .element style="width=40%;" -->
 
-
----
-
-## Probabilistic Generative Models
-<grid drop="1 10"  drag="99 90">
-<iframe id="lecun" width="100%" height="100%" data-src="https://twitter.com/ylecun/status/1525560489216028677" data-preload data-background-interactive></iframe>
-</grid>
 
 ---
 
