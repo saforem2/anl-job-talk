@@ -699,13 +699,12 @@ Virtual photon splits into (anti)-hadron pair (quarks, hard to calculate)
 </script></section><section  data-markdown><script type="text/template">
 #### Markov Chain Monte Carlo (MCMC)
 
+
 `$$x \sim \mathcal{N}(0, \mathbb{1})$$`
 <p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/samples/mh1d.svg" alt="" align="stretch" width="60%"></img></p>
 
 </script></section><section  data-markdown><script type="text/template">
 <div class="note reset-margin" style="position: absolute; left: NaNpx; top: 0px; height: 105px; min-height: 105px; width: undefinedpx; display: flex; flex-direction: column; align-items: flex-end; justify-content: flex-start" align="right">
-
-</div>
 
 <div class="reset-margin flex-even" style="position: absolute; left: 0px; top: 35px; height: 280px; min-height: 280px; width: 960px; display: flex; flex-direction: row; align-items: center; justify-content: space-evenly" >
 
@@ -723,8 +722,7 @@ Virtual photon splits into (anti)-hadron pair (quarks, hard to calculate)
 <p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/samples/samples-1e06.svg" alt="" ></img></p>
 
 </div>
-</grid>
-
+</div>
 
 <!-- .slide: class="drop" -->
 </script></section><section  data-markdown><script type="text/template">
@@ -735,8 +733,8 @@ Virtual photon splits into (anti)-hadron pair (quarks, hard to calculate)
 <div class="note reset-margin" style="font-size: 1.5em; margin-bottom: 20%; position: absolute; left: 316.8px; top: 105px; height: 189px; min-height: 189px; width: 307.2px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
 `$$\begin{align}
-    \dot{x} &= +\partial_{v} H \\
-    \dot{v} &= - \partial_{x} H 
+\dot{x} &= +\partial_{v} H\\\\
+\dot{v} &= - \partial_{x} H 
 \end{align}$$`
 </div> 
 
@@ -746,22 +744,19 @@ Virtual photon splits into (anti)-hadron pair (quarks, hard to calculate)
 
 </div>
 </script></section><section  data-markdown><script type="text/template">
-<section data-background-iframe="https://chi-feng.github.io/mcmc-demo/app.html" data-background-interactive></section>
-
-<div class="reset-margin" style="position: absolute; left: 384px; top: 280px; height: 140px; min-height: 140px; width: 192px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+<div class="note reset-margin" style="text-shadow: 0px 0px 10px black; font-size: 0.4em; position: absolute; left: 480px; top: 35px; height: 56px; min-height: 56px; width: 115.19999999999999px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
 
-# HMC<sup id="fnref:hmc" role="doc-noteref">1</sup><!-- .element: style="text-shadow: 0px 0px 10px black" -->
+### HMC [<i class="fas fa-external-link-alt"></i>](https://chi-feng.github.io/mcmc-demo/app.html)
+
 </div>
 
+<div class="reset-margin" style="position: absolute; left: 0px; top: 0px; height: 700px; min-height: 700px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+<iframe width="100%" height="100%" data-background-interactive data-src="https://chi-feng.github.io/mcmc-demo/app.html"></div>
+    
+<aside class="notes"></div>
 
-<!-- .slide: class="drop" -->
-
-<div class="footnotes" role="doc-endnotes">
-<ol>
-</ol>
-</div>
-</script></section><section  data-markdown><script type="text/template">
+<!-- .slide: class="drop" --></aside></script></section><section  data-markdown><script type="text/template">
 # Issues with HMC
 
 <p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="assets/hmc025.svg" alt="" align="stretch"></img></p>
@@ -771,10 +766,16 @@ Virtual photon splits into (anti)-hadron pair (quarks, hard to calculate)
 </script></section><section  data-markdown><script type="text/template">
 ### `l2hmc`: LeapfrogLayer
 
+<div class="reset-margin stretch-column" style="position: absolute; left: 28.799999999999997px; top: 56px; height: 630px; min-height: 630px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+
+
 <img src="./assets/update_steps.svg" style="width:31%;align:left;"></img>
 <img src="./assets/leapfrog_layer_dark2.svg" style="width:64%;align:right;"></img>
 <img src="./assets/network_functions.svg" style="width:90%;align:center;"></img>
 
+</div>
+
+<!-- .slide: class="drop" -->
 </script></section><section  data-markdown><script type="text/template">
 # L2HMC
 
@@ -1213,6 +1214,8 @@ def metropolis_hastings(steps: int = 1000):
 
 <div class="block">
 
+<!-- .element: style="font-size: 0.8em!important; line-height: 0.8em" -->
+
 `$$\begin{align}
 h_{1} &= \sigma\left(W_{x}\, \textcolor{#42A5F5}{x} + W_{v}\, \textcolor{#FD971F}{v} + b\right) \\\\
 h_{2} &= \sigma\left(W_{1} h_{1} + b_{1}\right) \\\\
@@ -1222,6 +1225,7 @@ h_{n} &= \sigma\left(W_{n} h_{n} + b_{n}\right) \\\\
 \textcolor{#00CF53}{Q_{x}} &= \textcolor{#ff5252}{\lambda_{Q}}\tanh\left(W_{Q} h_{n} + b_{Q} \right) \\\\
 \textcolor{#00CF53}{T_{x}} &= W_{T} h_{n} + b_{T}
 \end{align}$$`
+
 
 </div>
 
@@ -1238,7 +1242,7 @@ h_{n} &= \sigma\left(W_{n} h_{n} + b_{n}\right) \\\\
 
 
 
-<div class="footer reset-margin" style="position: absolute; left: 0px; top: 616px; height: 70px; min-height: 70px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
+<div class="footer reset-margin" style="position: absolute; left: 0px; top: 49px; height: 70px; min-height: 70px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
 **Note**: `$\textcolor{#ff5252}{\lambda_{S}}$`, `$\textcolor{#ff5252}{\lambda_{Q}}$` are trainable parameters
 </div>
@@ -1488,32 +1492,26 @@ h_{n} &= \sigma\left(W_{n} h_{n} + b_{n}\right) \\\\
 
 - Transform untraced plaquettes (matrix valued) `$P'_{\mu\nu}(x)\gets P_{\mu\nu}(x)$`
 
+<div class="block">
+
+<!-- .element: style="text-align: center!important; background-color: #35353550; margin-top: 5%; padding: 1%; margin-bottom: 5%; margin-left: 10%; margin-right: 10%" class="note" -->
+
 `$$P_{\mu\nu}(x) \equiv U_{\mu}(x)\,U_{\nu}(x+\hat{\mu})\,U^{\dagger}(x+\hat{\nu})\,U^{\dagger}(x)$$` 
-<!-- .element: style="text-align: center!important; background-color: #35353550; margin-top: 5%; margin-bottom: 5%; margin-left: 10%; margin-right: 10%" class="note" -->
-
-- Change back to links and update gauge configuration 
-
-`$$U'_{\mu}(x) = P'_{\mu\nu}(x)P^{\dagger}_{\mu\nu}(x)U_{\mu}(x)$$`
-<!-- .element: style="text-align: center!important; margin-top: 5%; background-color: #35353550; margin-bottom: 5%; margin-left: 20%; margin-right: 20%" class="note" -->
 
 </div>
 
 
-</script></section><section  data-markdown><script type="text/template">
-<!-- .slide: style="text-align: left" -->
 
-### Topological Charge
+- Change back to links and update gauge configuration 
 
-Discretize `$Q$` on the lattice as 
-`$$Q = a^{4} \sum_{x} q_{L}(x)$$`
+<div class="block">
 
-Discretize `$q_{L}$` using `$C_{\mu\nu}^{\mathrm{plaq}}(x)$`
+<!-- .element: style="text-align: center!important; background-color: #35353550; margin-top: 5%; padding: 1%; margin-bottom: 5%; margin-left: 10%; margin-right: 10%" class="note" -->
 
-`$$q_{L}^{\mathrm{plaq}} = \frac{1}{32\pi^{2}} \varepsilon_{\mu\nu\rho\sigma}\mathrm{Tr}\left(C_{\mu\nu}^{\mathrm{plaq}} C_{\rho\sigma}^{\mathrm{plaq}}\right)$$`
+`$$U'_{\mu}(x) = P'_{\mu\nu}(x)P^{\dagger}_{\mu\nu}(x)U_{\mu}(x)$$`
 
-Where `$C_{\mu\nu}^{\mathrm{plaq}}(x)$` is the imaginary part of the plaquette:
+</div>
 
-<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/qplaq.svg" alt="" style="align: center!important; margin-left: 20%; margin-right: 20%" width="50%" align="center"></img></p>
 
 </script></section><section  data-markdown><script type="text/template">
 <!-- .slide: style="text-align: left" -->
@@ -1527,6 +1525,54 @@ Where `$C_{\mu\nu}^{\mathrm{plaq}}(x)$` is the imaginary part of the plaquette:
 where
 
 `$$q(x) = \frac{1}{32\pi^{2}} \varepsilon_{\mu\nu\rho\sigma} \mathrm{Tr}\left[F_{\mu\nu} F_{\rho\sigma}\right]$$`
+</script></section><section  data-markdown><script type="text/template">
+# Topological Charge
+
+<div class="block">
+
+<!-- .element: style="text-align: left" -->
+
+- Discretize `$Q$` on the lattice as 
+
+<div class="block">
+
+<!-- .element: style="text-align: center" -->
+
+`$$
+Q = a^{4} \sum_{x} q_{L}(x)
+$$`
+
+</div>
+
+
+
+- Discretize `$q_{L}$` using `$C_{\mu\nu}^{\mathrm{plaq}}(x)$`
+
+<div class="block">
+
+<!-- .element: style="text-align: center" -->
+
+`$$
+q_{L}^{\mathrm{plaq}} = \frac{1}{32\pi^{2}} \varepsilon_{\mu\nu\rho\sigma}\mathrm{Tr}\left(C_{\mu\nu}^{\mathrm{plaq}} C_{\rho\sigma}^{\mathrm{plaq}}\right)
+$$`
+
+</div>
+
+
+
+- Where `$C_{\mu\nu}^{\mathrm{plaq}}(x)$` is the imaginary part of the plaquette:
+
+</div>
+
+
+
+<div class="reset-margin" style="position: absolute; left: 96px; top: 560px; height: 140px; min-height: 140px; width: 768px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start" >
+
+<p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/qplaq.svg" alt="" ></img></p>
+
+</div>
+
+<!-- .slide: class="drop" -->
 </script></section><section  data-markdown><script type="text/template">
 <!-- .slide: style="text-align: left; font-size: 100%" class="drop" -->
 
@@ -1609,13 +1655,26 @@ Multi-GPU Support[`[1]`](https//arxiv.org/1109.2935/abs), with:
 
 <!-- .slide: class="drop" -->
 </script></section><section  data-markdown><script type="text/template">
-### `$SU(3)$`: Plaquettes
+<div class="block">
+
+<!-- .element: style="text-align: right!important; margin-left: 49%; padding-right: 3%" class="note" -->
+
+### `$SU(3)$`: Plaquettes 
+
+</div>
+
+
+
+<div class="reset-margin stretch-column" style="position: absolute; left: 0px; top: 35px; height: 630px; min-height: 630px; width: 960px; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly" >
 
 <p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/plaquetteUxy.svg" alt="" ></img></p>
 
 <p style="line-height: 0" class="reset-paragraph image-paragraph"><img src="./assets/plaquetteUtx.svg" alt="" ></img></p>
 
+</div>
 
+
+<!-- .slide: class="drop" -->
 </script></section><section  data-markdown><script type="text/template">
 <!-- .slide: style="text-align: left" -->
 
@@ -1728,6 +1787,9 @@ With corresponding Jacobian:
   color: #eeeeee;
   background-color:#353535;
   padding: 5px 15px;
+}
+.reveal .math {
+  text-align:center;
 }
 
 </style></script></section></div>

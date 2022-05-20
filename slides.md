@@ -538,14 +538,13 @@ note:
 
 #### Markov Chain Monte Carlo (MCMC)
 
+
 $$x \sim \mathcal{N}(0, \mathbb{1})$$
 ![](assets/samples/mh1d.svg) <!-- .element align="stretch" width="60%" -->
 
 ---
 
 <grid drop="top" drag=" 15" align="topright" class="note">
-</grid>
-
 <grid drag="100 40" drop="0 5" flow="row">
 **Markov Chain Monte Carlo** (MCMC)<br> [`[slide w/ src]`](#Metropolis-Hastings%20in%20Python) <!-- .element align="left" style="text-align:center!important;" -->
 
@@ -558,7 +557,6 @@ $$x \sim \mathcal{N}(0, \mathbb{1})$$
 </grid>
 </grid>
 
-
 ---
 
 <!-- .slide style="text-align: center;" -->
@@ -567,8 +565,8 @@ $$x \sim \mathcal{N}(0, \mathbb{1})$$
 
 <grid drag="32 27" drop="33 15" align="center" class="note" style="font-size:1.5em;margin-bottom:20%;">
 $$\begin{align}
-    \dot{x} &= +\partial_{v} H \\
-    \dot{v} &= - \partial_{x} H 
+\dot{x} &= +\partial_{v} H\\\\
+\dot{v} &= - \partial_{x} H 
 \end{align}$$
 </grid> 
 
@@ -578,13 +576,17 @@ $$\begin{align}
 
 ---
 
-<section data-background-iframe="https://chi-feng.github.io/mcmc-demo/app.html" data-background-interactive></section>
+<grid drop="50 5" drag="12 8" align="center" class="note" style="text-shadow: 0px 0px 10px black;font-size:0.4em;">
 
-<grid drag="20 20" drop="center" align="center">
+### HMC [<i class="fas fa-external-link-alt"></i>](https://chi-feng.github.io/mcmc-demo/app.html)
 
-# HMC[^hmc] <!-- .element style="text-shadow: 0px 0px 10px black;" -->
 </grid>
 
+<grid drop="0 0" drag="100 100"><iframe width="100%" height="100%" data-background-interactive data-src="https://chi-feng.github.io/mcmc-demo/app.html"></grid>
+    
+note:
+
+</div>
 
 ---
 
@@ -597,10 +599,13 @@ $$\begin{align}
 
 ### `l2hmc`: LeapfrogLayer
 
+<grid drop="3 8" drag="100 90" align="stretch">
+
 <img src="./assets/update_steps.svg" style="width:31%;align:left;"></img>
 <img src="./assets/leapfrog_layer_dark2.svg" style="width:64%;align:right;"></img>
 <img src="./assets/network_functions.svg" style="width:90%;align:center;"></img>
 
+</grid>
 
 ---
 
@@ -969,7 +974,7 @@ $$x_{\mu}(n) \gets \left[\cos(x), \sin(x)\right]$$
 
 :::
 
-::: block
+::: block <!-- .element style="font-size:0.8em!important;line-height:0.8em;" -->
 
 $$\begin{align}
 h_{1} &= \sigma\left(W_{x}\, \textcolor{#42A5F5}{x} + W_{v}\, \textcolor{#FD971F}{v} + b\right) \\\\
@@ -981,6 +986,7 @@ h_{n} &= \sigma\left(W_{n} h_{n} + b_{n}\right) \\\\
 \textcolor{#00CF53}{T_{x}} &= W_{T} h_{n} + b_{T}
 \end{align}$$
 
+
 :::
 
 ::: block <!-- .element class="note" style="margin-left:25%;margin-right:25%;padding:1%;" -->
@@ -990,7 +996,7 @@ h_{n} &= \sigma\left(W_{n} h_{n} + b_{n}\right) \\\\
 :::
 
 
-<grid drag="100 10" drop="0 88" align="center" class="footer">
+<grid drag="100 10" drop="0 7" align="center" class="footer">
 **Note**: $\textcolor{#ff5252}{\lambda_{S}}$, $\textcolor{#ff5252}{\lambda_{Q}}$ are trainable parameters
 </grid>
 
@@ -1197,32 +1203,19 @@ $$v'' = v' \cdot \exp\left[\varepsilon \textcolor{#ff5252}{S_{v}}\left(x'', \par
 
 - Transform untraced plaquettes (matrix valued) $P'_{\mu\nu}(x)\gets P_{\mu\nu}(x)$
 
+::: block <!-- .element class="note" style="text-align:center!important;background-color:#35353550;margin-top:5%;padding:1%;margin-bottom:5%;margin-left:10%;margin-right:10%;" -->
+
 $$P_{\mu\nu}(x) \equiv U_{\mu}(x)\,U_{\nu}(x+\hat{\mu})\,U^{\dagger}(x+\hat{\nu})\,U^{\dagger}(x)$$ 
-<!-- .element class="note" style="text-align:center!important;background-color:#35353550;margin-top:5%;margin-bottom:5%;margin-left:10%;margin-right:10%;" -->
-
-- Change back to links and update gauge configuration 
-
-$$U'_{\mu}(x) = P'_{\mu\nu}(x)P^{\dagger}_{\mu\nu}(x)U_{\mu}(x)$$
-<!-- .element class="note" style="text-align:center!important;margin-top:5%;background-color:#35353550;margin-bottom:5%;margin-left:20%;margin-right:20%;" -->
 
 :::
 
----
+- Change back to links and update gauge configuration 
 
-<!-- .slide style="text-align:left;" -->
+::: block <!-- .element class="note" style="text-align:center!important;background-color:#35353550;margin-top:5%;padding:1%;margin-bottom:5%;margin-left:10%;margin-right:10%;" -->
 
-### Topological Charge
+$$U'_{\mu}(x) = P'_{\mu\nu}(x)P^{\dagger}_{\mu\nu}(x)U_{\mu}(x)$$
 
-Discretize $Q$ on the lattice as 
-$$Q = a^{4} \sum_{x} q_{L}(x)$$
-
-Discretize $q_{L}$ using $C_{\mu\nu}^{\mathrm{plaq}}(x)$
-
-$$q_{L}^{\mathrm{plaq}} = \frac{1}{32\pi^{2}} \varepsilon_{\mu\nu\rho\sigma}\mathrm{Tr}\left(C_{\mu\nu}^{\mathrm{plaq}} C_{\rho\sigma}^{\mathrm{plaq}}\right)$$
-
-Where $C_{\mu\nu}^{\mathrm{plaq}}(x)$ is the imaginary part of the plaquette:
-
-![](./assets/qplaq.svg) <!-- .element width="50%" align="center" style="align:center!important;margin-left:20%;margin-right:20%;;" -->
+:::
 
 ---
 
@@ -1237,6 +1230,40 @@ $$Q = \int d^{4}x q(x)$$
 where
 
 $$q(x) = \frac{1}{32\pi^{2}} \varepsilon_{\mu\nu\rho\sigma} \mathrm{Tr}\left[F_{\mu\nu} F_{\rho\sigma}\right]$$
+
+---
+
+# Topological Charge
+
+::: block <!-- .element style="text-align:left;" -->
+
+- Discretize $Q$ on the lattice as 
+
+::: block <!-- .element style="text-align:center;" -->
+
+$$
+Q = a^{4} \sum_{x} q_{L}(x)
+$$
+
+:::
+
+- Discretize $q_{L}$ using $C_{\mu\nu}^{\mathrm{plaq}}(x)$
+
+::: block <!-- .element style="text-align:center;" -->
+
+$$
+q_{L}^{\mathrm{plaq}} = \frac{1}{32\pi^{2}} \varepsilon_{\mu\nu\rho\sigma}\mathrm{Tr}\left(C_{\mu\nu}^{\mathrm{plaq}} C_{\rho\sigma}^{\mathrm{plaq}}\right)
+$$
+
+:::
+
+- Where $C_{\mu\nu}^{\mathrm{plaq}}(x)$ is the imaginary part of the plaquette:
+
+:::
+
+<grid drop="bottom" drag="80 20" align="top">
+![](./assets/qplaq.svg) 
+</grid>
 
 ---
 
@@ -1312,10 +1339,16 @@ Multi-GPU Support[`[1]`](https//arxiv.org/1109.2935/abs), with:
 
 ---
 
-### $SU(3)$: Plaquettes
+::: block <!-- .element style="text-align:right!important;margin-left:49%;padding-right:3%;" class="note" -->
 
-![](./assets/plaquetteUxy.svg) <!-- .element style="width=20%!important;" -->
-![](./assets/plaquetteUtx.svg) <!-- .element style="width=40%;" -->
+### $SU(3)$: Plaquettes 
+
+:::
+
+<grid drag="100 90" drop="center" flow="col" align="stretch">
+![](./assets/plaquetteUxy.svg)
+![](./assets/plaquetteUtx.svg)
+</grid>
 
 
 ---
@@ -1424,6 +1457,9 @@ $$\dot{x} = \partial_{v} H,\quad \dot{v} = - \partial_{x} H$$
   color: #eeeeee;
   background-color:#353535;
   padding: 5px 15px;
+}
+.reveal .math {
+  text-align:center;
 }
 
 </style>
